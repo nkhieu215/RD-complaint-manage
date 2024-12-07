@@ -1,0 +1,164 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-list-of-error-heading" data-cy="ListOfErrorCreateUpdateHeading">Create or edit a List Of Error</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_error_code">Error Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="error_code"
+            id="field_error_code"
+            data-cy="error_code"
+            formControlName="error_code"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_error_name">Error Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="error_name"
+            id="field_error_name"
+            data-cy="error_name"
+            formControlName="error_name"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_quantity">Quantity</label>
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_error_source">Error Source</label>
+          <input
+            type="text"
+            class="form-control"
+            name="error_source"
+            id="field_error_source"
+            data-cy="error_source"
+            formControlName="error_source"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reason_id">Reason Id</label>
+          <input type="number" class="form-control" name="reason_id" id="field_reason_id" data-cy="reason_id" formControlName="reason_id" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_method">Method</label>
+          <input type="text" class="form-control" name="method" id="field_method" data-cy="method" formControlName="method" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_check_by_id">Check By Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="check_by_id"
+            id="field_check_by_id"
+            data-cy="check_by_id"
+            formControlName="check_by_id"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_create_by">Create By</label>
+          <input type="text" class="form-control" name="create_by" id="field_create_by" data-cy="create_by" formControlName="create_by" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_image">Image</label>
+          <input type="text" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_created_at">Created At</label>
+          <div class="d-flex">
+            <input
+              id="field_created_at"
+              data-cy="created_at"
+              type="datetime-local"
+              class="form-control"
+              name="created_at"
+              formControlName="created_at"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_updated_at">Updated At</label>
+          <div class="d-flex">
+            <input
+              id="field_updated_at"
+              data-cy="updated_at"
+              type="datetime-local"
+              class="form-control"
+              name="updated_at"
+              formControlName="updated_at"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_check_time">Check Time</label>
+          <div class="d-flex">
+            <input
+              id="field_check_time"
+              data-cy="check_time"
+              type="datetime-local"
+              class="form-control"
+              name="check_time"
+              formControlName="check_time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_complaint_id">Complaint Id</label>
+          <input
+            type="number"
+            class="form-control"
+            name="complaint_id"
+            id="field_complaint_id"
+            data-cy="complaint_id"
+            formControlName="complaint_id"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

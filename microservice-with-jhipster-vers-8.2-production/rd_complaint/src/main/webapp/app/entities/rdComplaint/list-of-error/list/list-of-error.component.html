@@ -1,0 +1,209 @@
+<div>
+  <h2 id="page-heading" data-cy="ListOfErrorHeading">
+    <span>List Of Errors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-list-of-error"
+        [routerLink]="['/rdcomplaint/list-of-error/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new List Of Error</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (listOfErrors?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>No List Of Errors found</span>
+    </div>
+  }
+
+  @if (listOfErrors && listOfErrors.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="error_code">
+              <div class="d-flex">
+                <span>Error Code</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="error_name">
+              <div class="d-flex">
+                <span>Error Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="quantity">
+              <div class="d-flex">
+                <span>Quantity</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="error_source">
+              <div class="d-flex">
+                <span>Error Source</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reason_id">
+              <div class="d-flex">
+                <span>Reason Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="method">
+              <div class="d-flex">
+                <span>Method</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="check_by_id">
+              <div class="d-flex">
+                <span>Check By Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="create_by">
+              <div class="d-flex">
+                <span>Create By</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="image">
+              <div class="d-flex">
+                <span>Image</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="created_at">
+              <div class="d-flex">
+                <span>Created At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="updated_at">
+              <div class="d-flex">
+                <span>Updated At</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="check_time">
+              <div class="d-flex">
+                <span>Check Time</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="complaint_id">
+              <div class="d-flex">
+                <span>Complaint Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (listOfError of listOfErrors; track trackId) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/rdcomplaint/list-of-error', listOfError.id, 'view']">{{ listOfError.id }}</a>
+              </td>
+              <td>{{ listOfError.error_code }}</td>
+              <td>{{ listOfError.error_name }}</td>
+              <td>{{ listOfError.quantity }}</td>
+              <td>{{ listOfError.error_source }}</td>
+              <td>{{ listOfError.reason_id }}</td>
+              <td>{{ listOfError.method }}</td>
+              <td>{{ listOfError.check_by_id }}</td>
+              <td>{{ listOfError.create_by }}</td>
+              <td>{{ listOfError.image }}</td>
+              <td>{{ listOfError.created_at | formatMediumDatetime }}</td>
+              <td>{{ listOfError.updated_at | formatMediumDatetime }}</td>
+              <td>{{ listOfError.check_time | formatMediumDatetime }}</td>
+              <td>{{ listOfError.complaint_id }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/rdcomplaint/list-of-error', listOfError.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">View</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/rdcomplaint/list-of-error', listOfError.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(listOfError)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (listOfErrors && listOfErrors.length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,82 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (listOfError) {
+      <div>
+        <h2 data-cy="listOfErrorDetailsHeading"><span>List Of Error</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ listOfError.id }}</span>
+          </dd>
+          <dt><span>Error Code</span></dt>
+          <dd>
+            <span>{{ listOfError.error_code }}</span>
+          </dd>
+          <dt><span>Error Name</span></dt>
+          <dd>
+            <span>{{ listOfError.error_name }}</span>
+          </dd>
+          <dt><span>Quantity</span></dt>
+          <dd>
+            <span>{{ listOfError.quantity }}</span>
+          </dd>
+          <dt><span>Error Source</span></dt>
+          <dd>
+            <span>{{ listOfError.error_source }}</span>
+          </dd>
+          <dt><span>Reason Id</span></dt>
+          <dd>
+            <span>{{ listOfError.reason_id }}</span>
+          </dd>
+          <dt><span>Method</span></dt>
+          <dd>
+            <span>{{ listOfError.method }}</span>
+          </dd>
+          <dt><span>Check By Id</span></dt>
+          <dd>
+            <span>{{ listOfError.check_by_id }}</span>
+          </dd>
+          <dt><span>Create By</span></dt>
+          <dd>
+            <span>{{ listOfError.create_by }}</span>
+          </dd>
+          <dt><span>Image</span></dt>
+          <dd>
+            <span>{{ listOfError.image }}</span>
+          </dd>
+          <dt><span>Created At</span></dt>
+          <dd>
+            <span>{{ listOfError.created_at | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Updated At</span></dt>
+          <dd>
+            <span>{{ listOfError.updated_at | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Check Time</span></dt>
+          <dd>
+            <span>{{ listOfError.check_time | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Complaint Id</span></dt>
+          <dd>
+            <span>{{ listOfError.complaint_id }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/rdcomplaint/list-of-error', listOfError.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

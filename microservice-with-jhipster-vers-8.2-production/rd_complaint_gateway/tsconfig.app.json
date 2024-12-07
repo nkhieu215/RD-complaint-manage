@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./target/out-tsc/app",
+    "types": [
+      "node"
+    ]
+  },
+  "files": [
+    "src/main/webapp/main.ts"
+  ],
+  "include": [
+    "src/main/webapp/**/*.d.ts"
+  ]
+}

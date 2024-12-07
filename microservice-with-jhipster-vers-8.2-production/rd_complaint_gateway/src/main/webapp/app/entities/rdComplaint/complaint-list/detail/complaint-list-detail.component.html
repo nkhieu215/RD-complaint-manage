@@ -1,0 +1,273 @@
+<div class="d-flex">
+  <div class="col-8" style="width: 100%;">
+    @if (complaintDetail) {
+    <div>
+      <h2 data-cy="complaintDetailDetailsHeading">
+        <div>Khai báo lỗi</div>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <div style="display: flex;flex-direction: column;">
+        <div class="col-container">
+          <div class="col-m4-25">Mã sản phẩm <br><input type="text" [(ngModel)]=" complaintDetail.product_code"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Tên sản phẩm <br><input type="text" [(ngModel)]=" complaintDetail.product_name"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Ngành <br><input type="text" [(ngModel)]=" complaintDetail.branch"
+              [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
+          <div class="col-m4-25">Ngày sản xuất <br><input type="date" [(ngModel)]=" complaintDetail.production_time"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+        </div>
+        <div class="col-container">
+          <div class="col-m4-25">Người khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.reflector"
+              [ngModelOptions]="{ standalone: true }" class="inp-style" list="reflector">
+            <datalist id="reflector">
+              <option *ngFor="let data of reflectorLists" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+          <div class="col-m4-25">Đơn vị sử dụng <br><input type="text" [(ngModel)]=" complaintDetail.unit_of_use"
+              [ngModelOptions]="{ standalone: true }" class="inp-style" list="unit_of_use">
+            <datalist id="unit_of_use">
+              <option *ngFor="let data of unitOfUseList" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+          <div class="col-m4-25">Hình thức khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.complaint"
+              [ngModelOptions]="{ standalone: true }" class="inp-style" list="complaint">
+            <datalist id="complaint">
+              <option *ngFor="let data of complaintLists" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+          <div class="col-m4-25">Mã biên bản <br><input type="text" [(ngModel)]=" complaintDetail.report_code"
+              [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
+        </div>
+        <div class="col-container">
+          <div class="col-m4-25">Số lượng nhận <br><input type="text" [(ngModel)]=" complaintDetail.quantity"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Trạng thái <br><input type="text" [(ngModel)]=" complaintDetail.status"
+              [ngModelOptions]="{ standalone: true }" class="inp-style" list="status">
+            <datalist id="status">
+              <option *ngFor="let data of complaintStatusList" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+          <div class="col-m4-25"></div>
+          <div class="col-m4-25"></div>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <div>Nội dung khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.complaint_detail"
+              [ngModelOptions]="{ standalone: true }" style="width: 97.5%;height: 35px;border-radius: 5px;"></div>
+        </div>
+        <div class="col-container">
+          <div class="col-m4-25">Tổng lỗi <br><input type="text" [(ngModel)]=" complaintDetail.total_errors"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Đơn vị phối hợp <br><input type="text" [(ngModel)]=" complaintDetail.department"
+              [ngModelOptions]="{ standalone: true }" class="inp-style" list="department">
+            <datalist id="department">
+              <option *ngFor="let data of departmentList" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+          <div class="col-m4-25">Ngày khắc phục <br><input type="date" [(ngModel)]=" complaintDetail.rectification_time"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Kết quả thực hiện <br><input type="text"
+              [(ngModel)]=" complaintDetail.implementation_result" [ngModelOptions]="{ standalone: true }"
+              class="inp-style" list="implementation_result">
+            <datalist id="implementation_result">
+              <option *ngFor="let data of implementationResultList" [value]="data.name">{{data.name}}</option>
+            </datalist>
+          </div>
+        </div>
+        <div class="col-container">
+          <div class="col-m4-25">Ý kiến khách hàng sau khắc phục <br><input type="text"
+              [(ngModel)]=" complaintDetail.comment" [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25">Theo dõi tiếp <br><input type="text" [(ngModel)]=" complaintDetail.follow_up_comment"
+              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25"></div>
+          <div class="col-m4-25"></div>
+        </div>
+      </div>
+      <div><button class="add-btn" (click)="addNewRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
+          mới</button></div>
+      <nz-table #basicTable [nzData]="listOfError!" [nzFrontPagination]="true" [nzScroll]="{ x: '3700px' }">
+        <thead>
+          <tr>
+            <th style="width: 2%;" nzLeft>
+              <div class="d-flex">
+                <span>STT</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;" nzLeft>
+              <div class="d-flex">
+                <span>Mã lỗi</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 10%;" nzLeft>
+              <div class="d-flex">
+                <span>Tên lỗi</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Mã lot</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Serial</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Địa chỉ mac</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Số lượng</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Phân loại nguồn lỗi</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th>
+              <div class="d-flex">
+                <span>Nguyên nhân</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th>
+              <div class="d-flex">
+                <span>Biên pháp khắc phục</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Người kiểm tra</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 6%;">
+              <div class="d-flex">
+                <span>Ngày kiểm tra</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th style="width: 4%;" nzRight>
+              <div class="d-flex">
+                <span>Hình ảnh</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (complaintList of listOfError; track complaintList.error_code;let i =$index) {
+          <tr data-cy="entityTable">
+            <td nzLeft> {{i+1}}</td>
+            <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_code"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_name"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.lot_number"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.serial"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.mac_address"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="number" [(ngModel)]=" complaintList.quantity"
+                [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateTotalError()" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_source"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]="complaintList.reason"
+                [ngModelOptions]="{ standalone: true }" list="reason" />
+              <datalist id="reason">
+                <option *ngFor="let data of reasonList" [value]="data.name">{{data.name}}</option>
+              </datalist>
+            </td>
+            <td>
+              <input class="inp-style" type="text" [(ngModel)]=" complaintList.method"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.check_by"
+                [ngModelOptions]="{ standalone: true }" list="check_by" />
+              <datalist id="check_by">
+                <option *ngFor="let data of checkerLists" [value]="data.name">{{data.name}}</option>
+              </datalist>
+            </td>
+            <td><input class="inp-style" type="date" [(ngModel)]=" complaintList.check_time"
+                [ngModelOptions]="{ standalone: true }" />
+            </td>
+            <td style="width: 4%;" nzRight>
+              <!-- <input class="inp-style" type="file" (change)="onChange($event,i)" /> -->
+              <div class="btn-group">
+                <button class="image-btn" style="background-color: #44d2d2;"
+                  (click)="openPopupError(upload,complaintList.image,i,'upload')">
+                  <fa-icon [icon]="faUpload">Upload</fa-icon>
+                </button>
+
+                <button class="image-btn" (click)="openPopupError(view,complaintList.image,i,'view')">
+                  <fa-icon [icon]="faImage">View</fa-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </nz-table>
+      <button type="button" (click)="previousState()" class="add-btn" style="background-color:#df1111 ;">
+        <fa-icon icon="arrow-left"></fa-icon> Back
+      </button>
+
+      <button type="button" class="add-btn" style="background-color: #163297;" (click)="saveComplaintDetail()">
+        <fa-icon [icon]="faSave"></fa-icon> Lưu
+      </button>
+    </div>
+    }
+  </div>
+</div>
+<ng-template #view>
+  <img [src]="imageSrc" alt="Ảnh lỗi">
+</ng-template>
+<ng-template #upload>
+  <input class="inp-style" type="file" (change)="onChange($event)" />
+  <img [src]="imageSrc" alt="Ảnh lỗi">
+  <button type="button" class="add-btn" style="background-color: #163297;">
+    <fa-icon [icon]="faSave"></fa-icon> Lưu
+  </button>
+</ng-template>

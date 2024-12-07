@@ -1,0 +1,36 @@
+.col-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.col-m4-25 {
+    width: 25%;
+}
+
+.inp-style {
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.add-btn {
+    width: 5%;
+    height: 35px;
+    background-color: #44D2D2;
+    color: #fff;
+    border: unset;
+    border-radius: 9px;
+    margin: 10px 10px;
+}
+
+.image-btn {
+    width: 35px;
+    height: 35px;
+    margin-right: 20px;
+    background-color: #618ff7;
+    border: unset;
+    border-radius: 5px;
+    color: #fff;
+}

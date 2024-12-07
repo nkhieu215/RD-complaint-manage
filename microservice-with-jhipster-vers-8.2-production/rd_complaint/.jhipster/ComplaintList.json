@@ -1,0 +1,110 @@
+{
+  "annotations": {
+    "changelogDate": "20241125080546"
+  },
+  "clientRootFolder": "rdComplaint",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "product_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "product_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lot_number",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "branch",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reflector_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "total_errors",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "production_time",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dapartment_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "check_by_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "rectification_time",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "create_by",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "complaint_detail",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "unit_of_use_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "implementation_result_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "follow_up_comment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "complaint_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "created_at",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updated_at",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "serial",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mac_address",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "rdComplaint",
+  "name": "ComplaintList",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

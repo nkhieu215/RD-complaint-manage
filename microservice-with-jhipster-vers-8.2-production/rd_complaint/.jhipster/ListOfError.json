@@ -1,0 +1,70 @@
+{
+  "annotations": {
+    "changelogDate": "20241125081343"
+  },
+  "clientRootFolder": "rdComplaint",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "error_code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "error_name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "error_source",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reason_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "method",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "check_by_id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "create_by",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created_at",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "updated_at",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "check_time",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "complaint_id",
+      "fieldType": "Long"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "rdComplaint",
+  "name": "ListOfError",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

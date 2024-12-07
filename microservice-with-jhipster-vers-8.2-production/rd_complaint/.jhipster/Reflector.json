@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20241125073502"
+  },
+  "clientRootFolder": "rdComplaint",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "create_by",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created_at",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "rdComplaint",
+  "name": "Reflector",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20241125075935"
+  },
+  "clientRootFolder": "rdComplaint",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "create_by",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created_at",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "rdComplaint",
+  "microservicePath": "D:\\RangDongProject\\RD-complaint\\microservice-with-jhipster-vers-8.2-production\\rd_complaint",
+  "name": "CheckerList",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
