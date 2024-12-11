@@ -34,7 +34,7 @@ import { Account } from 'app/core/auth/account.model';
   imports: [SharedModule, FormsModule, ReactiveFormsModule,
     NzTableModule, NzButtonModule, NzDropDownModule,
   ],
-  styleUrl: './complaint-list-update.component.css'
+  styleUrls: ['./complaint-list-update.component.css', '../complaint-list.component.css'],
 })
 export class ComplaintListUpdateComponent implements OnInit {
   faDownload = faDownload;
@@ -64,6 +64,8 @@ export class ComplaintListUpdateComponent implements OnInit {
     this.accountService.identity().subscribe(account => this.account = account);
     this.complaintListService.getGuideListInsert().subscribe(res => {
       console.log("list guide:", this.account)
+      console.log("res:", res)
+
       this.listComplaint = res.complaintList;
       this.listReflector = res.reflectorList;
       this.listUnitOfUse = res.unitOfUseList;
@@ -221,22 +223,45 @@ export class ComplaintListUpdateComponent implements OnInit {
     ]
     ];
     let body = [[
-      '000123456',
-      'Tên sản phẩm',
-      'Ngành',
-      '2024-05-20',
-      'Người khiếu nại',
-      'Hình thức khiếu nại',
-      'Mã biên bản',
-      'Đơn vị sử dụng',
-      '0',
-      'Nội dung khiếu nại',
+      "000123456",
+      "Tên sản phẩm",
+      "Ngành",
+      "2024-05-20",
+      "Người khiếu nại",
+      "Hình thức khiếu nại",
+      "Mã biên bản",
+      "Đơn vị sử dụng",
+      "0",
+      "Nội dung khiếu nại",
     ]
     ];
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet([]);
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    ws['!cols'] = [
+      { width: 15, wch: 15 },
+      { width: 20, wch: 20 },
+      { width: 15, wch: 15 },
+      { width: 15, wch: 15 },
+      { width: 20, wch: 20 },
+      { width: 20, wch: 20 },
+      { width: 15, wch: 15 },
+      { width: 20, wch: 20 },
+      { width: 15, wch: 15 },
+      { width: 30, wch: 30 }
+    ]
     XLSX.utils.sheet_add_aoa(ws, dataHeader, { origin: 'A1' });
     XLSX.utils.sheet_add_aoa(ws, body, { origin: 'A2' });
+
+    for (let i = 0; i < 10; i++) {
+      const col = String.fromCharCode(65 + i);
+      for (let j = 1; j <= 1000; j++) {
+        if (!ws[`${col}${j}`]) {
+          ws[`${col}${j}`] = { t: 's', v: '' };
+        }
+        ws[`${col}${j}`].z = '@';
+      }
+    }
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Thông tin khiếu nại');
     XLSX.writeFile(wb, 'Thông tin khiếu nại (file mẫu).xlsx');
   }

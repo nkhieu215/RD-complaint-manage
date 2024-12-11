@@ -1,46 +1,46 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     @if (reason) {
-      <div>
-        <h2 data-cy="reasonDetailsHeading"><span>Reason</span></h2>
+    <div>
+      <h2 data-cy="reasonDetailsHeading"><span>Thông tin chi tiết nguyên nhân</span></h2>
 
-        <hr />
+      <hr />
 
-        <jhi-alert-error></jhi-alert-error>
+      <jhi-alert-error></jhi-alert-error>
 
-        <jhi-alert></jhi-alert>
+      <jhi-alert></jhi-alert>
 
-        <dl class="row-md jh-entity-details">
-          <dt><span>ID</span></dt>
-          <dd>
-            <span>{{ reason.id }}</span>
-          </dd>
-          <dt><span>Name</span></dt>
-          <dd>
-            <span>{{ reason.name }}</span>
-          </dd>
-          <dt><span>Create By</span></dt>
-          <dd>
-            <span>{{ reason.create_by }}</span>
-          </dd>
-          <dt><span>Created At</span></dt>
-          <dd>
-            <span>{{ reason.created_at | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Status</span></dt>
-          <dd>
-            <span>{{ reason.status }}</span>
-          </dd>
-        </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ reason.id }}</span>
+        </dd>
+        <dt><span>Tên</span></dt>
+        <dd>
+          <span>{{ reason.name }}</span>
+        </dd>
+        <dt><span>Người tạo</span></dt>
+        <dd>
+          <span>{{ reason.create_by }}</span>
+        </dd>
+        <dt><span>Thời gian tạo</span></dt>
+        <dd>
+          <span>{{ reason.created_at | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Trạng thái</span></dt>
+        <dd>
+          <span>{{ reason.status }}</span>
+        </dd>
+      </dl>
 
-        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
-        </button>
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Trở về</span>
+      </button>
 
-        <button type="button" [routerLink]="['/reason', reason.id, 'edit']" class="btn btn-primary">
-          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
-        </button>
-      </div>
+      <button type="button" [routerLink]="['/reason', reason.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Chỉnh sửa</span>
+      </button>
+    </div>
     }
   </div>
 </div>

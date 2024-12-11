@@ -1,46 +1,46 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     @if (complaint) {
-      <div>
-        <h2 data-cy="complaintDetailsHeading"><span>Complaint</span></h2>
+    <div>
+      <h2 data-cy="complaintDetailsHeading"><span>Thông tin chi tiết khiếu nại</span></h2>
 
-        <hr />
+      <hr />
 
-        <jhi-alert-error></jhi-alert-error>
+      <jhi-alert-error></jhi-alert-error>
 
-        <jhi-alert></jhi-alert>
+      <jhi-alert></jhi-alert>
 
-        <dl class="row-md jh-entity-details">
-          <dt><span>ID</span></dt>
-          <dd>
-            <span>{{ complaint.id }}</span>
-          </dd>
-          <dt><span>Name</span></dt>
-          <dd>
-            <span>{{ complaint.name }}</span>
-          </dd>
-          <dt><span>Create By</span></dt>
-          <dd>
-            <span>{{ complaint.create_by }}</span>
-          </dd>
-          <dt><span>Created At</span></dt>
-          <dd>
-            <span>{{ complaint.created_at | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Status</span></dt>
-          <dd>
-            <span>{{ complaint.status }}</span>
-          </dd>
-        </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ complaint.id }}</span>
+        </dd>
+        <dt><span>Tên khiếu nại</span></dt>
+        <dd>
+          <span>{{ complaint.name }}</span>
+        </dd>
+        <dt><span>Người tạo</span></dt>
+        <dd>
+          <span>{{ complaint.create_by }}</span>
+        </dd>
+        <dt><span>Thời gian tạo</span></dt>
+        <dd>
+          <span>{{ complaint.created_at | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Trạng thái</span></dt>
+        <dd>
+          <span>{{ complaint.status }}</span>
+        </dd>
+      </dl>
 
-        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
-        </button>
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Trở về</span>
+      </button>
 
-        <button type="button" [routerLink]="['/complaint', complaint.id, 'edit']" class="btn btn-primary">
-          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
-        </button>
-      </div>
+      <button type="button" [routerLink]="['/complaint', complaint.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Chỉnh sửa</span>
+      </button>
+    </div>
     }
   </div>
 </div>

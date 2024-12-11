@@ -6,99 +6,100 @@
       <div style="display: flex;width: 30%;justify-content: space-between;">
         <button class="add-btn" (click)="addRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
           mới</button>
-        <button class="add-btn" style="background-color:#4F99CE ;width: 23%;" (click)="exportExcel()"><fa-icon
-            [icon]="faDownload" [fixedWidth]="true"></fa-icon>Tải file mẫu</button>
-        <div class="add-btn" style="display: flex;width: 44%;background-color: #6770dd;"><fa-icon [icon]="faUpload"
+        <button class="add-btn" style="background-color: #007bff; color: white; width: 23%;"
+          (click)="exportExcel()"><fa-icon [icon]="faDownload" [fixedWidth]="true"></fa-icon>Tải file mẫu</button>
+        <div class="add-btn" style="display: flex;width: 44%;background-color: #6c757d;"><fa-icon [icon]="faUpload"
             [fixedWidth]="true" style="margin: auto;"></fa-icon>
           <input type="file" style="margin: auto;" (change)="ReadExcel($event)">
         </div>
       </div>
       <div>
-        <button class="add-btn" style="width: 100%;background-color:#163297 ;" (click)="saveListComplaint()"><fa-icon
-            [icon]="faSave" [fixedWidth]="true"></fa-icon>Lưu</button>
+        <button class="add-btn" style="width: 100%;background-color: #81DAE3; color: white;"
+          (click)="saveListComplaint()"><fa-icon [icon]="faSave" [fixedWidth]="true"></fa-icon>Lưu</button>
       </div>
     </div>
-    <nz-table #basicTable [nzData]="complaintLists!" [nzFrontPagination]="true" [nzScroll]="{ x: '3700px' }">
+    <nz-table #middleTable nzBordered class="custom-table" [nzData]="complaintLists!" [nzFrontPagination]="true"
+      [nzScroll]="{ x: '3700px' }">
       <thead>
         <tr>
-          <th style="width: 2%;" nzLeft>
+          <th class="table-header" style="width: 2%;" nzLeft>
             <div class="d-flex">
               <span>STT</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;" nzLeft>
+          <th class="table-header" style="width: 6%;" nzLeft>
             <div class="d-flex">
               <span>Mã sản phẩm</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th nzLeft>
+          <th class="table-header" nzLeft>
             <div class="d-flex">
               <span>Tên sản phẩm</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Ngành</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Ngày sản xuất</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Người khiếu nại</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Hình thức khiếu nại</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Mã biên bản</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th>
+          <th class="table-header">
             <div class="d-flex">
               <span>Đơn vị sử dụng</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Số lượng nhận</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th>
+          <th class="table-header">
             <div class="d-flex">
               <span>Nội dung khiếu nại</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th style="width: 6%;">
+          <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Trạng thái</span>
 
@@ -111,42 +112,46 @@
         @for (complaintList of complaintLists; track complaintList.product_code;let i =$index) {
         <tr data-cy="entityTable">
           <td nzLeft> {{i+1}}</td>
-          <td nzLeft><input type="text" [(ngModel)]=" complaintList.product_code"
+          <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_code"
               [ngModelOptions]="{ standalone: true }" />
           </td>
-          <td nzLeft><input type="text" [(ngModel)]=" complaintList.product_name"
+          <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_name"
               [ngModelOptions]="{ standalone: true }" />
           </td>
-          <td><input type="text" [(ngModel)]=" complaintList.branch" [ngModelOptions]="{ standalone: true }" /> </td>
-          <td><input type="date" [(ngModel)]="complaintList.production_time_convert"
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.branch"
+              [ngModelOptions]="{ standalone: true }" /> </td>
+          <td><input class="input-search" type="date" [(ngModel)]="complaintList.production_time_convert"
               [ngModelOptions]="{ standalone: true }" />
           </td>
           <td>
-            <input type="text" [(ngModel)]=" complaintList.reflector" [ngModelOptions]="{ standalone: true }"
-              list="reflector" />
+            <input class="input-search" type="text" [(ngModel)]=" complaintList.reflector"
+              [ngModelOptions]="{ standalone: true }" list="reflector" />
             <datalist id="reflector">
               <option *ngFor="let data of listReflector" [value]="data.name">{{data.name}}</option>
             </datalist>
           </td>
-          <td><input type="text" [(ngModel)]=" complaintList.complaint" [ngModelOptions]="{ standalone: true }"
-              list="complaint" />
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint"
+              [ngModelOptions]="{ standalone: true }" list="complaint" />
             <datalist id="complaint">
               <option *ngFor="let data of listComplaint" [value]="data.name">{{data.name}}</option>
             </datalist>
           </td>
-          <td><input type="text" [(ngModel)]=" complaintList.report_code" [ngModelOptions]="{ standalone: true }" />
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.report_code"
+              [ngModelOptions]="{ standalone: true }" />
           </td>
-          <td><input type="text" [(ngModel)]=" complaintList.unit_of_use" [ngModelOptions]="{ standalone: true }"
-              list="unit_of_use" />
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.unit_of_use"
+              [ngModelOptions]="{ standalone: true }" list="unit_of_use" />
             <datalist id="unit_of_use">
               <option *ngFor="let data of listUnitOfUse" [value]="data.name">{{data.name}}</option>
             </datalist>
           </td>
-          <td><input type="number" [(ngModel)]=" complaintList.quantity" [ngModelOptions]="{ standalone: true }" />
+          <td><input class="input-search" type="number" [(ngModel)]=" complaintList.quantity"
+              [ngModelOptions]="{ standalone: true }" />
           </td>
-          <td><input type="text" [(ngModel)]=" complaintList.complaint_detail"
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint_detail"
               [ngModelOptions]="{ standalone: true }" /> </td>
-          <td><input type="text" [(ngModel)]=" complaintList.status" [ngModelOptions]="{ standalone: true }" /> </td>
+          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.status"
+              [ngModelOptions]="{ standalone: true }" /> </td>
         </tr>
         }
       </tbody>

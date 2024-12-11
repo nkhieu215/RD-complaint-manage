@@ -22,6 +22,8 @@ import routes from './app.routes';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { NgbDateDayjsAdapter } from './config/datepicker-adapter';
 import { AppPageTitleStrategy } from './app-page-title-strategy';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { NZ_I18N, vi_VN } from 'ng-zorro-antd/i18n';
 
 const routerFeatures: Array<RouterFeatures> = [
   withComponentInputBinding(),
@@ -38,6 +40,23 @@ const routerFeatures: Array<RouterFeatures> = [
     }
   }),
 ];
+
+const customVietnamese = {
+  ...vi_VN,
+  Pagination: {
+    items_per_page: '/ trang',
+    jump_to: 'Đến',
+    jump_to_confirm: 'Xác nhận',
+    page: 'Trang',
+    prev_page: 'Trang trước',
+    next_page: 'Trang sau',
+    prev_5: '5 trang trước',
+    next_5: '5 trang sau',
+    prev_3: '3 trang trước',
+    next_3: '3 trang sau',
+    total: 'Tổng'
+  }
+};
 if (DEBUG_INFO_ENABLED) {
   routerFeatures.push(withDebugTracing());
 }
@@ -54,6 +73,8 @@ export const appConfig: ApplicationConfig = {
     { provide: NgbDateAdapter, useClass: NgbDateDayjsAdapter },
     httpInterceptorProviders,
     { provide: TitleStrategy, useClass: AppPageTitleStrategy },
+    provideAnimations(),
+    { provide: NZ_I18N, useValue: customVietnamese }
     // jhipster-needle-angular-add-module JHipster will add new module here
   ],
 };

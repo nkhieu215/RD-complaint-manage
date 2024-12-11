@@ -20,6 +20,7 @@ import { ReflectorDeleteDialogComponent } from '../delete/reflector-delete-dialo
   standalone: true,
   selector: 'jhi-reflector',
   templateUrl: './reflector.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

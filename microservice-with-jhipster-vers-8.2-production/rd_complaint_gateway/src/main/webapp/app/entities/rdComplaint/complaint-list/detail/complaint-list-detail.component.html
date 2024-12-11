@@ -60,8 +60,9 @@
           <div class="col-m4-25"></div>
         </div>
         <div style="margin-bottom: 20px;">
-          <div>Nội dung khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.complaint_detail"
-              [ngModelOptions]="{ standalone: true }" style="width: 97.5%;height: 35px;border-radius: 5px;"></div>
+          <div class="col-m4-25">Nội dung khiếu nại <br><input type="text"
+              [(ngModel)]=" complaintDetail.complaint_detail" [ngModelOptions]="{ standalone: true }"
+              style="width: 97.5%;height: 35px;border-radius: 5px;" class="inp-style"></div>
         </div>
         <div class="col-container">
           <div class="col-m4-25">Tổng lỗi <br><input type="text" [(ngModel)]=" complaintDetail.total_errors"
@@ -91,98 +92,107 @@
           <div class="col-m4-25"></div>
         </div>
       </div>
-      <div><button class="add-btn" (click)="addNewRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
+      <div><button class="btn add-btn" (click)="addNewRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
           mới</button></div>
-      <nz-table #basicTable [nzData]="listOfError!" [nzFrontPagination]="true" [nzScroll]="{ x: '3700px' }">
+      <nz-table #middleTable nzBordered class="custom-table" [nzData]="listOfError" [nzFrontPagination]="true"
+        [nzScroll]="{ x: '3700px' }" [nzPageSize]="10" [nzPageIndex]="1" [nzTotal]="listOfError.length"
+        [nzShowSizeChanger]="true" [nzPageSizeOptions]="[10, 20, 30, 40, 50]">
         <thead>
           <tr>
-            <th style="width: 2%;" nzLeft>
+            <th class="table-header" style="width: 2%;" nzLeft>
               <div class="d-flex">
                 <span>STT</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;" nzLeft>
+            <th class="table-header" style="width: 6%;" nzLeft>
               <div class="d-flex">
                 <span>Mã lỗi</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 10%;" nzLeft>
+            <th class="table-header" style="width: 10%;" nzLeft>
               <div class="d-flex">
                 <span>Tên lỗi</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Mã lot</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Serial</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Địa chỉ mac</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Số lượng</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Phân loại nguồn lỗi</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th>
+            <th class="table-header">
               <div class="d-flex">
                 <span>Nguyên nhân</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th>
+            <th class="table-header">
               <div class="d-flex">
                 <span>Biên pháp khắc phục</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Người kiểm tra</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 6%;">
+            <th class="table-header" style="width: 6%;">
               <div class="d-flex">
                 <span>Ngày kiểm tra</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
             </th>
-            <th style="width: 4%;" nzRight>
+            <th class="table-header" style="width: 4%;" nzRight>
               <div class="d-flex">
                 <span>Hình ảnh</span>
+
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
+            <th class="table-header" style="width: 4%;" nzRight>
+              <div class="d-flex">
+                <span>Options</span>
 
                 <fa-icon class="p-1"></fa-icon>
               </div>
@@ -191,49 +201,61 @@
         </thead>
         <tbody>
           @for (complaintList of listOfError; track complaintList.error_code;let i =$index) {
+          <!-- <tr data-cy="entityTable" (mouseenter)="showTooltip($event, complaintList)" (mouseleave)="hideTooltip()"> -->
           <tr data-cy="entityTable">
-            <td nzLeft> {{i+1}}</td>
-            <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_code"
-                [ngModelOptions]="{ standalone: true }" />
+
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft> {{i+1}}</td>
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.error_code" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_name"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.error_name" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.lot_number"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.lot_number" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.serial"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.serial" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.mac_address"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.mac_address" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="number" [(ngModel)]=" complaintList.quantity"
-                [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateTotalError()" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="number" [(ngModel)]=" complaintList.quantity" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" (ngModelChange)="updateTotalError()" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_source"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.error_source" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]="complaintList.reason"
-                [ngModelOptions]="{ standalone: true }" list="reason" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]="complaintList.reason" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" list="reason" />
               <datalist id="reason">
                 <option *ngFor="let data of reasonList" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
-            <td>
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom">
               <input class="inp-style" type="text" [(ngModel)]=" complaintList.method"
-                [ngModelOptions]="{ standalone: true }" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="!complaintList.isEditing" />
             </td>
-            <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.check_by"
-                [ngModelOptions]="{ standalone: true }" list="check_by" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="text" [(ngModel)]=" complaintList.check_by" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" list="check_by" />
               <datalist id="check_by">
                 <option *ngFor="let data of checkerLists" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
-            <td><input class="inp-style" type="date" [(ngModel)]=" complaintList.check_time"
-                [ngModelOptions]="{ standalone: true }" />
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
+                type="date" [(ngModel)]=" complaintList.check_time" [ngModelOptions]="{ standalone: true }"
+                [disabled]="!complaintList.isEditing" />
             </td>
-            <td style="width: 4%;" nzRight>
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" style="width: 4%;" nzRight>
               <!-- <input class="inp-style" type="file" (change)="onChange($event,i)" /> -->
               <div class="btn-group">
                 <button class="image-btn" style="background-color: #44d2d2;"
@@ -246,15 +268,26 @@
                 </button>
               </div>
             </td>
+            <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzRight>
+              <!-- <button class="btn-edit-save"
+                (click)="complaintList.isEditing = !complaintList.isEditing">{{complaintList.isEditing ? 'Lưu':'Chỉnh sửa'}}
+              </button> -->
+              <button class="btn-edit-save" (click)="complaintList.isEditing = !complaintList.isEditing">
+                <fa-icon [icon]="complaintList.isEditing ? 'save' : 'pencil'"></fa-icon>
+              </button>
+            </td>
           </tr>
           }
         </tbody>
       </nz-table>
-      <button type="button" (click)="previousState()" class="add-btn" style="background-color:#df1111 ;">
-        <fa-icon icon="arrow-left"></fa-icon> Back
+      <button type="button" (click)="previousState()" class="add-btn"
+        style="background-color:#e74c3c; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer; transition: background-color 0.3s;">
+        <fa-icon icon="arrow-left"></fa-icon> Trở về
       </button>
 
-      <button type="button" class="add-btn" style="background-color: #163297;" (click)="saveComplaintDetail()">
+      <button type="button" class="add-btn"
+        style="background-color: #3498db; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer; transition: background-color 0.3s;"
+        (click)="saveComplaintDetail()">
         <fa-icon [icon]="faSave"></fa-icon> Lưu
       </button>
     </div>
@@ -264,10 +297,20 @@
 <ng-template #view>
   <img [src]="imageSrc" alt="Ảnh lỗi">
 </ng-template>
+
 <ng-template #upload>
   <input class="inp-style" type="file" (change)="onChange($event)" />
-  <img [src]="imageSrc" alt="Ảnh lỗi">
+  <img *ngIf="showImage" [src]="imageSrc" style="max-width: 100%; height: auto;">
   <button type="button" class="add-btn" style="background-color: #163297;">
     <fa-icon [icon]="faSave"></fa-icon> Lưu
   </button>
 </ng-template>
+
+<ng-template #titleTemplate let-thing>
+  <span>{{complaintDetail.comment}}</span>
+</ng-template>
+
+<div *ngIf="tooltipVisible" [ngStyle]="{'top': tooltipPosition.top, 'left': tooltipPosition.left}"
+  class="custom-tooltip">
+  {{ tooltipContent }}
+</div>

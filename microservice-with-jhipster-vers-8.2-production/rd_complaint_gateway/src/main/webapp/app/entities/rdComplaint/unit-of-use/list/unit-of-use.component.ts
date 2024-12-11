@@ -20,6 +20,7 @@ import { UnitOfUseDeleteDialogComponent } from '../delete/unit-of-use-delete-dia
   standalone: true,
   selector: 'jhi-unit-of-use',
   templateUrl: './unit-of-use.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

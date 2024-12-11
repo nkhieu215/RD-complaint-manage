@@ -16,12 +16,13 @@ import { ListOfErrorService } from '../../list-of-error/service/list-of-error.se
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @Component({
   standalone: true,
   selector: 'jhi-complaint-list-detail',
   templateUrl: './complaint-list-detail.component.html',
-  styleUrl: './complaint-list-detail.component.css',
-  imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe, FormsModule, NzTableModule],
+  styleUrls: ['./complaint-list-detail.component.css', '../complaint-list.component.css'],
+  imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe, FormsModule, NzTableModule, NzToolTipModule],
 })
 export class ComplaintListDetailComponent implements OnInit {
   faPlus = faPlus;
@@ -33,7 +34,7 @@ export class ComplaintListDetailComponent implements OnInit {
   @Input() complaintDetail: any;
   listOfError: any[] = [];
   account = signal<Account | null>(null);
-  // Danh sách gợi ý 
+  // Danh sách gợi ý
   reflectorLists: any[] = [];
   checkerLists: any[] = [];
   complaintLists: any[] = [];
@@ -50,6 +51,10 @@ export class ComplaintListDetailComponent implements OnInit {
   closeResult: string = '';
   showImage = false;
   imageSrc = '';
+  // tooltip
+  tooltipVisible = false;
+  tooltipContent = '';
+  tooltipPosition = { top: '0px', left: '0px' };
   protected modalService = inject(NgbModal);
   protected complaintListService = inject(ComplaintListService);
   protected listOfErrorService = inject(ListOfErrorService);
@@ -129,10 +134,19 @@ export class ComplaintListDetailComponent implements OnInit {
   previousState(): void {
     window.history.back();
   }
-  onChange(event: any) {
+  onChange(event: any): void {
     this.showImage = true;
-    this.listOfError[this.indexImageError].image = event.target.files[0].name;
-    this.imageSrc += event.target.files[0].name;
+    const file = event.target.files[0];
+    if (file) {
+      this.listOfError[this.indexImageError].image = file.name
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageSrc = e.target.result;
+      }
+      reader.readAsDataURL(file)
+    }
+    // this.listOfError[this.indexImageError].image = event.target.files[0].name;
+    // this.imageSrc += event.target.files[0].name;
     // console.log(this.listOfError[index].image);
   }
   updateIdMapping() {
@@ -288,5 +302,21 @@ export class ComplaintListDetailComponent implements OnInit {
       // console.log(this.complaintDetail.total_errors, element.quantity)
       this.complaintDetail.total_errors += element.quantity;
     });
+  }
+
+  showTooltip(event: MouseEvent, complaintDetail: any): void {
+    this.tooltipContent = `Thông tin tooltip: ${this.complaintDetail.comment}`;
+    this.tooltipVisible = true;
+    this.tooltipPosition = {
+      top: `${event.clientY}px`,
+      left: `${event.clientX}px`
+    };
+    console.warn('content', this.tooltipContent)
+    console.warn('vi tri', this.tooltipPosition)
+
+  }
+
+  hideTooltip(): void {
+    this.tooltipVisible = false;
   }
 }

@@ -20,6 +20,7 @@ import { DepartmentDeleteDialogComponent } from '../delete/department-delete-dia
   standalone: true,
   selector: 'jhi-department',
   templateUrl: './department.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

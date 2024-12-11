@@ -20,6 +20,7 @@ import { ComplaintDeleteDialogComponent } from '../delete/complaint-delete-dialo
   standalone: true,
   selector: 'jhi-complaint',
   templateUrl: './complaint.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

@@ -1,21 +1,17 @@
 <div>
   <h2 id="page-heading" data-cy="UnitOfUseHeading">
-    <span>Unit Of Uses</span>
+    <span>Danh sách đơn vị sử dụng</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh list</span>
-      </button>
+      </button> -->
 
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-unit-of-use"
-        [routerLink]="['/unit-of-use/new']"
-      >
+      <button id="jh-create-entity" data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-unit-of-use" [routerLink]="['/unit-of-use/new']">
         <fa-icon icon="plus"></fa-icon>
-        <span>Create a new Unit Of Use</span>
+        <span>Thêm mới</span>
       </button>
     </div>
   </h2>
@@ -25,97 +21,90 @@
   <jhi-alert></jhi-alert>
 
   @if (unitOfUses?.length === 0) {
-    <div class="alert alert-warning" id="no-result">
-      <span>No Unit Of Uses found</span>
-    </div>
+  <div class="alert alert-warning" id="no-result">
+    <span>Không tìm thấy đơn vị sử dụng</span>
+  </div>
   }
 
   @if (unitOfUses && unitOfUses.length > 0) {
-    <div class="table-responsive table-entities" id="entities">
-      <table class="table table-striped" aria-describedby="page-heading">
-        <thead>
-          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
-            <th scope="col" jhiSortBy="id">
-              <div class="d-flex">
-                <span>ID</span>
+  <div class="table-responsive table-entities" id="entities">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
 
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="name">
-              <div class="d-flex">
-                <span>Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span>Tên</span>
 
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="create_by">
-              <div class="d-flex">
-                <span>Create By</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="create_by">
+            <div class="d-flex">
+              <span>Người tạo</span>
 
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col" jhiSortBy="created_at">
-              <div class="d-flex">
-                <span>Created At</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="created_at">
+            <div class="d-flex">
+              <span>Thời gian tạo</span>
 
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (unitOfUse of unitOfUses; track trackId) {
-            <tr data-cy="entityTable">
-              <td>
-                <a [routerLink]="['/unit-of-use', unitOfUse.id, 'view']">{{ unitOfUse.id }}</a>
-              </td>
-              <td>{{ unitOfUse.name }}</td>
-              <td>{{ unitOfUse.create_by }}</td>
-              <td>{{ unitOfUse.created_at | formatMediumDatetime }}</td>
-              <td class="text-end">
-                <div class="btn-group">
-                  <a [routerLink]="['/unit-of-use', unitOfUse.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
-                    <fa-icon icon="eye"></fa-icon>
-                    <span class="d-none d-md-inline">View</span>
-                  </a>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (unitOfUse of unitOfUses; track trackId) {
+        <tr data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/unit-of-use', unitOfUse.id, 'view']">{{ unitOfUse.id }}</a>
+          </td>
+          <td>{{ unitOfUse.name }}</td>
+          <td>{{ unitOfUse.create_by }}</td>
+          <td>{{ unitOfUse.created_at | formatMediumDatetime }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/unit-of-use', unitOfUse.id, 'view']" class=" btn-info " data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <!-- <span class="d-none d-md-inline">View</span> -->
+              </a>
 
-                  <a [routerLink]="['/unit-of-use', unitOfUse.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
-                    <fa-icon icon="pencil-alt"></fa-icon>
-                    <span class="d-none d-md-inline">Edit</span>
-                  </a>
+              <a [routerLink]="['/unit-of-use', unitOfUse.id, 'edit']" class=" btn-primary " data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <!-- <span class="d-none d-md-inline">Edit</span> -->
+              </a>
 
-                  <button type="submit" (click)="delete(unitOfUse)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                    <fa-icon icon="times"></fa-icon>
-                    <span class="d-none d-md-inline">Delete</span>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+              <button type="submit" (click)="delete(unitOfUse)" class="btn-danger" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <!-- <span class="d-none d-md-inline">Delete</span> -->
+              </button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
   }
   @if (unitOfUses && unitOfUses.length > 0) {
-    <div>
-      <div class="d-flex justify-content-center">
-        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
-      </div>
-
-      <div class="d-flex justify-content-center">
-        <ngb-pagination
-          [collectionSize]="totalItems"
-          [page]="page"
-          [pageSize]="itemsPerPage"
-          [maxSize]="5"
-          [rotate]="true"
-          [boundaryLinks]="true"
-          (pageChange)="navigateToPage($event)"
-        ></ngb-pagination>
-      </div>
+  <div>
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
     </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination [collectionSize]="totalItems" [page]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+        [rotate]="true" [boundaryLinks]="true" (pageChange)="navigateToPage($event)"></ngb-pagination>
+    </div>
+  </div>
   }
 </div>

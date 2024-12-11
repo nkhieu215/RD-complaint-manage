@@ -20,6 +20,7 @@ import { CheckerListDeleteDialogComponent } from '../delete/checker-list-delete-
   standalone: true,
   selector: 'jhi-checker-list',
   templateUrl: './checker-list.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

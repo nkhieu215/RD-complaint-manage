@@ -20,6 +20,7 @@ import { ImplementationResultDeleteDialogComponent } from '../delete/implementat
   standalone: true,
   selector: 'jhi-implementation-result',
   templateUrl: './implementation-result.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

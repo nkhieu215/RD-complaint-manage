@@ -18,10 +18,24 @@ export default class MainComponent implements OnInit {
   private appPageTitleStrategy = inject(AppPageTitleStrategy);
   private accountService = inject(AccountService);
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     // try to log in automatically
     this.accountService.identity().subscribe();
+  }
+
+  closeNav(): void {
+    document.getElementById('main')!.style.marginLeft = '50px';
+  }
+
+  closeNav2(): void {
+    document.getElementById('main')!.style.marginLeft = '50px';
+  }
+
+  openNav(): void {
+    document.getElementById('main')!.style.marginLeft = '250px';
+    // document.getElementById('main')!.style.width = '87vw';
+
   }
 }
