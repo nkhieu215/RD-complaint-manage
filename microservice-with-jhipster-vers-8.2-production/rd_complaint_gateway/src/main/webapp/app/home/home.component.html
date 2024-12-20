@@ -1,10 +1,5 @@
-<div class="row">
+<!-- <div class="row">
   @if (account() !== null) {
-  <!-- <div class="alert alert-success">
-    @if (account()) {
-    <span id="home-logged-message">You are logged in as user &quot;{{ account()!.login }}&quot;.</span>
-    }
-  </div> -->
   } @else {
   <div class="alert alert-warning">
 
@@ -14,4 +9,23 @@
   <div>
     <span class="hipster img-fluid rounded"></span>
   </div>
+</div> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="login-container">
+  @if (account() !== null) {
+  } @else {
+  <div class="login-content">
+    <div class="login-image">
+      <span class="hipster"></span>
+    </div>
+    <div class="login-box">
+      <h1>Chào mừng đến với hệ thống</h1>
+      <p>Vui lòng đăng nhập để tiếp tục</p>
+      <button class="login-button" (click)="login()">
+        <i class="fas fa-sign-in-alt"></i>
+        Đăng nhập
+      </button>
+    </div>
+  </div>
+  }
 </div>

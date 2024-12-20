@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.col-container-child {
+  font-weight: 600;
+}
+
 .col-m4-25 {
   /* width: 25%; */
   flex: 1 1 25%;

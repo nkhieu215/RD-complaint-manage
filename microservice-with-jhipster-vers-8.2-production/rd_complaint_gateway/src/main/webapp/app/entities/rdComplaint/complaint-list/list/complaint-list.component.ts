@@ -69,7 +69,7 @@ export class ComplaintListComponent implements OnInit {
   @Input() serial = ' ';
   @Input() report_code = ' ';
   // ---------------------------------------------------------//
-  itemsPerPage = 5;
+  itemsPerPage = 10;
   totalItems = 0;
   page = 1;
   current = 1;
@@ -93,7 +93,7 @@ export class ComplaintListComponent implements OnInit {
         tap(() => this.load()),
       )
       .subscribe();
-
+    this.totalItems = this.complaintLists.length;
     this.filteredComplaints = this.filterComplaints(this.complaintLists, {
       product_code: this.product_code,
       product_name: this.product_name,
@@ -108,6 +108,11 @@ export class ComplaintListComponent implements OnInit {
       complaint: this.complaint
     });
   }
+
+  trackById(index: number, item: any): any {
+    return item.id || index;
+  }
+
   //convert key when undefine
   checkSearchKey() {
     if (this.product_code == undefined || this.product_code == null) {
@@ -200,8 +205,8 @@ export class ComplaintListComponent implements OnInit {
 
   search2(): void {
     this.filteredComplaintLists = [...this.complaintLists];
-
     this.filteredComplaintLists = this.complaintListsOrigin!.filter(item => {
+      this.totalItems = this.complaintLists.length;
       return (
         (!this.product_code || item.product_code.includes(this.product_code)) &&
         (!this.product_name || item.product_name.includes(this.product_name)) &&
@@ -215,12 +220,12 @@ export class ComplaintListComponent implements OnInit {
         (!this.implementation_result || item.implementation_result.includes(this.implementation_result)) &&
         (!this.complaint || item.complaint.includes(this.complaint))
       );
+
     });
 
     this.complaintLists = this.filteredComplaintLists;
   }
 
-  // Thêm hàm để load dữ liệu ban đầu
   loadAll(): void {
     this.complaintListService.query().subscribe(
       (res: HttpResponse<IComplaintList[]>) => {
@@ -244,8 +249,9 @@ export class ComplaintListComponent implements OnInit {
 
   load(): void {
     this.complaintListService.getAll().subscribe(res => {
+      console.log('danh sách lấy từ sv', res)
       this.complaintLists = this.complaintListsOrigin = res.complaintListResponseList.filter((x: any) => x.id != null);
-      console.log(res)
+      console.log('danh sách dữ liệu', this.complaintLists)
     })
     // this.queryBackend().subscribe({
     //   next: (res: EntityArrayResponseType) => {
@@ -254,24 +260,70 @@ export class ComplaintListComponent implements OnInit {
     // });
   }
 
+  // get displayData(): IComplaintList[] {
+  //   const start = (this.current - 1) * this.itemsPerPage;
+  //   return this.complaintLists.slice(start, start + this.itemsPerPage);
+  // }
+
   navigateToWithComponentValues(event: SortState): void {
     this.handleNavigation(this.page, event);
   }
-
 
   navigateToPage(page: number): void {
     this.handleNavigation(page, this.sortState());
   }
 
-  onPageSizeChange(newSize: number): void {
-    this.itemsPerPage = newSize;
-    this.load();
+  navigateToPage2(page: number): void {
+    this.current = page;
+    this.loadPage(page);
   }
 
-  navigateToPage2(page: number): void {
-    this.page = page;
-    this.load();
+  onPageSizeChange(pageSize: number): void {
+    this.itemsPerPage = pageSize;
+    this.current = 1;
+    this.loadPage(1);
   }
+
+  // loadPage(page: number): void {
+  //   const queryObject = {
+  //     page: page - 1,
+  //     size: this.itemsPerPage,
+  //   };
+  //   this.complaintListService.query(queryObject).subscribe(
+  //     response => {
+  //       this.complaintLists = response.body ?? [];
+  //       this.totalItems = Number(response.headers.get(TOTAL_COUNT_RESPONSE_HEADER));
+  //       this.updatePagination();
+  //     }
+  //   );
+  // }
+
+  updatePagination(): void {
+    // this.totalItems = this.complaintLists.length;
+    this.totalItems = this.complaintListsOrigin?.length ?? 0;
+  }
+
+  trackByFn(index: number, item: IComplaintList): number {
+    // return item.id || index;
+    return item.id;
+  }
+
+  loadPage(page: number): void {
+    const queryObject = {
+      page: page - 1,
+      size: this.itemsPerPage,
+    };
+    this.complaintListService.query(queryObject).subscribe(
+      response => {
+        if (response.body) {
+          this.complaintLists = response.body;
+          this.totalItems = Number(response.headers.get(TOTAL_COUNT_RESPONSE_HEADER));
+        }
+        this.updatePagination();
+      }
+    );
+  }
+
 
   protected fillComponentAttributeFromRoute(params: ParamMap, data: Data): void {
     const page = params.get(PAGE_HEADER);

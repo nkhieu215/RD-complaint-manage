@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'home.title',
+    title: 'Trang chủ',
   },
   {
     path: '',

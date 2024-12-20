@@ -14,68 +14,78 @@
 
       <div style="display: flex;flex-direction: column;">
         <div class="col-container">
-          <div class="col-m4-25">Mã sản phẩm <br><input type="text" [(ngModel)]=" complaintDetail.product_code"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Tên sản phẩm <br><input type="text" [(ngModel)]=" complaintDetail.product_name"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Ngành <br><input type="text" [(ngModel)]=" complaintDetail.branch"
+          <div class="col-m4-25 col-container-child">Mã sản phẩm <br><input type="text"
+              [(ngModel)]=" complaintDetail.product_code" [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
+          <div class="col-m4-25 col-container-child">Tên sản phẩm <br><input type="text"
+              [(ngModel)]=" complaintDetail.product_name" [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
+          <div class="col-m4-25 col-container-child">Ngành <br><input type="text" [(ngModel)]=" complaintDetail.branch"
               [ngModelOptions]="{ standalone: true }" class="inp-style">
           </div>
-          <div class="col-m4-25">Ngày sản xuất <br><input type="date" [(ngModel)]=" complaintDetail.production_time"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25 col-container-child">Ngày sản xuất <br><input type="date"
+              [(ngModel)]=" complaintDetail.production_time" [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
         </div>
         <div class="col-container">
-          <div class="col-m4-25">Người khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.reflector"
-              [ngModelOptions]="{ standalone: true }" class="inp-style" list="reflector">
+          <div class="col-m4-25 col-container-child">Người khiếu nại <br><input type="text"
+              [(ngModel)]=" complaintDetail.reflector" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              list="reflector">
             <datalist id="reflector">
               <option *ngFor="let data of reflectorLists" [value]="data.name">{{data.name}}</option>
             </datalist>
           </div>
-          <div class="col-m4-25">Đơn vị sử dụng <br><input type="text" [(ngModel)]=" complaintDetail.unit_of_use"
-              [ngModelOptions]="{ standalone: true }" class="inp-style" list="unit_of_use">
+          <div class="col-m4-25 col-container-child">Đơn vị sử dụng <br><input type="text"
+              [(ngModel)]=" complaintDetail.unit_of_use" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              list="unit_of_use">
             <datalist id="unit_of_use">
               <option *ngFor="let data of unitOfUseList" [value]="data.name">{{data.name}}</option>
             </datalist>
           </div>
-          <div class="col-m4-25">Hình thức khiếu nại <br><input type="text" [(ngModel)]=" complaintDetail.complaint"
-              [ngModelOptions]="{ standalone: true }" class="inp-style" list="complaint">
+          <div class="col-m4-25 col-container-child">Hình thức khiếu nại <br><input type="text"
+              [(ngModel)]=" complaintDetail.complaint" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              list="complaint">
             <datalist id="complaint">
               <option *ngFor="let data of complaintLists" [value]="data.name">{{data.name}}</option>
             </datalist>
           </div>
-          <div class="col-m4-25">Mã biên bản <br><input type="text" [(ngModel)]=" complaintDetail.report_code"
-              [ngModelOptions]="{ standalone: true }" class="inp-style">
+          <div class="col-m4-25 col-container-child">Mã biên bản <br><input type="text"
+              [(ngModel)]=" complaintDetail.report_code" [ngModelOptions]="{ standalone: true }" class="inp-style">
           </div>
         </div>
         <div class="col-container">
-          <div class="col-m4-25">Số lượng nhận <br><input type="text" [(ngModel)]=" complaintDetail.quantity"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Trạng thái <br><input type="text" [(ngModel)]=" complaintDetail.status"
-              [ngModelOptions]="{ standalone: true }" class="inp-style" list="status">
+          <div class="col-m4-25 col-container-child">Số lượng nhận <br><input type="text"
+              [(ngModel)]=" complaintDetail.quantity" [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25 col-container-child">Trạng thái <br><input type="text"
+              [(ngModel)]=" complaintDetail.status" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              list="status">
             <datalist id="status">
               <option *ngFor="let data of complaintStatusList" [value]="data.name">{{data.name}}</option>
             </datalist>
           </div>
-          <div class="col-m4-25"></div>
-          <div class="col-m4-25"></div>
+          <div class="col-m4-25 col-container-child"></div>
+          <div class="col-m4-25 col-container-child"></div>
         </div>
         <div style="margin-bottom: 20px;">
-          <div class="col-m4-25">Nội dung khiếu nại <br><input type="text"
+          <div class="col-m4-25 col-container-child">Nội dung khiếu nại <br><input type="text"
               [(ngModel)]=" complaintDetail.complaint_detail" [ngModelOptions]="{ standalone: true }"
               style="width: 97.5%;height: 35px;border-radius: 5px;" class="inp-style"></div>
         </div>
         <div class="col-container">
-          <div class="col-m4-25">Tổng lỗi <br><input type="text" [(ngModel)]=" complaintDetail.total_errors"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Đơn vị phối hợp <br><input type="text" [(ngModel)]=" complaintDetail.department"
-              [ngModelOptions]="{ standalone: true }" class="inp-style" list="department">
+          <div class="col-m4-25 col-container-child">Tổng lỗi <br><input type="text"
+              [(ngModel)]=" complaintDetail.total_errors" [ngModelOptions]="{ standalone: true }" class="inp-style">
+          </div>
+          <div class="col-m4-25 col-container-child">Đơn vị phối hợp <br><input type="text"
+              [(ngModel)]=" complaintDetail.department" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              list="department">
             <datalist id="department">
               <option *ngFor="let data of departmentList" [value]="data.name">{{data.name}}</option>
             </datalist>
           </div>
-          <div class="col-m4-25">Ngày khắc phục <br><input type="date" [(ngModel)]=" complaintDetail.rectification_time"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Kết quả thực hiện <br><input type="text"
+          <div class="col-m4-25 col-container-child">Ngày khắc phục <br><input type="date"
+              [(ngModel)]=" complaintDetail.rectification_time" [ngModelOptions]="{ standalone: true }"
+              class="inp-style"></div>
+          <div class="col-m4-25 col-container-child">Kết quả thực hiện <br><input type="text"
               [(ngModel)]=" complaintDetail.implementation_result" [ngModelOptions]="{ standalone: true }"
               class="inp-style" list="implementation_result">
             <datalist id="implementation_result">
@@ -84,12 +94,13 @@
           </div>
         </div>
         <div class="col-container">
-          <div class="col-m4-25">Ý kiến khách hàng sau khắc phục <br><input type="text"
+          <div class="col-m4-25 col-container-child">Ý kiến khách hàng sau khắc phục <br><input type="text"
               [(ngModel)]=" complaintDetail.comment" [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25">Theo dõi tiếp <br><input type="text" [(ngModel)]=" complaintDetail.follow_up_comment"
-              [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
-          <div class="col-m4-25"></div>
-          <div class="col-m4-25"></div>
+          <div class="col-m4-25 col-container-child">Theo dõi tiếp <br><input type="text"
+              [(ngModel)]=" complaintDetail.follow_up_comment" [ngModelOptions]="{ standalone: true }"
+              class="inp-style"></div>
+          <div class="col-m4-25 col-container-child"></div>
+          <div class="col-m4-25 col-container-child"></div>
         </div>
       </div>
       <div><button class="btn add-btn" (click)="addNewRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
@@ -272,7 +283,8 @@
               <!-- <button class="btn-edit-save"
                 (click)="complaintList.isEditing = !complaintList.isEditing">{{complaintList.isEditing ? 'Lưu':'Chỉnh sửa'}}
               </button> -->
-              <button class="btn-edit-save" (click)="complaintList.isEditing = !complaintList.isEditing">
+              <button class="btn-edit-save" (click)="complaintList.isEditing = !complaintList.isEditing"
+                (click)="complaintList.isEditing ? null : openToast()">
                 <fa-icon [icon]="complaintList.isEditing ? 'save' : 'pencil'"></fa-icon>
               </button>
             </td>

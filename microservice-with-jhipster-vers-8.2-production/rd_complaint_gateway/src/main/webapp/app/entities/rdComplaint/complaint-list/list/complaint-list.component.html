@@ -14,276 +14,274 @@
       </button>
     </div>
   </h2>
-  <div style="overflow-x: auto; width: 100%;">
-    <nz-table #middleTable nzBordered class=" custom-table" [nzData]="complaintLists!" [nzFrontPagination]="true"
-      [nzScroll]="{ x: '4700px' }" [(nzPageIndex)]="current" [nzPageSize]="itemsPerPage" [nzTotal]="totalItems"
-      [nzSize]="'small'" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="navigateToPage2($event)"
-      (nzPageSizeChange)="onPageSizeChange($event)">
-      <thead>
-        <tr>
-          <th class="table-header" style="width: 3%;" nzLeft></th>
-          <th class="table-header" style="width: 1.5%;">
-            <div class="d-flex">
-              <span>STT</span>
-              <fa-icon class="p-1"></fa-icon>
+  <nz-table #middleTable nzBordered class=" custom-table" [nzData]="complaintLists" [nzFrontPagination]="true"
+    [nzScroll]="{ x: '4700px', y:'550px' }" [(nzPageIndex)]="current" [nzPageSize]="itemsPerPage" [nzTotal]="totalItems"
+    [nzSize]="'small'" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="navigateToPage2($event)"
+    (nzPageSizeChange)="onPageSizeChange($event)">
+    <thead>
+      <tr>
+        <th class="table-header" style="width: 3%;" nzLeft></th>
+        <th class="table-header" style="width: 1%;">
+          <div class="d-flex">
+            <span>STT</span>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Mã sản phẩm</span>
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Mã sản phẩm</span>
-              </div>
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Tên sản phẩm</span>
+
             </div>
-          </th>
-          <th class="table-header">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Tên sản phẩm</span>
-
-              </div>
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Ngành</span>
             </div>
-          </th>
-          <th class="table-header" style="width: 2%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Ngành</span>
-              </div>
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 4%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Người khiếu nại</span>
             </div>
-          </th>
-          <th class="table-header" style="width: 4%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Người khiếu nại</span>
-              </div>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Tổng lỗi</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Số lượng nhận</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <span>Ngày sản xuất</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 4%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Đơn vị phối hợp</span>
             </div>
-          </th>
-          <th class="table-header" style="width: 2%;">
-            <div class="d-flex">
-              <span>Tổng lỗi</span>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Người kiểm tra</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 2%;">
-            <div class="d-flex">
-              <span>Số lượng nhận</span>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <span>Ngày khắc phục</span>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Người tạo</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <span>Ngày sản xuất</span>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Trạng thái</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 4%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Đơn vị phối hợp</span>
-              </div>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header">
+          <div class="d-flex">
+            <span>Nội dung khiếu nại</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 4%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Đơn vị sử dụng</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Người kiểm tra</span>
 
-              </div>
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 4%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Kết quả thực hiện</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <span>Ngày khắc phục</span>
 
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header">
+          <div class="d-flex">
+            <span>Ý kiến khách hàng sau khắc phục</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header">
+          <div class="d-flex">
+            <span>Theo dõi tiếp</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 4%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Hình thức khiếu nại</span>
+
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Người tạo</span>
 
-              </div>
-
-              <fa-icon class="p-1"></fa-icon>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <div style="display: flex;flex-direction: column;">
+              <span>Mã biên bản</span>
             </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Trạng thái</span>
 
-              </div>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <span>Ngày khai báo</span>
 
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header">
-            <div class="d-flex">
-              <span>Nội dung khiếu nại</span>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 3%;">
+          <div class="d-flex">
+            <span>Ngày cập nhật</span>
 
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 4%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Đơn vị sử dụng</span>
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th nzLeft></th>
+        <th></th>
+        <th><input type="text" class="input-search" [(ngModel)]="product_code" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="product_name" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="branch" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="reflector" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th><input type="text" class="input-search" [(ngModel)]="department" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="checker" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th></th>
+        <th><input type="text" class="input-search" [(ngModel)]="create_by" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="status" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th></th>
+        <th><input type="text" class="input-search" [(ngModel)]="unit_of_use" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th><input type="text" class="input-search" [(ngModel)]="implementation_result"
+            [ngModelOptions]="{ standalone: true }" (ngModelChange)="search2()" placeholder="Tìm kiếm...">
+        </th>
+        <th></th>
+        <th></th>
+        <th><input type="text" class="input-search" [(ngModel)]="complaint" [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
+        <th></th>
+        <th></th>
+        <th></th>
 
-              </div>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- @for (complaintList of complaintLists; track trackByFn(complaintList.id);let i =$index) { -->
+      <tr data-cy="entityTable" *ngFor="let complaintList of complaintLists; trackBy: trackByFn; let i =index">
+        <td class="text-end" nzLeft>
+          <div class="btn-group">
+            <a target="_blank" [routerLink]="['/complaint-list', complaintList.id, 'view']" class=" btn-info"
+              data-cy="entityDetailsButton">
+              <fa-icon icon="pencil"></fa-icon>
+              <!-- <span class="d-none d-md-inline">View</span> -->
+            </a>
 
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 4%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Kết quả thực hiện</span>
-
-              </div>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header">
-            <div class="d-flex">
-              <span>Ý kiến khách hàng sau khắc phục</span>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header">
-            <div class="d-flex">
-              <span>Theo dõi tiếp</span>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 4%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Hình thức khiếu nại</span>
-
-              </div>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <div style="display: flex;flex-direction: column;">
-                <span>Mã biên bản</span>
-              </div>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <span>Ngày khai báo</span>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-          <th class="table-header" style="width: 3%;">
-            <div class="d-flex">
-              <span>Ngày cập nhật</span>
-
-              <fa-icon class="p-1"></fa-icon>
-            </div>
-          </th>
-        </tr>
-        <tr>
-          <th></th>
-          <th></th>
-          <th><input type="text" class="input-search" [(ngModel)]="product_code" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="product_name" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="branch" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="reflector" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th><input type="text" class="input-search" [(ngModel)]="department" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="checker" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th></th>
-          <th><input type="text" class="input-search" [(ngModel)]="create_by" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="status" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th></th>
-          <th><input type="text" class="input-search" [(ngModel)]="unit_of_use" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th><input type="text" class="input-search" [(ngModel)]="implementation_result"
-              [ngModelOptions]="{ standalone: true }" (ngModelChange)="search2()" placeholder="Tìm kiếm...">
-          </th>
-          <th></th>
-          <th></th>
-          <th><input type="text" class="input-search" [(ngModel)]="complaint" [ngModelOptions]="{ standalone: true }"
-              (ngModelChange)="search2()" placeholder="Tìm kiếm..."></th>
-          <th></th>
-          <th></th>
-          <th></th>
-
-        </tr>
-      </thead>
-      <tbody>
-        @for (complaintList of complaintLists; track $index;let i =$index) {
-        <tr data-cy="entityTable">
-          <td class="text-end" nzLeft>
-            <div class="btn-group">
-              <a target="_blank" [routerLink]="['/complaint-list', complaintList.id, 'view']" class=" btn-info"
-                data-cy="entityDetailsButton">
-                <fa-icon icon="pencil"></fa-icon>
-                <!-- <span class="d-none d-md-inline">View</span> -->
-              </a>
-
-              <button type="submit" (click)="delete(complaintList)" class=" btn-danger" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <!-- <span class="d-none d-md-inline">Delete</span> -->
-              </button>
-            </div>
-          </td>
-          <td> {{i+1}}</td>
-          <td>{{ complaintList.product_code }}</td>
-          <td>{{ complaintList.product_name }}</td>
-          <td>{{ complaintList.branch }}</td>
-          <td>{{ complaintList.reflector }}</td>
-          <td>{{ complaintList.total_errors }}</td>
-          <td>{{ complaintList.quantity }}</td>
-          <td>{{ complaintList.production_time | date :'dd/MM/YYYY hh:mm' }}</td>
-          <td>{{ complaintList.department }}</td>
-          <td>{{ complaintList.checker }}</td>
-          <td>{{ complaintList.rectification_time | date :'dd/MM/YYYY hh:mm' }}</td>
-          <td>{{ complaintList.create_by }}</td>
-          <td>{{ complaintList.status }}</td>
-          <td>{{ complaintList.complaint_detail }}</td>
-          <td>{{ complaintList.unit_of_use }}</td>
-          <td>{{ complaintList.implementation_result }}</td>
-          <td>{{ complaintList.comment }}</td>
-          <td>{{ complaintList.follow_up_comment }}</td>
-          <td>{{ complaintList.complaint }}</td>
-          <td>{{ complaintList.report_code }}</td>
-          <td>{{ complaintList.created_at | date :'dd/MM/YYYY hh:mm' }}</td>
-          <td>{{ complaintList.updated_at | date :'dd/MM/YYYY hh:mm' }}</td>
-        </tr>
-        }
-      </tbody>
-    </nz-table>
-  </div>
+            <button type="submit" (click)="delete(complaintList)" class=" btn-danger" data-cy="entityDeleteButton">
+              <fa-icon icon="times"></fa-icon>
+              <!-- <span class="d-none d-md-inline">Delete</span> -->
+            </button>
+          </div>
+        </td>
+        <td> {{i+1}}</td>
+        <td>{{ complaintList.product_code }}</td>
+        <td>{{ complaintList.product_name }}</td>
+        <td>{{ complaintList.branch }}</td>
+        <td>{{ complaintList.reflector }}</td>
+        <td>{{ complaintList.total_errors }}</td>
+        <td>{{ complaintList.quantity }}</td>
+        <td>{{ complaintList.production_time | date :'dd/MM/YYYY hh:mm' }}</td>
+        <td>{{ complaintList.department }}</td>
+        <td>{{ complaintList.checker }}</td>
+        <td>{{ complaintList.rectification_time | date :'dd/MM/YYYY hh:mm' }}</td>
+        <td>{{ complaintList.create_by }}</td>
+        <td>{{ complaintList.status }}</td>
+        <td>{{ complaintList.complaint_detail }}</td>
+        <td>{{ complaintList.unit_of_use }}</td>
+        <td>{{ complaintList.implementation_result }}</td>
+        <td>{{ complaintList.comment }}</td>
+        <td>{{ complaintList.follow_up_comment }}</td>
+        <td>{{ complaintList.complaint }}</td>
+        <td>{{ complaintList.report_code }}</td>
+        <td>{{ complaintList.created_at | date :'dd/MM/YYYY hh:mm' }}</td>
+        <td>{{ complaintList.updated_at | date :'dd/MM/YYYY hh:mm' }}</td>
+      </tr>
+      <!-- } -->
+    </tbody>
+  </nz-table>
 </div>
