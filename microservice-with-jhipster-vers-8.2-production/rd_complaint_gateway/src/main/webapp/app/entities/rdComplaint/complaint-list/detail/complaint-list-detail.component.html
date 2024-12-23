@@ -312,8 +312,8 @@
 
 <ng-template #upload>
   <input class="inp-style" type="file" (change)="onChange($event)" />
-  <img *ngIf="showImage" [src]="imageSrc" style="max-width: 100%; height: auto;">
-  <button type="button" class="add-btn" style="background-color: #163297;">
+  <img id="output" [src]="imageSrc" alt="Ảnh lỗi">
+  <button type="button" class="add-btn" style="background-color: #163297;" (click)="downloadImage()">
     <fa-icon [icon]="faSave"></fa-icon> Lưu
   </button>
 </ng-template>

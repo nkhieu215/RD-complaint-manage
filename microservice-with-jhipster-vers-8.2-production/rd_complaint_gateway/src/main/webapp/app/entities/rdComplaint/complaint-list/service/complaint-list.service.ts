@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 
 import dayjs from 'dayjs/esm';
@@ -30,6 +30,9 @@ export type PartialUpdateRestComplaintList = RestOf<PartialUpdateComplaintList>;
 export type EntityResponseType = HttpResponse<IComplaintList>;
 export type EntityArrayResponseType = HttpResponse<IComplaintList[]>;
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" })
+};
 @Injectable({ providedIn: 'root' })
 export class ComplaintListService {
   protected http = inject(HttpClient);
@@ -41,6 +44,7 @@ export class ComplaintListService {
   protected insertUrl = this.applicationConfigService.getEndpointFor('api/complaint-lists/insert', 'rdcomplaint');
   protected updateUrl = this.applicationConfigService.getEndpointFor('api/complaint-lists/update', 'rdcomplaint');
   protected errorDetailtUrl = this.applicationConfigService.getEndpointFor('api/complaint-lists/error-detail', 'rdcomplaint');
+  protected uploadImageUrl = this.applicationConfigService.getEndpointFor('api/complaint-lists/uploadImage', 'rdcomplaint');
 
   create(complaintList: NewComplaintList): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(complaintList);
@@ -90,6 +94,11 @@ export class ComplaintListService {
   }
   updateComplaintInfo(body: any) {
     return this.http.post(this.updateUrl, body);
+  }
+  getAllCategories(): Observable<any> {
+    return this.http.post("http://192.168.68.92/qms/categories/crud-error-code", {
+      typeRequest: "BROWS_ALL",
+    }, httpOptions);
   }
   //--------------------------------------------------------------------------------------------------------------------------------------------------
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -156,5 +165,11 @@ export class ComplaintListService {
     return res.clone({
       body: res.body ? res.body.map(item => this.convertDateFromServer(item)) : null,
     });
+  }
+  uploadImage(file: File): Observable<any> {
+    const formData: FormData = new FormData;
+    formData.append('file', file);
+    const req = new HttpRequest('POST', this.uploadImageUrl, formData, { responseType: 'text' });
+    return this.http.request(req);
   }
 }

@@ -31,6 +31,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
@@ -42,6 +43,7 @@ import tech.jhipster.web.util.ResponseUtil;
 @RestController
 @RequestMapping("/api/complaint-lists")
 public class ComplaintListResource {
+    private final String FOLDER_PATH ="D:/RangDongProject/RD-complaint/RD-complaint-manage/microservice-with-jhipster-vers-8.2-production/rd_complaint_gateway/src/main/webapp/content/images/ErrorImage/";
     @Autowired
     ResourceLoader resourceLoader;
     private final Logger log = LoggerFactory.getLogger(ComplaintListResource.class);
@@ -280,5 +282,13 @@ public class ComplaintListResource {
     @PostMapping("update")
     public void updateDataComplaint(@RequestBody ComplaintList complaintListDTOS){
         this.complaintListRepository.save(complaintListDTOS);
+    }
+    @PostMapping("/uploadImage")
+    public String uploadImage(@RequestParam("file") MultipartFile imageFile)throws IOException{
+        String returnValue ="";
+        String filePath = FOLDER_PATH+imageFile.getOriginalFilename();
+        imageFile.transferTo(new File(filePath));
+        System.out.println("upload image: "+ imageFile.getOriginalFilename() + "-----"+ imageFile.getName());
+        return returnValue;
     }
 }

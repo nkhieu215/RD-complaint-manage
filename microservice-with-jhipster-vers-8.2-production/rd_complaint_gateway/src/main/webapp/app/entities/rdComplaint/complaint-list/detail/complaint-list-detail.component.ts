@@ -17,6 +17,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   standalone: true,
   selector: 'jhi-complaint-list-detail',
@@ -25,6 +26,8 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe, FormsModule, NzTableModule, NzToolTipModule],
 })
 export class ComplaintListDetailComponent implements OnInit {
+  //upload file
+  currentFile: any;
   faPlus = faPlus;
   faRedo = faRedo;
   faSave = faSave;
@@ -60,7 +63,12 @@ export class ComplaintListDetailComponent implements OnInit {
   protected listOfErrorService = inject(ListOfErrorService);
   protected accountService = inject(AccountService);
   protected actRoute = inject(ActivatedRoute);
+  protected sanitizer = inject(DomSanitizer);
   ngOnInit(): void {
+    this.complaintListService.getAllCategories().subscribe((data) => {
+      console.log('test', data);
+    },
+      (err) => { })
     this.accountService.identity().subscribe(account => this.account.set(account));
     let id = this.actRoute.snapshot.params['id'];
     this.complaintListService.getErrorDetail(id).subscribe(res => {
@@ -137,17 +145,22 @@ export class ComplaintListDetailComponent implements OnInit {
   onChange(event: any): void {
     this.showImage = true;
     const file = event.target.files[0];
-    if (file) {
-      this.listOfError[this.indexImageError].image = file.name
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imageSrc = e.target.result;
-      }
-      reader.readAsDataURL(file)
-    }
-    // this.listOfError[this.indexImageError].image = event.target.files[0].name;
-    // this.imageSrc += event.target.files[0].name;
-    // console.log(this.listOfError[index].image);
+    this.currentFile = file;
+    this.listOfError[this.indexImageError].image = event.target.files[0].name;
+    this.imageSrc = window.URL.createObjectURL(file);
+    console.log(event);
+  }
+  downloadImage() {
+    this.complaintListService.uploadImage(this.currentFile).subscribe(() => {
+      Swal.fire({
+        title: 'Thành công',
+        text: 'Lưu ảnh thành công',
+        icon: 'success',
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    });
   }
   updateIdMapping() {
     //convert datetime
@@ -257,7 +270,7 @@ export class ComplaintListDetailComponent implements OnInit {
     if (type == 'view') {
       this.imageSrc = '../../../../../content/images/ErrorImage/' + imageName;
     } else {
-      this.imageSrc = imageName;
+      this.imageSrc = '../../../../../content/images/ErrorImage/' + imageName;
       this.indexImageError = index;
     }
     this.modalService.open(content, this.modalOptions).result.then(
