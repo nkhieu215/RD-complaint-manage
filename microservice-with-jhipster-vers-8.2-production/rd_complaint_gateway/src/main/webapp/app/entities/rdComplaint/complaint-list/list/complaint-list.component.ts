@@ -107,6 +107,7 @@ export class ComplaintListComponent implements OnInit {
       implementation_result: this.implementation_result,
       complaint: this.complaint
     });
+    this.updateTableData(this.complaintListsOrigin);
   }
 
   trackById(index: number, item: any): any {
@@ -203,6 +204,13 @@ export class ComplaintListComponent implements OnInit {
     );
   }
 
+  updateTableData(listDataChange: any): void {
+    const startIndex = (this.current - 1) * this.itemsPerPage;
+    const endIndex = this.current * this.itemsPerPage;
+    this.complaintLists = listDataChange.slice(startIndex, endIndex) || [];
+    console.log('startIndex', startIndex)
+  }
+
   search2(): void {
     this.filteredComplaintLists = [...this.complaintLists];
     this.filteredComplaintLists = this.complaintListsOrigin!.filter(item => {
@@ -222,8 +230,11 @@ export class ComplaintListComponent implements OnInit {
       );
 
     });
-
-    this.complaintLists = this.filteredComplaintLists;
+    this.totalItems = this.filteredComplaintLists.length;
+    // this.complaintLists = this.filteredComplaintLists;
+    setTimeout(() => {
+      this.updateTableData(this.filteredComplaintLists)
+    }, 500);
   }
 
   loadAll(): void {
@@ -247,17 +258,27 @@ export class ComplaintListComponent implements OnInit {
       .subscribe();
   }
 
+  // load(): void {
+  //   this.complaintListService.getAll().subscribe(res => {
+  //     console.log('danh sách lấy từ sv', res)
+  //     this.complaintLists = this.complaintListsOrigin = res.complaintListResponseList.filter((x: any) => x.id != null);
+  //     console.log('danh sách dữ liệu', this.complaintLists)
+  //   })
+  //   // this.queryBackend().subscribe({
+  //   //   next: (res: EntityArrayResponseType) => {
+  //   //     this.onResponseSuccess(res);
+  //   //   },
+  //   // });
+  // }
+
   load(): void {
     this.complaintListService.getAll().subscribe(res => {
       console.log('danh sách lấy từ sv', res)
       this.complaintLists = this.complaintListsOrigin = res.complaintListResponseList.filter((x: any) => x.id != null);
+      this.totalItems = this.complaintLists.length
+      this.updateTableData(this.complaintListsOrigin);
       console.log('danh sách dữ liệu', this.complaintLists)
     })
-    // this.queryBackend().subscribe({
-    //   next: (res: EntityArrayResponseType) => {
-    //     this.onResponseSuccess(res);
-    //   },
-    // });
   }
 
   // get displayData(): IComplaintList[] {
@@ -269,8 +290,16 @@ export class ComplaintListComponent implements OnInit {
     this.handleNavigation(this.page, event);
   }
 
+  // navigateToPage(page: number): void {
+  //   this.handleNavigation(page, this.sortState());
+  // }
+
   navigateToPage(page: number): void {
-    this.handleNavigation(page, this.sortState());
+    this.current = page;
+    this.updateTableData(this.complaintListsOrigin);
+    console.log('current navigateToPage', this.current)
+    // console.log('update table data', this.updateTableData)
+
   }
 
   navigateToPage2(page: number): void {
@@ -278,10 +307,18 @@ export class ComplaintListComponent implements OnInit {
     this.loadPage(page);
   }
 
+  // onPageSizeChange(pageSize: number): void {
+  //   this.itemsPerPage = pageSize;
+  //   this.current = 1;
+  //   this.loadPage(1);
+  // }
+
   onPageSizeChange(pageSize: number): void {
     this.itemsPerPage = pageSize;
-    this.current = 1;
-    this.loadPage(1);
+    this.loadPage(this.current)
+    console.log('itemsPerPage', this.itemsPerPage)
+    // console.log('loadPage', this.loadPage)
+
   }
 
   // loadPage(page: number): void {

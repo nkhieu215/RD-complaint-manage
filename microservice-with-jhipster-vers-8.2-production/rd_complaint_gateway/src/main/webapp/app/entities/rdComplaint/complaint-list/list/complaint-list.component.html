@@ -14,9 +14,9 @@
       </button>
     </div>
   </h2>
-  <nz-table #middleTable nzBordered class=" custom-table" [nzData]="complaintLists" [nzFrontPagination]="true"
+  <nz-table #middleTable nzBordered class=" custom-table" [nzData]="complaintLists" [nzFrontPagination]="false"
     [nzScroll]="{ x: '4700px', y:'550px' }" [(nzPageIndex)]="current" [nzPageSize]="itemsPerPage" [nzTotal]="totalItems"
-    [nzSize]="'small'" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="navigateToPage2($event)"
+    [nzSize]="'small'" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="navigateToPage($event)"
     (nzPageSizeChange)="onPageSizeChange($event)">
     <thead>
       <tr>
