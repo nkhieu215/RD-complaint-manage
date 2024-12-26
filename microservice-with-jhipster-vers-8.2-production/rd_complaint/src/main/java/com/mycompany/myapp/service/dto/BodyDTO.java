@@ -16,6 +16,15 @@ public class BodyDTO {
     private List<Reflector>reflectorList;
     private List<UnitOfUse>unitOfUseList;
     private ComplaintList complaintListDTOById;
+    private List<ErrorList> errorLists;
+
+    public List<ErrorList> getErrorLists() {
+        return errorLists;
+    }
+
+    public void setErrorLists(List<ErrorList> errorLists) {
+        this.errorLists = errorLists;
+    }
 
     public BodyDTO() {
     }

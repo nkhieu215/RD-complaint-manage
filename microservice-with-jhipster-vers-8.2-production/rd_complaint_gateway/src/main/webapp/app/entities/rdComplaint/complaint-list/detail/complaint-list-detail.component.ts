@@ -46,6 +46,7 @@ export class ComplaintListDetailComponent implements OnInit {
   implementationResultList: any[] = [];
   reasonList: any[] = [];
   unitOfUseList: any[] = [];
+  errorList: any[] = [];
   //show image
   indexImageError = 0;
   modalOptions: NgbModalOptions = {
@@ -65,10 +66,6 @@ export class ComplaintListDetailComponent implements OnInit {
   protected actRoute = inject(ActivatedRoute);
   protected sanitizer = inject(DomSanitizer);
   ngOnInit(): void {
-    this.complaintListService.getAllCategories().subscribe((data) => {
-      console.log('test', data);
-    },
-      (err) => { })
     this.accountService.identity().subscribe(account => this.account.set(account));
     let id = this.actRoute.snapshot.params['id'];
     this.complaintListService.getErrorDetail(id).subscribe(res => {
@@ -82,6 +79,7 @@ export class ComplaintListDetailComponent implements OnInit {
       this.implementationResultList = res.implementationResultList;
       this.reasonList = res.reasonList;
       this.unitOfUseList = res.unitOfUseList;
+      this.errorList = res.errorLists;
       setTimeout(() => {
         //convert date
         this.complaintDetail.production_time = this.complaintDetail.production_time == null ? null : this.complaintDetail.production_time.slice(0, 10);

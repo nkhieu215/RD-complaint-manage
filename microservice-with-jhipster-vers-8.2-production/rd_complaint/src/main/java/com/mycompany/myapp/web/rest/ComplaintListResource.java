@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import com.sun.jna.platform.FileMonitor;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.compress.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +24,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -65,6 +60,7 @@ public class ComplaintListResource {
     private final ComplaintStatusRepository complaintStatusRepository;
     private final ListOfErrorRepository listOfErrorRepository;
     private final ReasonRepository reasonRepository;
+    private final ErrorListRepository errorListRepository;
 
 
     public ComplaintListResource(ComplaintListService complaintListService,
@@ -77,7 +73,7 @@ public class ComplaintListResource {
                                  ComplaintRepository complaintRepository,
                                  ComplaintStatusRepository complaintStatusRepository,
                                  ListOfErrorRepository listOfErrorRepository,
-                                 ReasonRepository reasonRepository) {
+                                 ReasonRepository reasonRepository, ErrorListRepository errorListRepository) {
         this.complaintListService = complaintListService;
         this.complaintListRepository = complaintListRepository;
         this.checkerListRepository = checkerListRepository;
@@ -89,6 +85,7 @@ public class ComplaintListResource {
         this.complaintStatusRepository = complaintStatusRepository;
         this.listOfErrorRepository = listOfErrorRepository;
         this.reasonRepository = reasonRepository;
+        this.errorListRepository = errorListRepository;
     }
 
     /**
@@ -277,6 +274,7 @@ public class ComplaintListResource {
         bodyDTO.setComplaintList(this.complaintRepository.findAll());
         bodyDTO.setReasonList(this.reasonRepository.findAll());
         bodyDTO.setListOfErrorList(this.listOfErrorRepository.getByComplaintId(id));
+        bodyDTO.setErrorLists(this.errorListRepository.findAll());
         return bodyDTO;
     }
     @PostMapping("update")

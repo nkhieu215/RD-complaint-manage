@@ -31,7 +31,7 @@ export type EntityResponseType = HttpResponse<IComplaintList>;
 export type EntityArrayResponseType = HttpResponse<IComplaintList[]>;
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*" })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': "*" })
 };
 @Injectable({ providedIn: 'root' })
 export class ComplaintListService {
@@ -95,11 +95,11 @@ export class ComplaintListService {
   updateComplaintInfo(body: any) {
     return this.http.post(this.updateUrl, body);
   }
-  getAllCategories(): Observable<any> {
-    return this.http.post("http://192.168.68.92/qms/categories/crud-error-code", {
-      typeRequest: "BROWS_ALL",
-    }, httpOptions);
-  }
+  // getAllCategories(): any {
+  //   return this.http.post("http://192.168.68.92/qms/categories/crud-error-code-2", {
+  //     typeRequest: "BROWS_ALL",
+  //   }, httpOptions);
+  // }
   //--------------------------------------------------------------------------------------------------------------------------------------------------
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
