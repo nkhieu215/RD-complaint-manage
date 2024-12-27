@@ -218,11 +218,17 @@
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft> {{i+1}}</td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.error_code" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="!complaintList.isEditing" list="errorLists" />
+              <datalist id="errorLists">
+                <option *ngFor="let data of errorList" [value]="data.attributeKey">{{data.attributeKey}}</option>
+              </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.error_name" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="!complaintList.isEditing" list="errorListsName" />
+              <datalist id="errorListsName">
+                <option *ngFor="let data of errorList" [value]="data.errName">{{data.errName}}</option>
+              </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.lot_number" [ngModelOptions]="{ standalone: true }"
