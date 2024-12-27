@@ -150,14 +150,16 @@ export class ComplaintListDetailComponent implements OnInit {
   }
   downloadImage() {
     this.complaintListService.uploadImage(this.currentFile).subscribe(() => {
-      Swal.fire({
-        title: 'Thành công',
-        text: 'Lưu ảnh thành công',
-        icon: 'success',
-        showCancelButton: false,
-        showConfirmButton: false,
-        timer: 2000
-      })
+      this.saveComplaintDetail('update');
+      // this.listOfErrorService.updateListOfError(this.listOfError).subscribe();
+      // Swal.fire({
+      //   title: 'Thành công',
+      //   text: 'Lưu ảnh thành công',
+      //   icon: 'success',
+      //   showCancelButton: false,
+      //   showConfirmButton: false,
+      //   timer: 2000
+      // })
     });
   }
   updateIdMapping() {
@@ -221,7 +223,7 @@ export class ComplaintListDetailComponent implements OnInit {
       }
     })
   }
-  async saveComplaintDetail() {
+  async saveComplaintDetail(mss: any) {
     await this.updateIdMapping()
     this.complaintListService.updateComplaintInfo(this.complaintDetail).subscribe();
     this.listOfErrorService.updateListOfError(this.listOfError).subscribe();
@@ -230,12 +232,12 @@ export class ComplaintListDetailComponent implements OnInit {
       title: 'Thành công',
       text: 'Cập nhật thông tin thành công',
       icon: 'success',
-      showCancelButton: false,
+      showCancelButton: true,
       showConfirmButton: true,
       confirmButtonText: 'Đồng ý',
       cancelButtonText: 'Hủy'
     }).then(async (result) => {
-      if (result.value) {
+      if (result.value && mss === 'reload') {
         window.location.reload();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
 
@@ -347,5 +349,22 @@ export class ComplaintListDetailComponent implements OnInit {
       icon: "success",
       title: "Lưu thông tin thành công"
     });
+  }
+  updateErrorValue(index: any, error_code: any, error_name: any) {
+    let result = this.errorList.find(x => x.attributeKey == error_code || x.errName == error_name);
+    console.log(result, error_code, error_name)
+    if (result) {
+      this.listOfError[index].error_code = result.attributeKey;
+      this.listOfError[index].error_name = result.errName;
+    } else {
+      Swal.fire({
+        title: 'Thông báo',
+        text: 'Không tìm thấy thông tin lỗi',
+        icon: 'warning',
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 2000
+      })
+    }
   }
 }

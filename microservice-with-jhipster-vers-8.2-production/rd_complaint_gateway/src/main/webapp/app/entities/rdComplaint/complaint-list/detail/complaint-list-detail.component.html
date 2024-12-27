@@ -218,59 +218,61 @@
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft> {{i+1}}</td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.error_code" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" list="errorLists" />
+                [disabled]="complaintList.isEditing" list="errorLists"
+                (change)="updateErrorValue(i,complaintList.error_code,null)" />
               <datalist id="errorLists">
                 <option *ngFor="let data of errorList" [value]="data.attributeKey">{{data.attributeKey}}</option>
               </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzLeft><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.error_name" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" list="errorListsName" />
+                [disabled]="complaintList.isEditing" list="errorListsName"
+                (change)="updateErrorValue(i,null,complaintList.error_name)" />
               <datalist id="errorListsName">
                 <option *ngFor="let data of errorList" [value]="data.errName">{{data.errName}}</option>
               </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.lot_number" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.serial" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.mac_address" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="number" [(ngModel)]=" complaintList.quantity" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" (ngModelChange)="updateTotalError()" />
+                [disabled]="complaintList.isEditing" (ngModelChange)="updateTotalError()" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.error_source" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]="complaintList.reason" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" list="reason" />
+                [disabled]="complaintList.isEditing" list="reason" />
               <datalist id="reason">
                 <option *ngFor="let data of reasonList" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom">
               <input class="inp-style" type="text" [(ngModel)]=" complaintList.method"
-                [ngModelOptions]="{ standalone: true }" [disabled]="!complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="text" [(ngModel)]=" complaintList.check_by" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" list="check_by" />
+                [disabled]="complaintList.isEditing" list="check_by" />
               <datalist id="check_by">
                 <option *ngFor="let data of checkerLists" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"><input class="inp-style"
                 type="date" [(ngModel)]=" complaintList.check_time" [ngModelOptions]="{ standalone: true }"
-                [disabled]="!complaintList.isEditing" />
+                [disabled]="complaintList.isEditing" />
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" style="width: 4%;" nzRight>
               <!-- <input class="inp-style" type="file" (change)="onChange($event,i)" /> -->
@@ -287,9 +289,9 @@
             </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom" nzRight>
               <!-- <button class="btn-edit-save"
-                (click)="complaintList.isEditing = !complaintList.isEditing">{{complaintList.isEditing ? 'Lưu':'Chỉnh sửa'}}
+                (click)="complaintList.isEditing = complaintList.isEditing">{{complaintList.isEditing ? 'Lưu':'Chỉnh sửa'}}
               </button> -->
-              <button class="btn-edit-save" (click)="complaintList.isEditing = !complaintList.isEditing"
+              <button class="btn-edit-save" (click)="complaintList.isEditing = complaintList.isEditing"
                 (click)="complaintList.isEditing ? null : openToast()">
                 <fa-icon [icon]="complaintList.isEditing ? 'save' : 'pencil'"></fa-icon>
               </button>
@@ -305,7 +307,7 @@
 
       <button type="button" class="add-btn"
         style="background-color: #3498db; color: white; border: none; border-radius: 5px; padding: 10px 15px; cursor: pointer; transition: background-color 0.3s;"
-        (click)="saveComplaintDetail()">
+        (click)="saveComplaintDetail('reload')">
         <fa-icon [icon]="faSave"></fa-icon> Lưu
       </button>
     </div>
