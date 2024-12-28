@@ -317,16 +317,10 @@ export class ComplaintListDetailComponent implements OnInit {
     });
   }
 
-  showTooltip(event: MouseEvent, complaintDetail: any): void {
-    this.tooltipContent = `Thông tin tooltip: ${this.complaintDetail.comment}`;
+  showTooltip(imageName: string, event: MouseEvent): void {
+    this.tooltipContent = '../../../../../content/images/ErrorImage/' + imageName;
     this.tooltipVisible = true;
-    this.tooltipPosition = {
-      top: `${event.clientY}px`,
-      left: `${event.clientX}px`
-    };
-    console.warn('content', this.tooltipContent)
-    console.warn('vi tri', this.tooltipPosition)
-
+    this.tooltipPosition = { top: event.clientY + 'px', left: event.clientX + 'px' };
   }
 
   hideTooltip(): void {

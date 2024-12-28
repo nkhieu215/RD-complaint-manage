@@ -118,9 +118,20 @@
   opacity: 0.9;
   color: #333;
   font-size: 14px;
+  max-width: 400px;
+  overflow: hidden;
+  text-align: center;
 }
 
 .custom-tooltip:hover {
   background-color: #f0f0f0;
   border-color: #4CAF50;
+}
+
+.custom-tooltip img {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: contain;
+  height: auto;
+  display: block;
 }
