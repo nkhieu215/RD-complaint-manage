@@ -235,7 +235,8 @@ export class ComplaintListDetailComponent implements OnInit {
       showCancelButton: true,
       showConfirmButton: true,
       confirmButtonText: 'Đồng ý',
-      cancelButtonText: 'Hủy'
+      cancelButtonText: 'Hủy',
+      timer: 5000
     }).then(async (result) => {
       if (result.value && mss === 'reload') {
         window.location.reload();
