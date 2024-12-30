@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 import { IComplaintList } from '../complaint-list.model';
 import { ComplaintListService } from '../service/complaint-list.service';
 import { ComplaintListFormService, ComplaintListFormGroup } from './complaint-list-form.service';
-import { faDownload, faPlus, faUpload, faSave } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPlus, faUpload, faSave, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { BrowserModule } from '@angular/platform-browser';
 import { saveAs } from 'file-saver'
@@ -41,6 +41,7 @@ export class ComplaintListUpdateComponent implements OnInit {
   faPlus = faPlus;
   faUpload = faUpload;
   faSave = faSave;
+  faTrash = faTrash;
   isSaving = false;
   savingProcess = true;
   // complaintList: IComplaintList | null = null;
@@ -52,6 +53,7 @@ export class ComplaintListUpdateComponent implements OnInit {
   listReflector: any[] = [];
   listComplaint: any[] = [];
   listUnitOfUse: any[] = [];
+  today: string = new Date().toISOString().split('T')[0];
   protected complaintListService = inject(ComplaintListService);
   protected complaintListFormService = inject(ComplaintListFormService);
   protected activatedRoute = inject(ActivatedRoute);
@@ -208,6 +210,14 @@ export class ComplaintListUpdateComponent implements OnInit {
       }
     }
   }
+
+  isNumberKey(event: KeyboardEvent): boolean {
+    const charCode = event.key;
+    return (
+      charCode <= '0'
+    );
+  }
+
   exportExcel(): void {
     let dataHeader = [[
       'Mã sản phẩm',
@@ -318,6 +328,29 @@ export class ComplaintListUpdateComponent implements OnInit {
     };
     this.complaintLists = [data, ... this.complaintLists];
   }
+
+  deleteRow(complaintList: any): void {
+    const index = this.complaintLists.indexOf(complaintList)
+    if (index > -1) {
+      this.complaintLists.splice(index, 1)
+    }
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Đã xoá thông tin thành công"
+    });
+  }
+
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IComplaintList>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
       next: () => this.onSaveSuccess(),

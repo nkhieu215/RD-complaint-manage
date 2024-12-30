@@ -15,13 +15,13 @@
     </div>
   </h2>
   <nz-table #middleTable nzBordered class=" custom-table" [nzData]="complaintLists" [nzFrontPagination]="false"
-    [nzScroll]="{ x: '4700px', y:'550px' }" [(nzPageIndex)]="current" [nzPageSize]="itemsPerPage" [nzTotal]="totalItems"
+    [nzScroll]="{ x: '4700px'}" [(nzPageIndex)]="current" [nzPageSize]="itemsPerPage" [nzTotal]="totalItems"
     [nzSize]="'small'" nzShowSizeChanger nzShowQuickJumper (nzPageIndexChange)="navigateToPage($event)"
     (nzPageSizeChange)="onPageSizeChange($event)">
     <thead>
       <tr>
         <th class="table-header" style="width: 3%;" nzLeft></th>
-        <th class="table-header" style="width: 1%;">
+        <th class="table-header" style="width: 1.5%;">
           <div class="d-flex">
             <span>STT</span>
             <fa-icon class="p-1"></fa-icon>
@@ -75,7 +75,7 @@
             <fa-icon class="p-1"></fa-icon>
           </div>
         </th>
-        <th class="table-header" style="width: 3%;">
+        <th class="table-header" style="width: 3.5%;">
           <div class="d-flex">
             <span>Ngày sản xuất</span>
 

@@ -15,7 +15,8 @@
       <div style="display: flex;flex-direction: column;">
         <div class="col-container">
           <div class="col-m4-25 col-container-child">Mã sản phẩm <br><input type="text"
-              [(ngModel)]=" complaintDetail.product_code" [ngModelOptions]="{ standalone: true }" class="inp-style">
+              [(ngModel)]=" complaintDetail.product_code" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              [ngClass]="{'input-error': !complaintDetail.product_code}">
           </div>
           <div class="col-m4-25 col-container-child">Tên sản phẩm <br><input type="text"
               [(ngModel)]=" complaintDetail.product_name" [ngModelOptions]="{ standalone: true }" class="inp-style">
@@ -24,7 +25,8 @@
               [ngModelOptions]="{ standalone: true }" class="inp-style">
           </div>
           <div class="col-m4-25 col-container-child">Ngày sản xuất <br><input type="date"
-              [(ngModel)]=" complaintDetail.production_time" [ngModelOptions]="{ standalone: true }" class="inp-style">
+              [(ngModel)]=" complaintDetail.production_time" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              max="{{today}}">
           </div>
         </div>
         <div class="col-container">
@@ -54,8 +56,9 @@
           </div>
         </div>
         <div class="col-container">
-          <div class="col-m4-25 col-container-child">Số lượng nhận <br><input type="text"
-              [(ngModel)]=" complaintDetail.quantity" [ngModelOptions]="{ standalone: true }" class="inp-style"></div>
+          <div class="col-m4-25 col-container-child">Số lượng nhận <br><input type="number"
+              [(ngModel)]=" complaintDetail.quantity" [ngModelOptions]="{ standalone: true }" class="inp-style" min="0">
+          </div>
           <div class="col-m4-25 col-container-child">Trạng thái <br><input type="text"
               [(ngModel)]=" complaintDetail.status" [ngModelOptions]="{ standalone: true }" class="inp-style"
               list="status">
@@ -73,7 +76,8 @@
         </div>
         <div class="col-container">
           <div class="col-m4-25 col-container-child">Tổng lỗi <br><input type="text"
-              [(ngModel)]=" complaintDetail.total_errors" [ngModelOptions]="{ standalone: true }" class="inp-style">
+              [(ngModel)]=" complaintDetail.total_errors" [ngModelOptions]="{ standalone: true }" class="inp-style"
+              readonly>
           </div>
           <div class="col-m4-25 col-container-child">Đơn vị phối hợp <br><input type="text"
               [(ngModel)]=" complaintDetail.department" [ngModelOptions]="{ standalone: true }" class="inp-style"
@@ -84,7 +88,7 @@
           </div>
           <div class="col-m4-25 col-container-child">Ngày khắc phục <br><input type="date"
               [(ngModel)]=" complaintDetail.rectification_time" [ngModelOptions]="{ standalone: true }"
-              class="inp-style"></div>
+              class="inp-style" min="{{today}}"></div>
           <div class="col-m4-25 col-container-child">Kết quả thực hiện <br><input type="text"
               [(ngModel)]=" complaintDetail.implementation_result" [ngModelOptions]="{ standalone: true }"
               class="inp-style" list="implementation_result">
@@ -105,11 +109,16 @@
       </div>
       <div><button class="btn add-btn" (click)="addNewRow()"><fa-icon [icon]="faPlus" [fixedWidth]="true"></fa-icon>Thêm
           mới</button></div>
-      <nz-table #middleTable nzBordered class="custom-table" [nzData]="listOfError" [nzFrontPagination]="false"
-        [nzScroll]="{ x: '3700px' }" [nzPageSize]="10" [nzPageIndex]="1" [nzTotal]="listOfError.length"
-        [nzShowSizeChanger]="true" [nzPageSizeOptions]="[10, 20, 30, 40, 50]">
+      <nz-table #middleTable class="custom-table" [nzData]="listOfError" [nzScroll]="{ x: '3700px' }"
+        [nzFrontPagination]="false">
         <thead>
           <tr>
+            <th class="table-header" style="width: 2%;" nzLeft>
+              <div class="d-flex">
+                <span>Option</span>
+                <fa-icon class="p-1"></fa-icon>
+              </div>
+            </th>
             <th class="table-header" style="width: 4%;" nzLeft>
               <div class="d-flex">
                 <span>Hình ảnh</span>
@@ -221,6 +230,12 @@
           @for (complaintList of listOfError; track complaintList.error_code;let i =$index) {
           <!-- <tr data-cy="entityTable" (mouseenter)="showTooltip($event, complaintList)" (mouseleave)="hideTooltip()"> -->
           <tr data-cy="entityTable">
+            <td nzLeft>
+              <div class="btn-group">
+                <button class="image-btn" style="background-color: #FB4141; margin: 3px;"
+                  (click)="deleteRow(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
+              </div>
+            </td>
             <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="right"
               (mouseenter)="showTooltip(complaintList.image, $event)" (mouseleave)="hideTooltip()" style="width: 4%;"
               nzLeft>
@@ -239,52 +254,64 @@
             <td nzLeft> {{i+1}}</td>
             <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_code"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="errorLists"
-                (change)="updateErrorValue(i,complaintList.error_code,null)" />
+                (change)="updateErrorValue(i,complaintList.error_code,null)"
+                [ngClass]="{'input-error': !complaintList.error_code}" />
               <datalist id="errorLists">
-                <option *ngFor="let data of errorList" [value]="data.attributeKey">{{data.attributeKey}}</option>
+                <option *ngFor="let data of errorList" [value]="data.attributeKey">
+                  {{data.attributeKey}}</option>
               </datalist>
             </td>
             <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_name"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="errorListsName"
-                (change)="updateErrorValue(i,null,complaintList.error_name)" />
+                (change)="updateErrorValue(i,null,complaintList.error_name)"
+                [ngClass]="{'input-error': !complaintList.error_name}" />
               <datalist id="errorListsName">
                 <option *ngFor="let data of errorList" [value]="data.errName">{{data.errName}}</option>
               </datalist>
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.lot_number"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.lot_number}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.serial"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.serial}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.mac_address"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.mac_address}" />
             </td>
             <td><input class="inp-style" type="number" [(ngModel)]=" complaintList.quantity"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
-                (ngModelChange)="updateTotalError()" />
+                (ngModelChange)="updateTotalError()" (keydown)="!isNumberKey($event)" min="0"
+                [ngClass]="{'input-error': !complaintList.quantity}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_source"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.error_source}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]="complaintList.reason"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="reason" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="reason"
+                [ngClass]="{'input-error': !complaintList.reason}" />
               <datalist id="reason">
                 <option *ngFor="let data of reasonList" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
             <td>
               <input class="inp-style" type="text" [(ngModel)]=" complaintList.method"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.method}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.check_by"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="check_by" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="check_by"
+                [ngClass]="{'input-error': !complaintList.check_by}" />
               <datalist id="check_by">
                 <option *ngFor="let data of checkerLists" [value]="data.name">{{data.name}}</option>
               </datalist>
             </td>
             <td><input class="inp-style" type="date" [(ngModel)]=" complaintList.check_time"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" />
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" min="{{today}}"
+                [ngClass]="{'input-error': !complaintList.check_time}" />
             </td>
             <!-- <td nz-tooltip [nzTooltipTitle]="titleTemplate" nzTooltipPlacement="bottom"
               (mouseenter)="showTooltip(complaintList.image, $event)" (mouseleave)="hideTooltip()" style="width: 4%;"
@@ -333,7 +360,7 @@
 </ng-template>
 
 <ng-template #upload>
-  <input class="inp-style" type="file" (change)="onChange($event)" />
+  <input class="inp-style" type="file" (change)="onChange($event)" multiple />
   <img id="output" [src]="imageSrc" alt="Ảnh lỗi">
   <button type="button" class="add-btn" style="background-color: #163297;" (click)="downloadImage()">
     <fa-icon [icon]="faSave"></fa-icon> Lưu

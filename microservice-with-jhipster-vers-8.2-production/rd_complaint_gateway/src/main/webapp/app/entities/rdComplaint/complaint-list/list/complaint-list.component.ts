@@ -26,6 +26,7 @@ import {
   NzTableSortOrder
 } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import Swal from 'sweetalert2';
 @Component({
   standalone: true,
   selector: 'jhi-complaint-list',
@@ -247,15 +248,43 @@ export class ComplaintListComponent implements OnInit {
   }
 
   delete(complaintList: IComplaintList): void {
-    const modalRef = this.modalService.open(ComplaintListDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.complaintList = complaintList;
-    // unsubscribe not needed because closed completes on modal close
-    modalRef.closed
-      .pipe(
-        filter(reason => reason === ITEM_DELETED_EVENT),
-        tap(() => this.load()),
-      )
-      .subscribe();
+    // const modalRef = this.modalService.open(ComplaintListDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    // modalRef.componentInstance.complaintList = complaintList;
+    // // unsubscribe not needed because closed completes on modal close
+    // modalRef.closed
+    //   .pipe(
+    //     filter(reason => reason === ITEM_DELETED_EVENT),
+    //     tap(() => this.load()),
+    //   )
+    //   .subscribe();
+
+    Swal.fire({
+      title: "Bạn có chắc chắn muốn xoá?",
+      text: "Bạn sẽ không thể hoàn khôi phục lại thông tin này!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Xoá"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.complaintListService.delete(complaintList.id).subscribe(() => {
+          Swal.fire({
+            title: "Xoá!",
+            text: "Bạn đã xoá thông tin thành công",
+            icon: "success"
+          });
+          this.load()
+
+        }, error => {
+          Swal.fire({
+            title: "Lỗi!",
+            text: "Xoá thất bại",
+            icon: "error"
+          });
+        })
+      }
+    });
   }
 
   // load(): void {

@@ -18,10 +18,17 @@
           (click)="saveListComplaint()"><fa-icon [icon]="faSave" [fixedWidth]="true"></fa-icon>Lưu</button>
       </div>
     </div>
-    <nz-table #middleTable nzBordered class="custom-table" [nzData]="complaintLists!" [nzFrontPagination]="true"
+    <nz-table #middleTable nzBordered class="custom-table" [nzData]="complaintLists!" [nzFrontPagination]="false"
       [nzScroll]="{ x: '3700px' }">
       <thead>
         <tr>
+          <th class="table-header" style="width: 2%;" nzLeft>
+            <div class="d-flex">
+              <span>Option</span>
+
+              <fa-icon class="p-1"></fa-icon>
+            </div>
+          </th>
           <th class="table-header" style="width: 2%;" nzLeft>
             <div class="d-flex">
               <span>STT</span>
@@ -111,6 +118,12 @@
       <tbody>
         @for (complaintList of complaintLists; track complaintList.product_code;let i =$index) {
         <tr data-cy="entityTable">
+          <td nzLeft>
+            <div class="btn-group">
+              <button class="btn btn-danger image-btn" (click)="deleteRow(complaintList)"><fa-icon
+                  [icon]="faTrash"></fa-icon></button>
+            </div>
+          </td>
           <td nzLeft> {{i+1}}</td>
           <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_code"
               [ngModelOptions]="{ standalone: true }" />
@@ -121,7 +134,7 @@
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.branch"
               [ngModelOptions]="{ standalone: true }" /> </td>
           <td><input class="input-search" type="date" [(ngModel)]="complaintList.production_time_convert"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" max="{{today}}" />
           </td>
           <td>
             <input class="input-search" type="text" [(ngModel)]=" complaintList.reflector"
@@ -146,7 +159,7 @@
             </datalist>
           </td>
           <td><input class="input-search" type="number" [(ngModel)]=" complaintList.quantity"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" (keydown)="!isNumberKey($event)" min="0" />
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint_detail"
               [ngModelOptions]="{ standalone: true }" /> </td>

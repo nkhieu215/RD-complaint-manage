@@ -10,7 +10,7 @@ import {
 } from 'ng-zorro-antd/table';
 import Swal from 'sweetalert2';
 import { ComplaintListService } from '../service/complaint-list.service';
-import { faDownload, faPlus, faUpload, faSave, faRedo, faImage } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPlus, faUpload, faSave, faRedo, faImage, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { error } from 'console';
 import { ListOfErrorService } from '../../list-of-error/service/list-of-error.service';
 import { AccountService } from 'app/core/auth/account.service';
@@ -33,6 +33,7 @@ export class ComplaintListDetailComponent implements OnInit {
   faSave = faSave;
   faImage = faImage;
   faUpload = faUpload;
+  faTrash = faTrash;
   savingProcess = true;
   @Input() complaintDetail: any;
   listOfError: any[] = [];
@@ -59,6 +60,7 @@ export class ComplaintListDetailComponent implements OnInit {
   tooltipVisible = false;
   tooltipContent = '';
   tooltipPosition = { top: '0px', left: '0px' };
+  today: string = new Date().toISOString().split('T')[0];
   protected modalService = inject(NgbModal);
   protected complaintListService = inject(ComplaintListService);
   protected listOfErrorService = inject(ListOfErrorService);
@@ -342,9 +344,10 @@ export class ComplaintListDetailComponent implements OnInit {
     });
     Toast.fire({
       icon: "success",
-      title: "Lưu thông tin thành công"
+      title: "Đã xoá thông tin thành công"
     });
   }
+
   updateErrorValue(index: any, error_code: any, error_name: any) {
     let result = this.errorList.find(x => x.attributeKey == error_code || x.errName == error_name);
     console.log(result, error_code, error_name)
@@ -362,4 +365,31 @@ export class ComplaintListDetailComponent implements OnInit {
       })
     }
   }
+
+  isNumberKey(event: KeyboardEvent): boolean {
+    const charCode = event.key;
+    return (
+      charCode <= '0'
+    );
+  }
+
+  deleteRow(index: number): void {
+    this.listOfError.splice(index, 1);
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Đã xoá thông tin thành công"
+    });
+  }
+
 }
