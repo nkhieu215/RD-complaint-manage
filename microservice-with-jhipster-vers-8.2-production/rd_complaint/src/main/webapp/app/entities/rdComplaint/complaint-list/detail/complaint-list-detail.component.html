@@ -1,122 +1,123 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     @if (complaintList) {
-      <div>
-        <h2 data-cy="complaintListDetailsHeading"><span>Complaint List</span></h2>
+    <div>
+      <h2 data-cy="complaintListDetailsHeading"><span>Complaint List</span></h2>
 
-        <hr />
+      <hr />
 
-        <jhi-alert-error></jhi-alert-error>
+      <jhi-alert-error></jhi-alert-error>
 
-        <jhi-alert></jhi-alert>
+      <jhi-alert></jhi-alert>
 
-        <dl class="row-md jh-entity-details">
-          <dt><span>ID</span></dt>
-          <dd>
-            <span>{{ complaintList.id }}</span>
-          </dd>
-          <dt><span>Product Code</span></dt>
-          <dd>
-            <span>{{ complaintList.product_code }}</span>
-          </dd>
-          <dt><span>Product Name</span></dt>
-          <dd>
-            <span>{{ complaintList.product_name }}</span>
-          </dd>
-          <dt><span>Lot Number</span></dt>
-          <dd>
-            <span>{{ complaintList.lot_number }}</span>
-          </dd>
-          <dt><span>Branch</span></dt>
-          <dd>
-            <span>{{ complaintList.branch }}</span>
-          </dd>
-          <dt><span>Reflector Id</span></dt>
-          <dd>
-            <span>{{ complaintList.reflector_id }}</span>
-          </dd>
-          <dt><span>Total Errors</span></dt>
-          <dd>
-            <span>{{ complaintList.total_errors }}</span>
-          </dd>
-          <dt><span>Quantity</span></dt>
-          <dd>
-            <span>{{ complaintList.quantity }}</span>
-          </dd>
-          <dt><span>Production Time</span></dt>
-          <dd>
-            <span>{{ complaintList.production_time | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Dapartment Id</span></dt>
-          <dd>
-            <span>{{ complaintList.dapartment_id }}</span>
-          </dd>
-          <dt><span>Check By Id</span></dt>
-          <dd>
-            <span>{{ complaintList.check_by_id }}</span>
-          </dd>
-          <dt><span>Rectification Time</span></dt>
-          <dd>
-            <span>{{ complaintList.rectification_time | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Create By</span></dt>
-          <dd>
-            <span>{{ complaintList.create_by }}</span>
-          </dd>
-          <dt><span>Status</span></dt>
-          <dd>
-            <span>{{ complaintList.status }}</span>
-          </dd>
-          <dt><span>Complaint Detail</span></dt>
-          <dd>
-            <span>{{ complaintList.complaint_detail }}</span>
-          </dd>
-          <dt><span>Unit Of Use Id</span></dt>
-          <dd>
-            <span>{{ complaintList.unit_of_use_id }}</span>
-          </dd>
-          <dt><span>Implementation Result Id</span></dt>
-          <dd>
-            <span>{{ complaintList.implementation_result_id }}</span>
-          </dd>
-          <dt><span>Comment</span></dt>
-          <dd>
-            <span>{{ complaintList.comment }}</span>
-          </dd>
-          <dt><span>Follow Up Comment</span></dt>
-          <dd>
-            <span>{{ complaintList.follow_up_comment }}</span>
-          </dd>
-          <dt><span>Complaint Id</span></dt>
-          <dd>
-            <span>{{ complaintList.complaint_id }}</span>
-          </dd>
-          <dt><span>Created At</span></dt>
-          <dd>
-            <span>{{ complaintList.created_at | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Updated At</span></dt>
-          <dd>
-            <span>{{ complaintList.updated_at | formatMediumDatetime }}</span>
-          </dd>
-          <dt><span>Serial</span></dt>
-          <dd>
-            <span>{{ complaintList.serial }}</span>
-          </dd>
-          <dt><span>Mac Address</span></dt>
-          <dd>
-            <span>{{ complaintList.mac_address }}</span>
-          </dd>
-        </dl>
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ complaintList.id }}</span>
+        </dd>
+        <dt><span>Product Code</span></dt>
+        <dd>
+          <span>{{ complaintList.product_code }}</span>
+        </dd>
+        <dt><span>Product Name</span></dt>
+        <dd>
+          <span>{{ complaintList.product_name }}</span>
+        </dd>
+        <dt><span>Lot Number</span></dt>
+        <dd>
+          <span>{{ complaintList.lot_number }}</span>
+        </dd>
+        <dt><span>Branch</span></dt>
+        <dd>
+          <span>{{ complaintList.branch }}</span>
+        </dd>
+        <dt><span>Reflector Id</span></dt>
+        <dd>
+          <span>{{ complaintList.reflector_id }}</span>
+        </dd>
+        <dt><span>Total Errors</span></dt>
+        <dd>
+          <span>{{ complaintList.total_errors }}</span>
+        </dd>
+        <dt><span>Quantity</span></dt>
+        <dd>
+          <span>{{ complaintList.quantity }}</span>
+        </dd>
+        <dt><span>Production Time</span></dt>
+        <dd>
+          <span>{{ complaintList.production_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Dapartment Id</span></dt>
+        <dd>
+          <span>{{ complaintList.dapartment_id }}</span>
+        </dd>
+        <dt><span>Check By Id</span></dt>
+        <dd>
+          <span>{{ complaintList.check_by_id }}</span>
+        </dd>
+        <dt><span>Rectification Time</span></dt>
+        <dd>
+          <span>{{ complaintList.rectification_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Create By</span></dt>
+        <dd>
+          <span>{{ complaintList.create_by }}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+          <span>{{ complaintList.status }}</span>
+        </dd>
+        <dt><span>Complaint Detail</span></dt>
+        <dd>
+          <span>{{ complaintList.complaint_detail }}</span>
+        </dd>
+        <dt><span>Unit Of Use Id</span></dt>
+        <dd>
+          <span>{{ complaintList.unit_of_use }}</span>
+        </dd>
+        <dt><span>Implementation Result Id</span></dt>
+        <dd>
+          <span>{{ complaintList.implementation_result_id }}</span>
+        </dd>
+        <dt><span>Comment</span></dt>
+        <dd>
+          <span>{{ complaintList.comment }}</span>
+        </dd>
+        <dt><span>Follow Up Comment</span></dt>
+        <dd>
+          <span>{{ complaintList.follow_up_comment }}</span>
+        </dd>
+        <dt><span>Complaint Id</span></dt>
+        <dd>
+          <span>{{ complaintList.complaint_id }}</span>
+        </dd>
+        <dt><span>Created At</span></dt>
+        <dd>
+          <span>{{ complaintList.created_at | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Updated At</span></dt>
+        <dd>
+          <span>{{ complaintList.updated_at | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Serial</span></dt>
+        <dd>
+          <span>{{ complaintList.serial }}</span>
+        </dd>
+        <dt><span>Mac Address</span></dt>
+        <dd>
+          <span>{{ complaintList.mac_address }}</span>
+        </dd>
+      </dl>
 
-        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
-        </button>
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
 
-        <button type="button" [routerLink]="['/rdcomplaint/complaint-list', complaintList.id, 'edit']" class="btn btn-primary">
-          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
-        </button>
-      </div>
+      <button type="button" [routerLink]="['/rdcomplaint/complaint-list', complaintList.id, 'edit']"
+        class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
     }
   </div>
 </div>

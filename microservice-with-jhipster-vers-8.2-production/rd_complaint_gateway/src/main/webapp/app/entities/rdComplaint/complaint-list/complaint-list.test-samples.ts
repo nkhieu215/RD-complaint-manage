@@ -32,7 +32,7 @@ export const sampleWithFullData: IComplaintList = {
   create_by: 'gee psst',
   status: 'ill-fated chunder',
   complaint_detail: 'smooth catalyse',
-  unit_of_use_id: 10236,
+  unit_of_use: '10236',
   implementation_result_id: 31724,
   comment: 'estimate wilderness softly',
   follow_up_comment: 'amazing',

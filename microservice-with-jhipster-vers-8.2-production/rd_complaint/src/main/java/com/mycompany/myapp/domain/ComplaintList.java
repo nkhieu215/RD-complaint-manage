@@ -62,8 +62,8 @@ public class ComplaintList implements Serializable {
     @Column(name = "complaint_detail")
     private String complaint_detail;
 
-    @Column(name = "unit_of_use_id")
-    private Long unit_of_use_id;
+    @Column(name = "unit_of_use")
+    private String unit_of_use;
 
     @Column(name = "implementation_result_id")
     private Long implementation_result_id;
@@ -287,17 +287,17 @@ public class ComplaintList implements Serializable {
         this.complaint_detail = complaint_detail;
     }
 
-    public Long getUnit_of_use_id() {
-        return this.unit_of_use_id;
+    public String getUnit_of_use() {
+        return unit_of_use;
     }
 
-    public ComplaintList unit_of_use_id(Long unit_of_use_id) {
-        this.setUnit_of_use_id(unit_of_use_id);
+    public void setUnit_of_use(String unit_of_use) {
+        this.unit_of_use = unit_of_use;
+    }
+
+    public ComplaintList unit_of_use(String unit_of_use) {
+        this.setUnit_of_use(unit_of_use);
         return this;
-    }
-
-    public void setUnit_of_use_id(Long unit_of_use_id) {
-        this.unit_of_use_id = unit_of_use_id;
     }
 
     public Long getImplementation_result_id() {
@@ -411,7 +411,8 @@ public class ComplaintList implements Serializable {
     public void setReport_code(String report_code) {
         this.report_code = report_code;
     }
-// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -426,7 +427,8 @@ public class ComplaintList implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -434,30 +436,30 @@ public class ComplaintList implements Serializable {
     @Override
     public String toString() {
         return "ComplaintList{" +
-            "id=" + getId() +
-            ", product_code='" + getProduct_code() + "'" +
-            ", product_name='" + getProduct_name() + "'" +
-            ", lot_number='" + getLot_number() + "'" +
-            ", branch='" + getBranch() + "'" +
-            ", reflector_id=" + getReflector_id() +
-            ", total_errors=" + getTotal_errors() +
-            ", quantity=" + getQuantity() +
-            ", production_time='" + getProduction_time() + "'" +
-            ", dapartment_id=" + getDapartment_id() +
-            ", check_by_id=" + getCheck_by_id() +
-            ", rectification_time='" + getRectification_time() + "'" +
-            ", create_by='" + getCreate_by() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", complaint_detail='" + getComplaint_detail() + "'" +
-            ", unit_of_use_id=" + getUnit_of_use_id() +
-            ", implementation_result_id=" + getImplementation_result_id() +
-            ", comment='" + getComment() + "'" +
-            ", follow_up_comment='" + getFollow_up_comment() + "'" +
-            ", complaint_id=" + getComplaint_id() +
-            ", created_at='" + getCreated_at() + "'" +
-            ", updated_at='" + getUpdated_at() + "'" +
-            ", serial='" + getSerial() + "'" +
-            ", mac_address='" + getMac_address() + "'" +
-            "}";
+                "id=" + getId() +
+                ", product_code='" + getProduct_code() + "'" +
+                ", product_name='" + getProduct_name() + "'" +
+                ", lot_number='" + getLot_number() + "'" +
+                ", branch='" + getBranch() + "'" +
+                ", reflector_id=" + getReflector_id() +
+                ", total_errors=" + getTotal_errors() +
+                ", quantity=" + getQuantity() +
+                ", production_time='" + getProduction_time() + "'" +
+                ", dapartment_id=" + getDapartment_id() +
+                ", check_by_id=" + getCheck_by_id() +
+                ", rectification_time='" + getRectification_time() + "'" +
+                ", create_by='" + getCreate_by() + "'" +
+                ", status='" + getStatus() + "'" +
+                ", complaint_detail='" + getComplaint_detail() + "'" +
+                ", unit_of_use=" + getUnit_of_use() +
+                ", implementation_result_id=" + getImplementation_result_id() +
+                ", comment='" + getComment() + "'" +
+                ", follow_up_comment='" + getFollow_up_comment() + "'" +
+                ", complaint_id=" + getComplaint_id() +
+                ", created_at='" + getCreated_at() + "'" +
+                ", updated_at='" + getUpdated_at() + "'" +
+                ", serial='" + getSerial() + "'" +
+                ", mac_address='" + getMac_address() + "'" +
+                "}";
     }
 }

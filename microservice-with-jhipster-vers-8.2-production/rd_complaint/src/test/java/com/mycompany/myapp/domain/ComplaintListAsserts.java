@@ -74,7 +74,7 @@ public class ComplaintListAsserts {
             .satisfies(e -> assertThat(e.getCreate_by()).as("check create_by").isEqualTo(actual.getCreate_by()))
             .satisfies(e -> assertThat(e.getStatus()).as("check status").isEqualTo(actual.getStatus()))
             .satisfies(e -> assertThat(e.getComplaint_detail()).as("check complaint_detail").isEqualTo(actual.getComplaint_detail()))
-            .satisfies(e -> assertThat(e.getUnit_of_use_id()).as("check unit_of_use_id").isEqualTo(actual.getUnit_of_use_id()))
+            .satisfies(e -> assertThat(e.getUnit_of_use()).as("check unit_of_use").isEqualTo(actual.getUnit_of_use()))
             .satisfies(
                 e ->
                     assertThat(e.getImplementation_result_id())

@@ -63,8 +63,8 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "unit_of_use_id",
-      "fieldType": "Long"
+      "fieldName": "unit_of_use",
+      "fieldType": "String"
     },
     {
       "fieldName": "implementation_result_id",

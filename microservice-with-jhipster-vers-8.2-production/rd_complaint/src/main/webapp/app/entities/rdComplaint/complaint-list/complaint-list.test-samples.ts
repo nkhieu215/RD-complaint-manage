@@ -36,7 +36,7 @@ export const sampleWithFullData: IComplaintList = {
   create_by: 'fellow through',
   status: 'spirited',
   complaint_detail: 'phooey',
-  unit_of_use_id: 4831,
+  unit_of_use: '4831',
   implementation_result_id: 30331,
   comment: 'um betake',
   follow_up_comment: 'zowie wherever',

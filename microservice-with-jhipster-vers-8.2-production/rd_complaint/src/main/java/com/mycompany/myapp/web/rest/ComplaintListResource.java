@@ -61,6 +61,7 @@ public class ComplaintListResource {
     private final ListOfErrorRepository listOfErrorRepository;
     private final ReasonRepository reasonRepository;
     private final ErrorListRepository errorListRepository;
+    private final ItemRepository itemRepository;
 
 
     public ComplaintListResource(ComplaintListService complaintListService,
@@ -73,7 +74,7 @@ public class ComplaintListResource {
                                  ComplaintRepository complaintRepository,
                                  ComplaintStatusRepository complaintStatusRepository,
                                  ListOfErrorRepository listOfErrorRepository,
-                                 ReasonRepository reasonRepository, ErrorListRepository errorListRepository) {
+                                 ReasonRepository reasonRepository, ErrorListRepository errorListRepository, ItemRepository itemRepository) {
         this.complaintListService = complaintListService;
         this.complaintListRepository = complaintListRepository;
         this.checkerListRepository = checkerListRepository;
@@ -86,6 +87,7 @@ public class ComplaintListResource {
         this.listOfErrorRepository = listOfErrorRepository;
         this.reasonRepository = reasonRepository;
         this.errorListRepository = errorListRepository;
+        this.itemRepository = itemRepository;
     }
 
     /**
@@ -202,7 +204,12 @@ public class ComplaintListResource {
         Optional<ComplaintListDTO> complaintListDTO = complaintListService.findOne(id);
         return ResponseUtil.wrapOrNotFound(complaintListDTO);
     }
-
+//    @GetMapping("/{id}")
+//    public ComplaintListDTO getComplaintList(@PathVariable("id") Long id) {
+//        log.debug("REST request to get ComplaintList : {}", id);
+////        Optional<ComplaintListDTO> complaintListDTO = complaintListService.findOne(id);
+//        return null;
+//    }
     /**
      * {@code DELETE  /complaint-lists/:id} : delete the "id" complaintList.
      *
@@ -241,6 +248,7 @@ public class ComplaintListResource {
         bodyDTO.setReflectorList(this.reflectorRepository.findAll());
         bodyDTO.setComplaintList(this.complaintRepository.findAll());
         bodyDTO.setUnitOfUseList(this.unitOfUseRepository.findAll());
+        bodyDTO.setItemList(this.itemRepository.findAll());
         return bodyDTO;
     }
     @GetMapping("/report")

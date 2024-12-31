@@ -99,10 +99,8 @@ export class ComplaintListUpdateComponent implements OnInit {
       x.production_time = new Date(x.production_time_convert);
       x.reflector_id = 0;
       x.complaint_id = 0;
-      x.unit_of_use_id = 0;
       const reflector = this.listReflector.find(ref => ref.name == x.reflector);
       const complaint = this.listComplaint.find(ref => ref.name == x.complaint);
-      const unit_of_use = this.listUnitOfUse.find(ref => ref.name == x.unit_of_use);
       if (reflector) {
         x.reflector_id = reflector.id;
       } else {
@@ -130,26 +128,6 @@ export class ComplaintListUpdateComponent implements OnInit {
         Swal.fire({
           title: 'Cảnh báo',
           text: 'Hình thức khiếu nại không nằm trong danh mục quản lý',
-          icon: 'warning',
-          showCancelButton: false,
-          showConfirmButton: true,
-          confirmButtonText: 'Đồng ý',
-          cancelButtonText: 'Hủy'
-        }).then(async (result) => {
-          if (result.value) {
-            this.savingProcess = true;
-          } else if (result.dismiss === Swal.DismissReason.cancel) {
-
-          }
-        })
-      }
-      if (unit_of_use) {
-        x.unit_of_use_id = unit_of_use.id;
-      } else {
-        this.savingProcess = false;
-        Swal.fire({
-          title: 'Cảnh báo',
-          text: 'Đơn vị sử dụng không nằm trong danh mục quản lý',
           icon: 'warning',
           showCancelButton: false,
           showConfirmButton: true,

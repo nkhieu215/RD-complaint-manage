@@ -29,7 +29,7 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " compl.create_by as create_by,\n" +
         " compl.status as status,\n" +
         " compl.complaint_detail as complaint_detail,\n" +
-        " unit.name as unit_of_use,\n" +
+        " compl.unit_of_use as unit_of_use,\n" +
         " impl.name as implementation_result,\n" +
         " compl.comment as comment,\n" +
         " compl.follow_up_comment as follow_up_comment,\n" +
@@ -43,7 +43,6 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         "left join rdcomplaint.reflector as ref on compl.reflector_id = ref.id\n" +
         "left join rdcomplaint.department as dep on dep.id = compl.dapartment_id\n" +
         "left join rdcomplaint.checker_list as ckr on ckr.id = compl.check_by_id\n" +
-        "left join rdcomplaint.unit_of_use as unit on unit.id = compl.unit_of_use_id\n" +
         "left join rdcomplaint.implementation_result as impl on impl.id = compl.implementation_result_id\n" +
         "left join rdcomplaint.complaint as comp on comp.id = compl.complaint_id \n" +
         "union \n" +
@@ -63,7 +62,7 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " compl.create_by as create_by,\n" +
         " compl.status as status,\n" +
         " compl.complaint_detail as complaint_detail,\n" +
-        " unit.name as unit_of_use,\n" +
+        " compl.unit_of_use as unit_of_use,\n" +
         " impl.name as implementation_result,\n" +
         " compl.comment as comment,\n" +
         " compl.follow_up_comment as follow_up_comment,\n" +
@@ -77,7 +76,6 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         "right join rdcomplaint.reflector as ref on compl.reflector_id = ref.id\n" +
         "right join rdcomplaint.department as dep on dep.id = compl.dapartment_id\n" +
         "right join rdcomplaint.checker_list as ckr on ckr.id = compl.check_by_id\n" +
-        "right join rdcomplaint.unit_of_use as unit on unit.id = compl.unit_of_use_id\n" +
         "right join rdcomplaint.implementation_result as impl on impl.id = compl.implementation_result_id\n" +
         "right join rdcomplaint.complaint as comp on comp.id = compl.complaint_id ;",nativeQuery = true)
     public List<ComplaintListResponse> getAll();

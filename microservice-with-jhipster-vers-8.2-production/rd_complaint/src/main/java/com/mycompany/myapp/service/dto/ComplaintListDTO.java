@@ -40,7 +40,7 @@ public class ComplaintListDTO implements Serializable {
 
     private String complaint_detail;
 
-    private Long unit_of_use_id;
+    private String unit_of_use;
 
     private Long implementation_result_id;
 
@@ -187,12 +187,12 @@ public class ComplaintListDTO implements Serializable {
         this.complaint_detail = complaint_detail;
     }
 
-    public Long getUnit_of_use_id() {
-        return unit_of_use_id;
+    public String getUnit_of_use() {
+        return unit_of_use;
     }
 
-    public void setUnit_of_use_id(Long unit_of_use_id) {
-        this.unit_of_use_id = unit_of_use_id;
+    public void setUnit_of_use(String unit_of_use) {
+        this.unit_of_use = unit_of_use;
     }
 
     public Long getImplementation_result_id() {
@@ -298,7 +298,7 @@ public class ComplaintListDTO implements Serializable {
             ", create_by='" + create_by + '\'' +
             ", status='" + status + '\'' +
             ", complaint_detail='" + complaint_detail + '\'' +
-            ", unit_of_use_id=" + unit_of_use_id +
+            ", unit_of_use=" + unit_of_use +
             ", implementation_result_id=" + implementation_result_id +
             ", comment='" + comment + '\'' +
             ", follow_up_comment='" + follow_up_comment + '\'' +

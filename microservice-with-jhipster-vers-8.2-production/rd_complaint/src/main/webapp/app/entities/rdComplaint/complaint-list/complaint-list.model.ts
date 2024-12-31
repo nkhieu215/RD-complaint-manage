@@ -16,7 +16,7 @@ export interface IComplaintList {
   create_by?: string | null;
   status?: string | null;
   complaint_detail?: string | null;
-  unit_of_use_id?: number | null;
+  unit_of_use?: string | null;
   implementation_result_id?: number | null;
   comment?: string | null;
   follow_up_comment?: string | null;

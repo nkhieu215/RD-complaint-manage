@@ -51,7 +51,7 @@ type ComplaintListFormGroupContent = {
   create_by: FormControl<ComplaintListFormRawValue['create_by']>;
   status: FormControl<ComplaintListFormRawValue['status']>;
   complaint_detail: FormControl<ComplaintListFormRawValue['complaint_detail']>;
-  unit_of_use_id: FormControl<ComplaintListFormRawValue['unit_of_use_id']>;
+  unit_of_use: FormControl<ComplaintListFormRawValue['unit_of_use']>;
   implementation_result_id: FormControl<ComplaintListFormRawValue['implementation_result_id']>;
   comment: FormControl<ComplaintListFormRawValue['comment']>;
   follow_up_comment: FormControl<ComplaintListFormRawValue['follow_up_comment']>;
@@ -93,7 +93,7 @@ export class ComplaintListFormService {
       create_by: new FormControl(complaintListRawValue.create_by),
       status: new FormControl(complaintListRawValue.status),
       complaint_detail: new FormControl(complaintListRawValue.complaint_detail),
-      unit_of_use_id: new FormControl(complaintListRawValue.unit_of_use_id),
+      unit_of_use: new FormControl(complaintListRawValue.unit_of_use),
       implementation_result_id: new FormControl(complaintListRawValue.implementation_result_id),
       comment: new FormControl(complaintListRawValue.comment),
       follow_up_comment: new FormControl(complaintListRawValue.follow_up_comment),

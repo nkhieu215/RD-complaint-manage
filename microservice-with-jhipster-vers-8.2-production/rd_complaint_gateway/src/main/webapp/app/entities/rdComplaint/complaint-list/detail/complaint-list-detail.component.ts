@@ -68,7 +68,7 @@ export class ComplaintListDetailComponent implements OnInit {
   protected actRoute = inject(ActivatedRoute);
   protected sanitizer = inject(DomSanitizer);
   ngOnInit(): void {
-    this.accountService.identity().subscribe(account => this.account.set(account));
+    // this.accountService.identity().subscribe(account => this.account.set(account));
     let id = this.actRoute.snapshot.params['id'];
     this.complaintListService.getErrorDetail(id).subscribe(res => {
       this.listOfError = res.listOfErrorList;
@@ -92,7 +92,6 @@ export class ComplaintListDetailComponent implements OnInit {
         let department = res.departmentList.find((x: any) => x.id == res.complaintListDTOById.dapartment_id);
         let implementationResult = res.implementationResultList.find((x: any) => x.id == res.complaintListDTOById.implementation_result_id);
         let complaint = res.complaintList.find((x: any) => x.id == res.complaintListDTOById.complaint_id);
-        let unit_of_use = res.unitOfUseList.find((x: any) => x.id == res.complaintListDTOById.unit_of_use_id);
         if (reflector) {
           this.complaintDetail.reflector = reflector.name;
         } else {
@@ -113,16 +112,11 @@ export class ComplaintListDetailComponent implements OnInit {
         } else {
           this.complaintDetail.complaint = null;
         }
-        if (unit_of_use) {
-          this.complaintDetail.unit_of_use = unit_of_use.name;
-        } else {
-          this.complaintDetail.unit_of_use = null;
-        }
         //mapping name by id of listoferror
         this.listOfError.forEach((element: any) => {
           element.check_time = element.check_time.slice(0, 10);
           let reason = this.reasonList.find((x: any) => x.id == element.reason_id);
-          let check_by = this.reasonList.find((x: any) => x.id == element.check_by_id);
+          let check_by = this.checkerLists.find((x: any) => x.id == element.check_by_id);
           if (reason) {
             element.reason = reason.name;
           } else {
@@ -201,18 +195,13 @@ export class ComplaintListDetailComponent implements OnInit {
       this.complaintDetail.complaint_id = null;
       this.errorPopup('Hình thức khiếu nại');
     }
-    if (unit_of_use) {
-      this.complaintDetail.unit_of_use_id = unit_of_use.id;
-    } else {
-      this.complaintDetail.unit_of_use_id = null;
-      this.errorPopup('Đơn vị sử dụng');
-    }
     //mapping id by name of listoferror
     this.listOfError.forEach((element: any) => {
       element.check_time = element.check_time == null ? new Date() : new Date(element.check_time);
       element.updated_at = new Date();
       let reason = this.reasonList.find((x: any) => x.name == element.reason);
-      let check_by = this.reasonList.find((x: any) => x.name == element.check_by);
+      let check_by = this.checkerLists.find((x: any) => x.name == element.check_by);
+      console.log('check-by', check_by)
       if (reason) {
         element.reason_id = reason.id;
       } else {

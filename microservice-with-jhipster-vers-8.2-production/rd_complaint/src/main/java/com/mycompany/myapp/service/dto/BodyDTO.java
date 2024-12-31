@@ -17,6 +17,15 @@ public class BodyDTO {
     private List<UnitOfUse>unitOfUseList;
     private ComplaintList complaintListDTOById;
     private List<ErrorList> errorLists;
+    private List<Item> itemList;
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
 
     public List<ErrorList> getErrorLists() {
         return errorLists;

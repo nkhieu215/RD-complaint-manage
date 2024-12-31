@@ -1,277 +1,175 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-complaint-list-heading" data-cy="ComplaintListCreateUpdateHeading">Create or edit a Complaint List</h2>
+      <h2 id="jhi-complaint-list-heading" data-cy="ComplaintListCreateUpdateHeading">Create or edit a Complaint List
+      </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
         @if (editForm.controls.id.value !== null) {
-          <div class="mb-3">
-            <label class="form-label" for="field_id">ID</label>
-            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-          </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id"
+            [readonly]="true" />
+        </div>
         }
 
         <div class="mb-3">
           <label class="form-label" for="field_product_code">Product Code</label>
-          <input
-            type="text"
-            class="form-control"
-            name="product_code"
-            id="field_product_code"
-            data-cy="product_code"
-            formControlName="product_code"
-          />
+          <input type="text" class="form-control" name="product_code" id="field_product_code" data-cy="product_code"
+            formControlName="product_code" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_product_name">Product Name</label>
-          <input
-            type="text"
-            class="form-control"
-            name="product_name"
-            id="field_product_name"
-            data-cy="product_name"
-            formControlName="product_name"
-          />
+          <input type="text" class="form-control" name="product_name" id="field_product_name" data-cy="product_name"
+            formControlName="product_name" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_lot_number">Lot Number</label>
-          <input
-            type="text"
-            class="form-control"
-            name="lot_number"
-            id="field_lot_number"
-            data-cy="lot_number"
-            formControlName="lot_number"
-          />
+          <input type="text" class="form-control" name="lot_number" id="field_lot_number" data-cy="lot_number"
+            formControlName="lot_number" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_branch">Branch</label>
-          <input type="text" class="form-control" name="branch" id="field_branch" data-cy="branch" formControlName="branch" />
+          <input type="text" class="form-control" name="branch" id="field_branch" data-cy="branch"
+            formControlName="branch" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_reflector_id">Reflector Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="reflector_id"
-            id="field_reflector_id"
-            data-cy="reflector_id"
-            formControlName="reflector_id"
-          />
+          <input type="number" class="form-control" name="reflector_id" id="field_reflector_id" data-cy="reflector_id"
+            formControlName="reflector_id" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_total_errors">Total Errors</label>
-          <input
-            type="number"
-            class="form-control"
-            name="total_errors"
-            id="field_total_errors"
-            data-cy="total_errors"
-            formControlName="total_errors"
-          />
+          <input type="number" class="form-control" name="total_errors" id="field_total_errors" data-cy="total_errors"
+            formControlName="total_errors" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_quantity">Quantity</label>
-          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity" formControlName="quantity" />
+          <input type="number" class="form-control" name="quantity" id="field_quantity" data-cy="quantity"
+            formControlName="quantity" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_production_time">Production Time</label>
           <div class="d-flex">
-            <input
-              id="field_production_time"
-              data-cy="production_time"
-              type="datetime-local"
-              class="form-control"
-              name="production_time"
-              formControlName="production_time"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_production_time" data-cy="production_time" type="datetime-local" class="form-control"
+              name="production_time" formControlName="production_time" placeholder="YYYY-MM-DD HH:mm" />
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_dapartment_id">Dapartment Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="dapartment_id"
-            id="field_dapartment_id"
-            data-cy="dapartment_id"
-            formControlName="dapartment_id"
-          />
+          <input type="number" class="form-control" name="dapartment_id" id="field_dapartment_id"
+            data-cy="dapartment_id" formControlName="dapartment_id" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_check_by_id">Check By Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="check_by_id"
-            id="field_check_by_id"
-            data-cy="check_by_id"
-            formControlName="check_by_id"
-          />
+          <input type="number" class="form-control" name="check_by_id" id="field_check_by_id" data-cy="check_by_id"
+            formControlName="check_by_id" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_rectification_time">Rectification Time</label>
           <div class="d-flex">
-            <input
-              id="field_rectification_time"
-              data-cy="rectification_time"
-              type="datetime-local"
-              class="form-control"
-              name="rectification_time"
-              formControlName="rectification_time"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_rectification_time" data-cy="rectification_time" type="datetime-local" class="form-control"
+              name="rectification_time" formControlName="rectification_time" placeholder="YYYY-MM-DD HH:mm" />
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_create_by">Create By</label>
-          <input type="text" class="form-control" name="create_by" id="field_create_by" data-cy="create_by" formControlName="create_by" />
+          <input type="text" class="form-control" name="create_by" id="field_create_by" data-cy="create_by"
+            formControlName="create_by" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_status">Status</label>
-          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status"
+            formControlName="status" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_complaint_detail">Complaint Detail</label>
-          <input
-            type="text"
-            class="form-control"
-            name="complaint_detail"
-            id="field_complaint_detail"
-            data-cy="complaint_detail"
-            formControlName="complaint_detail"
-          />
+          <input type="text" class="form-control" name="complaint_detail" id="field_complaint_detail"
+            data-cy="complaint_detail" formControlName="complaint_detail" />
         </div>
 
         <div class="mb-3">
-          <label class="form-label" for="field_unit_of_use_id">Unit Of Use Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="unit_of_use_id"
-            id="field_unit_of_use_id"
-            data-cy="unit_of_use_id"
-            formControlName="unit_of_use_id"
-          />
+          <label class="form-label" for="field_unit_of_use">Unit Of Use Id</label>
+          <input type="number" class="form-control" name="unit_of_use" id="field_unit_of_use" data-cy="unit_of_use"
+            formControlName="unit_of_use" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_implementation_result_id">Implementation Result Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="implementation_result_id"
-            id="field_implementation_result_id"
-            data-cy="implementation_result_id"
-            formControlName="implementation_result_id"
-          />
+          <input type="number" class="form-control" name="implementation_result_id" id="field_implementation_result_id"
+            data-cy="implementation_result_id" formControlName="implementation_result_id" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_comment">Comment</label>
-          <input type="text" class="form-control" name="comment" id="field_comment" data-cy="comment" formControlName="comment" />
+          <input type="text" class="form-control" name="comment" id="field_comment" data-cy="comment"
+            formControlName="comment" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_follow_up_comment">Follow Up Comment</label>
-          <input
-            type="text"
-            class="form-control"
-            name="follow_up_comment"
-            id="field_follow_up_comment"
-            data-cy="follow_up_comment"
-            formControlName="follow_up_comment"
-          />
+          <input type="text" class="form-control" name="follow_up_comment" id="field_follow_up_comment"
+            data-cy="follow_up_comment" formControlName="follow_up_comment" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_complaint_id">Complaint Id</label>
-          <input
-            type="number"
-            class="form-control"
-            name="complaint_id"
-            id="field_complaint_id"
-            data-cy="complaint_id"
-            formControlName="complaint_id"
-          />
+          <input type="number" class="form-control" name="complaint_id" id="field_complaint_id" data-cy="complaint_id"
+            formControlName="complaint_id" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_created_at">Created At</label>
           <div class="d-flex">
-            <input
-              id="field_created_at"
-              data-cy="created_at"
-              type="datetime-local"
-              class="form-control"
-              name="created_at"
-              formControlName="created_at"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_created_at" data-cy="created_at" type="datetime-local" class="form-control"
+              name="created_at" formControlName="created_at" placeholder="YYYY-MM-DD HH:mm" />
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_updated_at">Updated At</label>
           <div class="d-flex">
-            <input
-              id="field_updated_at"
-              data-cy="updated_at"
-              type="datetime-local"
-              class="form-control"
-              name="updated_at"
-              formControlName="updated_at"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
+            <input id="field_updated_at" data-cy="updated_at" type="datetime-local" class="form-control"
+              name="updated_at" formControlName="updated_at" placeholder="YYYY-MM-DD HH:mm" />
           </div>
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_serial">Serial</label>
-          <input type="text" class="form-control" name="serial" id="field_serial" data-cy="serial" formControlName="serial" />
+          <input type="text" class="form-control" name="serial" id="field_serial" data-cy="serial"
+            formControlName="serial" />
         </div>
 
         <div class="mb-3">
           <label class="form-label" for="field_mac_address">Mac Address</label>
-          <input
-            type="text"
-            class="form-control"
-            name="mac_address"
-            id="field_mac_address"
-            data-cy="mac_address"
-            formControlName="mac_address"
-          />
+          <input type="text" class="form-control" name="mac_address" id="field_mac_address" data-cy="mac_address"
+            formControlName="mac_address" />
         </div>
       </div>
 
       <div>
-        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary"
+          (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
         </button>
 
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-primary"
-        >
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
           <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
         </button>
       </div>

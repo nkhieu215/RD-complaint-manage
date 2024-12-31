@@ -153,10 +153,7 @@
               [ngModelOptions]="{ standalone: true }" />
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.unit_of_use"
-              [ngModelOptions]="{ standalone: true }" list="unit_of_use" />
-            <datalist id="unit_of_use">
-              <option *ngFor="let data of listUnitOfUse" [value]="data.name">{{data.name}}</option>
-            </datalist>
+              [ngModelOptions]="{ standalone: true }" />
           </td>
           <td><input class="input-search" type="number" [(ngModel)]=" complaintList.quantity"
               [ngModelOptions]="{ standalone: true }" (keydown)="!isNumberKey($event)" min="0" />
