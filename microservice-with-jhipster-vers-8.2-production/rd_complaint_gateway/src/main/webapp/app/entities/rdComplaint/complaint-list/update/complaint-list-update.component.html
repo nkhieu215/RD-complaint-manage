@@ -125,25 +125,33 @@
             </div>
           </td>
           <td nzLeft> {{i+1}}</td>
-          <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_code"
+          <td nzLeft>
+            <input class="input-search" type="text" [(ngModel)]=" complaintList.product_code"
               [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateProduct(i,complaintList.product_code,null,null)"
-              [ngClass]="{'input-error': !complaintList.product_code}" list="productCode" [matAutocomplete]="auto33" />
+              [ngClass]="{'input-error': !complaintList.product_code && !validateProductCode(complaintList.product_code)}" list="productCode" [matAutocomplete]="auto33" />
             <mat-autocomplete [panelWidth]="800" #auto33="matAutocomplete"
             (optionSelected)="onSelectedElectronic(i, $event.option.value)">
               <mat-option *ngFor="let item of listItem" [value]="item">
                 <span><b>{{item.itemCode}}</b></span>
               </mat-option>
             </mat-autocomplete>
+            <div *ngIf="complaintList.product_code && !validateProductCode(complaintList.product_code)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </td>
-          <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_name"
+          <td nzLeft>
+            <input class="input-search" type="text" [(ngModel)]=" complaintList.product_name"
               [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateProductName(i,null,complaintList.product_name,null)"
-              [ngClass]="{'input-error': !complaintList.product_name}" list="productName" [matAutocomplete]="auto34"/>
+              [ngClass]="{'input-error': !complaintList.product_name && !validateProductName(complaintList.product_name)}" list="productName" [matAutocomplete]="auto34"/>
             <mat-autocomplete [panelWidth]="800" #auto34="matAutocomplete"
               (optionSelected)="onSelectedElectronic(i,$event.option.value)">
               <mat-option *ngFor="let item of listItem" [value]="item" >
                 <span><b>{{item.itemName}}</b></span>
               </mat-option>
             </mat-autocomplete>
+            <div *ngIf="complaintList.product_name && !validateProductName(complaintList.product_name)" class="error-message">
+              Vui lòng giá trị từ danh sách
+            </div>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.branch"
               [ngModelOptions]="{ standalone: true }" (change)="updateProduct(i,null,null,complaintList.branch)"
@@ -155,19 +163,27 @@
               [ngClass]="{'input-error': !complaintList.production_time_convert}" (keydown)="cannotTypingInput($event)"/>
           </td>
           <td>
-            <input class="input-search" type="text" [(ngModel)]=" complaintList.reflector"
+            <input class="input-search" type="text" [(ngModel)]="complaintList.reflector"
               [ngModelOptions]="{ standalone: true }" list="reflector"
-              [ngClass]="{'input-error': !complaintList.reflector}" />
+              (input)="validateReflector(complaintList.reflector)"
+              [ngClass]="{'input-error': !complaintList.reflector && !validateReflector(complaintList.reflector)}" />
             <datalist id="reflector">
               <option *ngFor="let data of listReflector" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintList.reflector && !validateReflector(complaintList.reflector)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint"
               [ngModelOptions]="{ standalone: true }" list="complaint"
-              [ngClass]="{'input-error': !complaintList.complaint}" />
+              (input)="validateReflector(complaintList.complaint)"
+              [ngClass]="{'input-error': !complaintList.complaint && !validateNameListComplaint(complaintList.complaint)}" />
             <datalist id="complaint">
               <option *ngFor="let data of listComplaint" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintList.complaint && !validateNameListComplaint(complaintList.complaint)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.report_code"
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.report_code}" />
@@ -187,12 +203,12 @@
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.status}" /> -->
               <select class="input-search" [(ngModel)]=" complaintList.status"
               [ngModelOptions]="{ standalone: true }" >
-                <option value="">Đã đóng</option>
-                <option value="">Đã khắc phục</option>
-                <option value="">Đang khắc phục</option>
-                <option value="">Theo dõi sau khắc phục</option>
-                <option value="">Chờ phân tích</option>
-                <option value="">Đang phân tích</option>
+                <option value="Đã đóng">Đã đóng</option>
+                <option value="Đã khắc phục">Đã khắc phục</option>
+                <option value="Đang khắc phục">Đang khắc phục</option>
+                <option value="Theo dõi sau khắc phục">Theo dõi sau khắc phục</option>
+                <option value="Chờ phân tích">Chờ phân tích</option>
+                <option value="Đang phân tích">Đang phân tích</option>
               </select>
              </td>
         </tr>

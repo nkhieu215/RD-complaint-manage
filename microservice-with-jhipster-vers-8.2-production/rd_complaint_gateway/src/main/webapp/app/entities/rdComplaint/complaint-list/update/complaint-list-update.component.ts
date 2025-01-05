@@ -92,6 +92,23 @@ export class ComplaintListUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  validateProductCode(value: string): boolean {
+    return this.listItemOrigin.some(item => item.itemCode === value);
+  }
+
+  validateProductName(value: string): boolean {
+    return this.listItemOrigin.some(item => item.itemName === value);
+  }
+
+  validateReflector(value: string): boolean {
+    console.log('listReflector',this.listReflector)
+    return this.listReflector.some(item => item.name === value);
+  }
+
+  validateNameListComplaint(value:string):boolean{
+    return this.listComplaint.some(item => item.name === value);
+  }
+
   save(): void {
     this.isSaving = true;
     const complaintList = this.complaintListFormService.getComplaintList(this.editForm);
@@ -153,6 +170,22 @@ export class ComplaintListUpdateComponent implements OnInit {
     console.log('check body insert: ', this.complaintLists);
   }
   async saveListComplaint() {
+    const hasInvalidProducts = this.complaintLists.some(
+      complaint => complaint.product_name && !this.validateProductName(complaint.product_name)
+    );
+
+    if (hasInvalidProducts) {
+      Swal.fire({
+        title: 'Cảnh báo',
+        text: 'Vui lòng chọn sản phẩm từ danh sách có sẵn',
+        icon: 'warning',
+        showCancelButton: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Đồng ý',
+        cancelButtonText: 'Hủy'
+      });
+      return;
+    }
     if (this.complaintLists.length == 0) {
       Swal.fire({
         title: 'Cảnh báo',
@@ -346,7 +379,7 @@ export class ComplaintListUpdateComponent implements OnInit {
       reflector: '',
       quantity: '',
       production_time: '',
-      status: '',
+      status: 'Chờ phân tích',
       complaint_detail: '',
       unit_of_use: '',
       complaint: '',

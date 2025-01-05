@@ -134,9 +134,45 @@ export class ComplaintListDetailComponent implements OnInit {
       console.log(res);
     })
   }
+
+
   previousState(): void {
     window.history.back();
   }
+
+  validateReflector(value: string): boolean {
+    console.log('listReflector',this.reflectorLists)
+    return this.reflectorLists.some(item => item.name === value);
+  }
+
+  validateNameListComplaint(value:string):boolean{
+    return this.complaintLists.some(item => item.name === value);
+  }
+
+  validateDepartment(value: string): boolean {
+    return this.departmentList.some(item => item.name === value);
+  }
+
+  validateErrorCode(value: string): boolean {
+    return this.errorList.some(item => item.attributeKey === value);
+  }
+
+  validateErrorName(value: string): boolean {
+    return this.errorList.some(item => item.errName === value);
+  }
+
+  validateReason(value: string): boolean {
+    return this.reasonList.some(item => item.name === value);
+  }
+
+  validateChecker(value: string): boolean {
+    return this.checkerLists.some(item => item.name === value);
+  }
+
+  validateImplementationResult(value: string): boolean {
+    return this.implementationResultList.some(item => item.name === value);
+  }
+
   onChange(event: any): void {
     this.showImage = true;
     const file = event.target.files[0];

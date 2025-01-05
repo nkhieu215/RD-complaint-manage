@@ -12,6 +12,21 @@
   border: 1px solid red;
   background-color: #ffe6e6;
 }
+
+.input-error {
+  border-color: #dc3545 !important;
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 ::ng-deep .mat-autocomplete-panel {
   background: white !important;
   border-radius: 4px !important;

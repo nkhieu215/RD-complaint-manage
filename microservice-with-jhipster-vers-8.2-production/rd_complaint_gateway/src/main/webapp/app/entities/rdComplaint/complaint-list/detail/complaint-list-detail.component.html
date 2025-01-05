@@ -31,11 +31,16 @@
         </div>
         <div class="col-container">
           <div class="col-m4-25 col-container-child">Người khiếu nại <br><input type="text"
-              [(ngModel)]=" complaintDetail.reflector" [ngModelOptions]="{ standalone: true }" class="inp-style"
-              list="reflector" [ngClass]="{'input-error': !complaintDetail.reflector}">
+              [(ngModel)]=" complaintDetail.reflector" [ngModelOptions]="{ standalone: true }"
+              (input)="validateReflector(complaintDetail.reflector)"
+              class="inp-style"
+              list="reflector" [ngClass]="{'input-error': !complaintDetail.reflector && !validateReflector(complaintDetail.reflector)}">
             <datalist id="reflector">
               <option *ngFor="let data of reflectorLists" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintDetail.reflector && !validateReflector(complaintDetail.reflector)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </div>
           <div class="col-m4-25 col-container-child">Đơn vị sử dụng <br><input type="text"
               [(ngModel)]=" complaintDetail.unit_of_use" [ngModelOptions]="{ standalone: true }" class="inp-style"
@@ -45,11 +50,16 @@
             </datalist>
           </div>
           <div class="col-m4-25 col-container-child">Hình thức khiếu nại <br><input type="text"
-              [(ngModel)]=" complaintDetail.complaint" [ngModelOptions]="{ standalone: true }" class="inp-style"
-              list="complaint" [ngClass]="{'input-error': !complaintDetail.complaint}">
+              [(ngModel)]=" complaintDetail.complaint" [ngModelOptions]="{ standalone: true }"
+              (input)="validateNameListComplaint(complaintDetail.complaint)"
+              class="inp-style"
+              list="complaint" [ngClass]="{'input-error': !complaintDetail.complaint && !validateNameListComplaint(complaintDetail.complaint)}">
             <datalist id="complaint">
               <option *ngFor="let data of complaintLists" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintDetail.complaint && !validateNameListComplaint(complaintDetail.complaint)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </div>
           <div class="col-m4-25 col-container-child">Mã biên bản <br><input type="text"
               [(ngModel)]=" complaintDetail.report_code" [ngModelOptions]="{ standalone: true }" class="inp-style">
@@ -80,22 +90,31 @@
               readonly>
           </div>
           <div class="col-m4-25 col-container-child">Đơn vị phối hợp <br><input type="text"
-              [(ngModel)]=" complaintDetail.department" [ngModelOptions]="{ standalone: true }" class="inp-style"
-              list="department" [ngClass]="{'input-error': !complaintDetail.department}">
+              [(ngModel)]=" complaintDetail.department" [ngModelOptions]="{ standalone: true }"
+              (input)="validateDepartment(complaintDetail.department)"
+              class="inp-style"
+              list="department" [ngClass]="{'input-error': !complaintDetail.department && !validateDepartment(complaintDetail.department)}">
             <datalist id="department">
               <option *ngFor="let data of departmentList" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintDetail.department && !validateDepartment(complaintDetail.department)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </div>
           <div class="col-m4-25 col-container-child">Ngày khắc phục <br><input type="date"
               [(ngModel)]=" complaintDetail.rectification_time" [ngModelOptions]="{ standalone: true }"
               class="inp-style" min="{{today}}" (keydown)="cannotTypingInput($event)"></div>
           <div class="col-m4-25 col-container-child">Kết quả thực hiện <br><input type="text"
               [(ngModel)]=" complaintDetail.implementation_result" [ngModelOptions]="{ standalone: true }"
+              (input)="validateImplementationResult(complaintDetail.implementation_result)"
               class="inp-style" list="implementation_result"
-              [ngClass]="{'input-error': !complaintDetail.implementation_result}">
+              [ngClass]="{'input-error': !complaintDetail.implementation_result && !validateImplementationResult(complaintDetail.implementation_result)}">
             <datalist id="implementation_result">
               <option *ngFor="let data of implementationResultList" [value]="data.name">{{data.name}}</option>
             </datalist>
+            <div *ngIf="complaintDetail.implementation_result && !validateImplementationResult(complaintDetail.implementation_result)" class="error-message">
+              Vui lòng chọn giá trị từ danh sách
+            </div>
           </div>
         </div>
         <div class="col-container">
@@ -254,22 +273,32 @@
               </div>
             </td>
             <td nzLeft> {{i+1}}</td>
-            <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_code"
+            <td nzLeft>
+              <input class="inp-style" type="text" [(ngModel)]=" complaintList.error_code"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="errorLists"
+                (input)="validateErrorCode(complaintList.error_code)"
                 (change)="updateErrorValue(i,complaintList.error_code,null)"
-                [ngClass]="{'input-error': !complaintList.error_code}" />
+                [ngClass]="{'input-error': !complaintList.error_code && !validateErrorCode(complaintList.error_code)}" />
               <datalist id="errorLists">
                 <option *ngFor="let data of errorList" [value]="data.attributeKey">
                   {{data.attributeKey}}</option>
               </datalist>
+              <div *ngIf="complaintList.error_code && !validateErrorCode(complaintList.error_code)" class="error-message">
+                Vui lòng chọn giá trị từ danh sách
+              </div>
             </td>
             <td nzLeft><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_name"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="errorListsName"
+                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
+                (input)="validateErrorName(complaintList.error_name)"
+                list="errorListsName"
                 (change)="updateErrorValue(i,null,complaintList.error_name)"
-                [ngClass]="{'input-error': !complaintList.error_name}" />
+                [ngClass]="{'input-error': !complaintList.error_name && !validateErrorName(complaintList.error_name)}" />
               <datalist id="errorListsName">
                 <option *ngFor="let data of errorList" [value]="data.errName">{{data.errName}}</option>
               </datalist>
+              <div *ngIf="complaintList.error_name && !validateErrorName(complaintList.error_name)" class="error-message">
+                Vui lòng chọn giá trị từ danh sách
+              </div>
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.lot_number"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
@@ -289,15 +318,20 @@
                 [ngClass]="{'input-error': !complaintList.quantity}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.error_source"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing"
-                [ngClass]="{'input-error': !complaintList.error_source}" />
+                [ngModelOptions]="{ standalone: true }"
+                [disabled]="complaintList.isEditing"
+                [ngClass]="{'input-error': !complaintList.error_source }" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]="complaintList.reason"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="reason"
-                [ngClass]="{'input-error': !complaintList.reason}" />
+                [ngModelOptions]="{ standalone: true }"
+                (input)="validateReason(complaintList.reason)"[disabled]="complaintList.isEditing" list="reason"
+                [ngClass]="{'input-error': !complaintList.reason && !validateReason(complaintList.reason)}" />
               <datalist id="reason">
                 <option *ngFor="let data of reasonList" [value]="data.name">{{data.name}}</option>
               </datalist>
+              <div *ngIf="complaintList.reason && !validateReason(complaintList.reason)" class="error-message">
+                Vui lòng chọn giá trị từ danh sách
+              </div>
             </td>
             <td>
               <input class="inp-style" type="text" [(ngModel)]=" complaintList.method"
@@ -305,11 +339,16 @@
                 [ngClass]="{'input-error': !complaintList.method}" />
             </td>
             <td><input class="inp-style" type="text" [(ngModel)]=" complaintList.check_by"
-                [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" list="check_by"
-                [ngClass]="{'input-error': !complaintList.check_by}" />
+                [ngModelOptions]="{ standalone: true }"
+                (input)="validateChecker(complaintList.check_by)"
+                [disabled]="complaintList.isEditing" list="check_by"
+                [ngClass]="{'input-error': !complaintList.check_by && !validateChecker(complaintList.check_by)}" />
               <datalist id="check_by">
                 <option *ngFor="let data of checkerLists" [value]="data.name">{{data.name}}</option>
               </datalist>
+              <div *ngIf="complaintList.check_by && !validateChecker(complaintList.check_by)" class="error-message">
+                Vui lòng chọn giá trị từ danh sách
+              </div>
             </td>
             <td><input class="inp-style" type="date" [(ngModel)]=" complaintList.check_time"
                 [ngModelOptions]="{ standalone: true }" [disabled]="complaintList.isEditing" max="{{today}}"
