@@ -62,6 +62,9 @@ export class ListOfErrorService {
   updateListOfError(body: any) {
     return this.http.post<any>(`${this.resourceUrl}/insert-update`, body);
   }
+  deleteError(id: number) {
+    return this.http.delete(`${this.resourceUrl}/delete-error/${id}`);
+  }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
@@ -70,7 +73,7 @@ export class ListOfErrorService {
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+    return this.http.delete(`${this.resourceUrl}/delete/${id}`, { observe: 'response' });
   }
 
   getListOfErrorIdentifier(listOfError: Pick<IListOfError, 'id'>): number {

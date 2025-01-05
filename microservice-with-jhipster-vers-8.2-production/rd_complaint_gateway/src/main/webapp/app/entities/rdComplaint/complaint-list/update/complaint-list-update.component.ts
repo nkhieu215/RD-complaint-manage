@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -27,16 +27,18 @@ import { NzDropDownModule, NzPlacementType } from 'ng-zorro-antd/dropdown';
 import { BrowserModule } from '@angular/platform-browser';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 @Component({
   standalone: true,
   selector: 'jhi-complaint-list-update',
   templateUrl: './complaint-list-update.component.html',
   imports: [SharedModule, FormsModule, ReactiveFormsModule,
-    NzTableModule, NzButtonModule, NzDropDownModule,
+    NzTableModule, NzButtonModule, NzDropDownModule, MatAutocompleteModule
   ],
   styleUrls: ['./complaint-list-update.component.css', '../complaint-list.component.css'],
 })
 export class ComplaintListUpdateComponent implements OnInit {
+  @Input() itemResult: any;
   faDownload = faDownload;
   faPlus = faPlus;
   faUpload = faUpload;
@@ -44,6 +46,7 @@ export class ComplaintListUpdateComponent implements OnInit {
   faTrash = faTrash;
   isSaving = false;
   savingProcess = true;
+  loading = false;
   // complaintList: IComplaintList | null = null;
   complaintLists: any[] = [];
   account: Account | null = null;
@@ -53,6 +56,8 @@ export class ComplaintListUpdateComponent implements OnInit {
   listReflector: any[] = [];
   listComplaint: any[] = [];
   listUnitOfUse: any[] = [];
+  listItem: any[] = [];
+  listItemOrigin: any[] = [];
   today: string = new Date().toISOString().split('T')[0];
   protected complaintListService = inject(ComplaintListService);
   protected complaintListFormService = inject(ComplaintListFormService);
@@ -67,11 +72,14 @@ export class ComplaintListUpdateComponent implements OnInit {
     this.complaintListService.getGuideListInsert().subscribe(res => {
       console.log("list guide:", this.account)
       console.log("res:", res)
+      console.log("res", res.itemList)
 
       this.listComplaint = res.complaintList;
       this.listReflector = res.reflectorList;
       this.listUnitOfUse = res.unitOfUseList;
+      this.listItemOrigin = res.itemList
     });
+
     // this.activatedRoute.data.subscribe(({ complaintList }) => {
     //   this.complaintList = complaintList;
     //   if (complaintList) {
@@ -180,9 +188,7 @@ export class ComplaintListUpdateComponent implements OnInit {
                   {},
                 ]);
               }, 500);
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-
-            }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {}
           })
         })
       }
@@ -190,12 +196,55 @@ export class ComplaintListUpdateComponent implements OnInit {
   }
 
   isNumberKey(event: KeyboardEvent): boolean {
-    const charCode = event.key;
-    return (
-      charCode <= '0'
-    );
+    if (event.code === 'Backspace' || event.code === 'Delete' ||
+      event.code === 'ArrowLeft' || event.code === 'ArrowRight' ||
+      event.code === 'Tab') {
+      return true;
+    }
+    if (event.key === '.' || event.key === '-' || event.key === ',') {
+      return false;
+    }
+    const isNumber = /^[0-9]$/.test(event.key);
+    if (isNumber) {
+      const input = event.target as HTMLInputElement;
+      const newValue = input.value + event.key;
+      return parseInt(newValue, 10) > 0;
+    }
+    return false;
   }
 
+ cannotTypingInput(event: KeyboardEvent): boolean {
+  event.preventDefault();
+  return false;
+ }
+
+  updateProduct(index: any, product_code: any, product_name: any, branch: any):void {
+
+    if (product_code.length > 4) {
+      this.listItem = this.listItemOrigin.filter(x => x.itemCode.includes(product_code));
+      console.log('Tìm kiếm theo mã sản phẩm:', product_code, this.listItem);
+    }
+  }
+  updateProductName(index: any, product_code: any, product_name: any, branch: any):void {
+    if (product_name.length > 1) {
+      this.listItem = this.listItemOrigin.filter(x => x.itemName.includes(product_name));
+      console.log('Tìm kiếm theo tên sản phẩm:', product_name, this.listItem);
+    }
+  }
+
+  onSelectedElectronic(index: any, selectedItem: any): void {
+    if (selectedItem) {
+        this.complaintLists[index].product_code = selectedItem.itemCode;
+        this.complaintLists[index].product_name = selectedItem.itemName;
+        this.complaintLists[index].branch = selectedItem.itemBranch;
+    this.listItem = [];
+
+    } else {
+        this.complaintLists[index].product_code = '';
+        this.complaintLists[index].product_name = '';
+    }
+    console.log('aaaaa',this.complaintLists)
+  }
   exportExcel(): void {
     let dataHeader = [[
       'Mã sản phẩm',

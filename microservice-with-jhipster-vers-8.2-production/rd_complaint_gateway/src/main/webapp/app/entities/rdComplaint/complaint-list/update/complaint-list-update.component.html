@@ -19,7 +19,7 @@
       </div>
     </div>
     <nz-table #middleTable nzBordered class="custom-table" [nzData]="complaintLists!" [nzFrontPagination]="false"
-      [nzScroll]="{ x: '3700px' }">
+      [nzScroll]="{ x: '3700px' }" [nzLoading]="loading">
       <thead>
         <tr>
           <th class="table-header" style="width: 2%;" nzLeft>
@@ -126,42 +126,75 @@
           </td>
           <td nzLeft> {{i+1}}</td>
           <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_code"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateProduct(i,complaintList.product_code,null,null)"
+              [ngClass]="{'input-error': !complaintList.product_code}" list="productCode" [matAutocomplete]="auto33" />
+            <mat-autocomplete [panelWidth]="800" #auto33="matAutocomplete"
+            (optionSelected)="onSelectedElectronic(i, $event.option.value)">
+              <mat-option *ngFor="let item of listItem" [value]="item">
+                <span><b>{{item.itemCode}}</b></span>
+              </mat-option>
+            </mat-autocomplete>
           </td>
           <td nzLeft><input class="input-search" type="text" [(ngModel)]=" complaintList.product_name"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" (ngModelChange)="updateProductName(i,null,complaintList.product_name,null)"
+              [ngClass]="{'input-error': !complaintList.product_name}" list="productName" [matAutocomplete]="auto34"/>
+            <mat-autocomplete [panelWidth]="800" #auto34="matAutocomplete"
+              (optionSelected)="onSelectedElectronic(i,$event.option.value)">
+              <mat-option *ngFor="let item of listItem" [value]="item" >
+                <span><b>{{item.itemName}}</b></span>
+              </mat-option>
+            </mat-autocomplete>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.branch"
-              [ngModelOptions]="{ standalone: true }" /> </td>
+              [ngModelOptions]="{ standalone: true }" (change)="updateProduct(i,null,null,complaintList.branch)"
+              [ngClass]="{'input-error': !complaintList.branch}" list="branch" />
+
+          </td>
           <td><input class="input-search" type="date" [(ngModel)]="complaintList.production_time_convert"
-              [ngModelOptions]="{ standalone: true }" max="{{today}}" />
+              [ngModelOptions]="{ standalone: true }" max="{{today}}"
+              [ngClass]="{'input-error': !complaintList.production_time_convert}" (keydown)="cannotTypingInput($event)"/>
           </td>
           <td>
             <input class="input-search" type="text" [(ngModel)]=" complaintList.reflector"
-              [ngModelOptions]="{ standalone: true }" list="reflector" />
+              [ngModelOptions]="{ standalone: true }" list="reflector"
+              [ngClass]="{'input-error': !complaintList.reflector}" />
             <datalist id="reflector">
               <option *ngFor="let data of listReflector" [value]="data.name">{{data.name}}</option>
             </datalist>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint"
-              [ngModelOptions]="{ standalone: true }" list="complaint" />
+              [ngModelOptions]="{ standalone: true }" list="complaint"
+              [ngClass]="{'input-error': !complaintList.complaint}" />
             <datalist id="complaint">
               <option *ngFor="let data of listComplaint" [value]="data.name">{{data.name}}</option>
             </datalist>
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.report_code"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.report_code}" />
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.unit_of_use"
-              [ngModelOptions]="{ standalone: true }" />
+              [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.unit_of_use}" />
           </td>
           <td><input class="input-search" type="number" [(ngModel)]=" complaintList.quantity"
-              [ngModelOptions]="{ standalone: true }" (keydown)="!isNumberKey($event)" min="0" />
+              [ngModelOptions]="{ standalone: true }" (keydown)="isNumberKey($event)" min="0"
+              [ngClass]="{'input-error': !complaintList.quantity}" />
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint_detail"
-              [ngModelOptions]="{ standalone: true }" /> </td>
-          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.status"
-              [ngModelOptions]="{ standalone: true }" /> </td>
+              [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.complaint_detail}" />
+          </td>
+          <td>
+            <!-- <input class="input-search" type="text" [(ngModel)]=" complaintList.status"
+              [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.status}" /> -->
+              <select class="input-search" [(ngModel)]=" complaintList.status"
+              [ngModelOptions]="{ standalone: true }" >
+                <option value="">Đã đóng</option>
+                <option value="">Đã khắc phục</option>
+                <option value="">Đang khắc phục</option>
+                <option value="">Theo dõi sau khắc phục</option>
+                <option value="">Chờ phân tích</option>
+                <option value="">Đang phân tích</option>
+              </select>
+             </td>
         </tr>
         }
       </tbody>

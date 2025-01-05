@@ -18,6 +18,7 @@ import { Account } from 'app/core/auth/account.model';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { forkJoin } from 'rxjs';
 @Component({
   standalone: true,
   selector: 'jhi-complaint-list-detail',
@@ -236,6 +237,60 @@ export class ComplaintListDetailComponent implements OnInit {
       }
     })
   }
+
+//   async saveComplaintDetail(mss: any) {
+//     // Kiểm tra validation trước khi lưu
+//     const validation = this.validateInputs();
+//     if (!validation.isValid) {
+//         Swal.fire({
+//             title: 'Thông báo',
+//             html: `
+//                 <div style="text-align: left">
+//                     <p>Vui lòng điền đầy đủ thông tin cho các trường sau:</p>
+//                     <ul style="color: #dc3545">
+//                         ${validation.emptyFields.map(field => `<li>${field}</li>`).join('')}
+//                     </ul>
+//                 </div>
+//             `,
+//             icon: 'warning',
+//             confirmButtonText: 'Đồng ý'
+//         });
+//         return;
+//     }
+
+//     await this.updateIdMapping();
+
+//     forkJoin([
+//         this.complaintListService.updateComplaintInfo(this.complaintDetail),
+//         this.listOfErrorService.updateListOfError(this.listOfError)
+//     ]).subscribe({
+//         next: () => {
+//             Swal.fire({
+//                 title: 'Thành công',
+//                 text: 'Cập nhật thông tin thành công',
+//                 icon: 'success',
+//                 showCancelButton: true,
+//                 showConfirmButton: true,
+//                 confirmButtonText: 'Đồng ý',
+//                 cancelButtonText: 'Hủy',
+//                 timer: 5000
+//             }).then(async (result) => {
+//                 if (result.value && mss === 'reload') {
+//                     window.location.reload();
+//                 }
+//             });
+//         },
+//         error: (error) => {
+//             Swal.fire({
+//                 title: 'Lỗi',
+//                 text: 'Không thể cập nhật thông tin',
+//                 icon: 'error',
+//                 confirmButtonText: 'Đồng ý'
+//             });
+//         }
+//     });
+// }
+
   addNewRow() {
     const newItem = {
       error_code: null,
@@ -356,29 +411,124 @@ export class ComplaintListDetailComponent implements OnInit {
   }
 
   isNumberKey(event: KeyboardEvent): boolean {
-    const charCode = event.key;
-    return (
-      charCode <= '0'
-    );
+    if (event.code === 'Backspace' || event.code === 'Delete' ||
+      event.code === 'ArrowLeft' || event.code === 'ArrowRight' ||
+      event.code === 'Tab') {
+      return true;
+    }
+    if (event.key === '.' || event.key === '-' || event.key === ',') {
+      return false;
+    }
+    const isNumber = /^[0-9]$/.test(event.key);
+    if (isNumber) {
+      const input = event.target as HTMLInputElement;
+      const newValue = input.value + event.key;
+      return parseInt(newValue, 10) > 0;
+    }
+    return false;
   }
 
-  deleteRow(index: number): void {
-    this.listOfError.splice(index, 1);
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
+  cannotTypingInput(event: KeyboardEvent): boolean {
+    event.preventDefault();
+    return false;
+   }
+
+  // deleteRow(index: number): void {
+  //   this.listOfError.splice(index, 1);
+  //   const Toast = Swal.mixin({
+  //     toast: true,
+  //     position: "top-end",
+  //     showConfirmButton: false,
+  //     timer: 3000,
+  //     timerProgressBar: true,
+  //     didOpen: (toast) => {
+  //       toast.onmouseenter = Swal.stopTimer;
+  //       toast.onmouseleave = Swal.resumeTimer;
+  //     }
+  //   });
+  //   Toast.fire({
+  //     icon: "success",
+  //     title: "Đã xoá thông tin thành công"
+  //   });
+  // }
+
+  async deleteRow(index: number){
+    await this.updateIdMapping();
+    await this.updateTotalError();
+
+    const itemToDelete = this.listOfError[index];
+
+    this.listOfErrorService.deleteError(itemToDelete.id).subscribe(
+      () => {
+        this.listOfError.splice(index, 1);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            // Toast.fire({
+            //   icon: "success",
+            //   title: "Đã xoá thông tin thành công"
+            // });
+
+          this.complaintListService.updateComplaintInfo(this.complaintDetail).subscribe();
+            console.log(this.complaintDetail);
       }
-    });
-    Toast.fire({
-      icon: "success",
-      title: "Đã xoá thông tin thành công"
+    );
+}
+
+validateInputs(): { isValid: boolean; emptyFields: string[] } {
+  const emptyFields: string[] = [];
+
+  if (!this.complaintDetail.product_code) emptyFields.push('Mã sản phẩm');
+  if (!this.complaintDetail.reflector) emptyFields.push('Người khiếu nại');
+  if (!this.complaintDetail.complaint) emptyFields.push('Hình thức khiếu nại');
+  if (!this.complaintDetail.department) emptyFields.push('Đơn vị phối hợp');
+  if (!this.complaintDetail.implementation_result) emptyFields.push('Kết quả thực hiện');
+
+  this.listOfError.forEach((error, index) => {
+    if (!error.error_code) emptyFields.push(`Mã lỗi (dòng ${index + 1})`);
+    if (!error.error_name) emptyFields.push(`Tên lỗi (dòng ${index + 1})`);
+    if (!error.lot_number) emptyFields.push(`Mã lot (dòng ${index + 1})`);
+    if (!error.serial) emptyFields.push(`Serial (dòng ${index + 1})`);
+    if (!error.mac_address) emptyFields.push(`Địa chỉ mac (dòng ${index + 1})`);
+    if (!error.quantity) emptyFields.push(`Số lượng (dòng ${index + 1})`);
+    if (!error.error_source) emptyFields.push(`Phân loại nguồn lỗi (dòng ${index + 1})`);
+    if (!error.reason) emptyFields.push(`Nguyên nhân (dòng ${index + 1})`);
+    if (!error.method) emptyFields.push(`Biện pháp khắc phục (dòng ${index + 1})`);
+    if (!error.check_by) emptyFields.push(`Người kiểm tra (dòng ${index + 1})`);
+    if (!error.check_time) emptyFields.push(`Ngày kiểm tra (dòng ${index + 1})`);
+  });
+
+  return {
+    isValid: emptyFields.length === 0,
+    emptyFields
+  };
+}
+
+showValidationErrors(): void {
+  const validation = this.validateInputs();
+  if (!validation.isValid) {
+    Swal.fire({
+      title: 'Thông báo',
+      html: `
+        <div style="text-align: left">
+          <p>Vui lòng điền đầy đủ thông tin cho các trường sau:</p>
+          <ul>
+            ${validation.emptyFields.map(field => `<li>${field}</li>`).join('')}
+          </ul>
+        </div>
+      `,
+      icon: 'warning',
+      confirmButtonText: 'Đồng ý'
     });
   }
+}
 
 }
