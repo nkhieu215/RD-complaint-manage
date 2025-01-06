@@ -11,6 +11,8 @@ import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
 import NavbarItem from './navbar-item.model';
 import { faScroll } from '@fortawesome/free-solid-svg-icons';
 import MainComponent from '../main/main.component';
+import { Account } from 'app/core/auth/account.model';
+
 @Component({
   standalone: true,
   selector: 'jhi-navbar',

@@ -26,10 +26,10 @@
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         @if (account() !== null) {
         <li class="nav-item">
-          <a class="dropdown-item" routerLink="/complaint-list" routerLinkActive="active" target="_blank"
+          <a class="dropdown-item" routerLink="/complaint-list" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
             <fa-icon [icon]="faScroll" [fixedWidth]="true"></fa-icon>
-            <span class="dropdown-item-span">Quản lý thông tin khiếu nại</span>
+            <span class="dropdown-item-span" style="font-weight: 400;">Quản lý thông tin khiếu nại</span>
           </a>
         </li>
 
@@ -41,65 +41,66 @@
               <span class="dropdown-item-span">Quản lý danh mục</span>
             </span>
           </a>
-          <ul class="nav-item" ngbDropdownMenu style="background-color: #333; border: none">
+          <ul class="nav-item" ngbDropdownMenu
+            style="background-color: #333; border: none; width: 100%; position: relative;">
             <li>
-              <a class="dropdown-item" routerLink="/complaint" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/complaint" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Hình thức khiếu nại</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/department" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/department" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Đơn vị phối hợp</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/implementation-result" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/implementation-result" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Kết quả thực hiện</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/reason" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/reason" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Nguyên nhân</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/reflector" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/reflector" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Người khiếu nại</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/complaint-status" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/complaint-status" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Trạng thái khiếu nại</span>
               </a>
             </li>
             <!-- <li>
-              <a class="dropdown-item" routerLink="/list-of-error" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/list-of-error" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">List Of Error</span>
               </a>
             </li> -->
             <li>
-              <a class="dropdown-item" routerLink="/checker-list" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/checker-list" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Người kiểm tra</span>
               </a>
             </li>
             <li>
-              <a class="dropdown-item" routerLink="/unit-of-use" routerLinkActive="active" target="_blank"
+              <a class="dropdown-item" routerLink="/unit-of-use" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                 <fa-icon icon="asterisk" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Đơn vị sử dụng</span>
@@ -156,6 +157,12 @@
           <ul class="nav-item" ngbDropdownMenu style="background-color: #333; border: none">
             @if (account() !== null) {
             <li>
+              <a class="nav-link">
+                <fa-icon icon="user"></fa-icon>
+                <span class="dropdown-item-span">{{ account()?.login }}</span>
+              </a>
+            </li>
+            <li>
               <a class="nav-link " (click)="logout()" id="logout" data-cy="logout">
                 <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
                 <span class="dropdown-item-span">Sign out</span>
@@ -172,6 +179,14 @@
           </ul>
         </li>
       </ul>
+      <!-- <div class="user-info">
+        @if (account() !== null) {
+          <div class="dropdown-item">
+            <fa-icon icon="user"></fa-icon>
+            <span>{{ account()?.login }}</span>
+          </div>
+        }
+      </div> -->
     </nav>
   </div>
 </div>

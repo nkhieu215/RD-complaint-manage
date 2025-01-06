@@ -123,6 +123,7 @@ Generic styles
 }
 
 .dropdown-item-span {
+  font-weight: 400;
   margin-left: 12px;
 }
 
@@ -292,6 +293,9 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
   ul.navbar-nav {
     .nav-item {
       margin-left: 0.5em;
+      position: relative;
+      display:block;
+      transform:none !important;
     }
   }
 }
