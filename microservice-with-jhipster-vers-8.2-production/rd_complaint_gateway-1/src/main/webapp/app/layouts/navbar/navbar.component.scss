@@ -54,7 +54,7 @@ $active-color: #007bff;
 
     .sidebar-img {
       max-width: 180px;
-      margin-top: 50px;
+      margin-top: 70px;
       height: auto;
       transition: all $transition-duration ease;
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
@@ -65,7 +65,7 @@ $active-color: #007bff;
     margin-top: 30px;
     padding: 0;
     list-style: none;
-
+    transition: all $transition-duration ease;
     .nav-item {
       margin: 2px 0;
       position: relative;
@@ -127,6 +127,7 @@ $active-color: #007bff;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         position: static;
         float: none;
+        // transform: none;
 
         .dropdown-item {
           padding: 8px 20px 8px 45px;

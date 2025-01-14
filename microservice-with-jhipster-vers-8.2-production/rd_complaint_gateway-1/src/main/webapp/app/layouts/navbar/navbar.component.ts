@@ -74,13 +74,15 @@ export default class NavbarComponent implements OnInit {
     this.showLogo = sessionStorage.getItem('showLogo')!;
     if (isSidebarCollapsed === 'open') {
       this.mainComponent.closeNav();
-      document.getElementById('sidebar-id')!.style.width = '50px';
+      document.getElementById('sidebar-id')!.style.width = '67px';
+      document.getElementById('navbar-nav')!.style.width = '56px';
       sessionStorage.setItem('showLogo', 'hide');
       sessionStorage.setItem('toggleSidebar', 'close');
     }
     if (isSidebarCollapsed === 'close') {
       this.mainComponent.openNav();
       document.getElementById('sidebar-id')!.style.width = '250px';
+      document.getElementById('navbar-nav')!.style.width = '239px';
       sessionStorage.setItem('showLogo', 'show');
       sessionStorage.setItem('toggleSidebar', 'open');
     }
@@ -88,9 +90,11 @@ export default class NavbarComponent implements OnInit {
 
   toggleSidebar2(): void {
     this.showLogo = 'hide';
-    document.getElementById('sidebar-id')!.style.width = '50px';
+    document.getElementById('sidebar-id')!.style.width = '67px';
+    document.getElementById('navbar-nav')!.style.width = '56px';
     this.mainComponent.closeNav2();
     sessionStorage.setItem('toggleSidebar', 'close');
     sessionStorage.setItem('showLogo', 'show');
   }
+}
 }
