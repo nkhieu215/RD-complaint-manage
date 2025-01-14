@@ -66,6 +66,7 @@ $active-color: #007bff;
     padding: 0;
     list-style: none;
     transition: all $transition-duration ease;
+
     .nav-item {
       margin: 2px 0;
       position: relative;
@@ -148,7 +149,7 @@ $active-color: #007bff;
       }
 
       &.show {
-        > a {
+        >a {
           background-color: $hover-bg-color;
         }
       }
