@@ -43,6 +43,24 @@ public class ListOfErrorDTO implements Serializable {
     private String serial;
 
     private String mac_address;
+    private String reason;
+    private String check_by;
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getCheck_by() {
+        return check_by;
+    }
+
+    public void setCheck_by(String check_by) {
+        this.check_by = check_by;
+    }
 
     public String getLot_number() {
         return lot_number;

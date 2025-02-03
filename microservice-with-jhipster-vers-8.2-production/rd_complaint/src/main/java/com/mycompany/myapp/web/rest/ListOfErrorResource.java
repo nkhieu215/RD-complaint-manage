@@ -1,7 +1,9 @@
 package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.domain.ListOfError;
+import com.mycompany.myapp.domain.Reason;
 import com.mycompany.myapp.repository.ListOfErrorRepository;
+import com.mycompany.myapp.repository.ReasonRepository;
 import com.mycompany.myapp.service.ListOfErrorService;
 import com.mycompany.myapp.service.dto.ListOfErrorDTO;
 import com.mycompany.myapp.web.rest.errors.BadRequestAlertException;
@@ -12,6 +14,7 @@ import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,10 +43,12 @@ public class ListOfErrorResource {
     private final ListOfErrorService listOfErrorService;
 
     private final ListOfErrorRepository listOfErrorRepository;
+    private final ReasonRepository reasonRepository;
 
-    public ListOfErrorResource(ListOfErrorService listOfErrorService, ListOfErrorRepository listOfErrorRepository) {
+    public ListOfErrorResource(ListOfErrorService listOfErrorService, ListOfErrorRepository listOfErrorRepository, ReasonRepository reasonRepository) {
         this.listOfErrorService = listOfErrorService;
         this.listOfErrorRepository = listOfErrorRepository;
+        this.reasonRepository = reasonRepository;
     }
 
     /**
@@ -176,9 +181,37 @@ public class ListOfErrorResource {
             .build();
     }
     @PostMapping("insert-update")
-    public void updateListOfError(@RequestBody List<ListOfError> requests){
-        for (ListOfError request:requests){
-            this.listOfErrorRepository.save(request);
+    public void updateListOfError(@RequestBody List<ListOfErrorDTO> requests){
+        for (ListOfErrorDTO request:requests){
+            ListOfError error = new ListOfError();
+            error.setId(request.getId());
+            error.setError_code(request.getError_code());
+            error.setError_name(request.getError_name());
+            error.setError_source(request.getError_source());
+            error.setQuantity(request.getQuantity());
+            error.setMethod(request.getMethod());
+            error.setCheck_by_id(request.getCheck_by_id());
+            error.setCreate_by(request.getCreate_by());
+            error.setImage(request.getImage());
+            error.setCreated_at(request.getCreated_at());
+            error.setUpdated_at(request.getUpdated_at());
+            error.setCheck_time(request.getCheck_time());
+            error.setComplaint_id(request.getComplaint_id());
+            error.setLot_number(request.getLot_number());
+            error.setSerial(request.getSerial());
+            error.setMac_address(request.getMac_address());
+            if(request.getReason_id() == null){
+                Reason reason = new Reason();
+                reason.setCreate_by(request.getCheck_by());
+                reason.setCreated_at(request.getCreated_at());
+                reason.setName(request.getReason());
+                this.reasonRepository.save(reason);
+                error.setReason_id(reason.getId());
+                this.listOfErrorRepository.save(error);
+            }else{
+                error.setReason_id(request.getId());
+                this.listOfErrorRepository.save(error);
+            }
         }
     }
 }

@@ -57,13 +57,13 @@ spring:
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
-    url: jdbc:mariadb://localhost:3308/rdComplaintGateway?useLegacyDatetimeCode=false
+    url: jdbc:mariadb://192.168.18.128:3308/rdComplaintGateway?useLegacyDatetimeCode=false
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   r2dbc:
-    url: r2dbc:mysql://localhost:3308/rdComplaintGateway?useLegacyDatetimeCode=false
+    url: r2dbc:mysql://192.168.18.128:3308/rdComplaintGateway?useLegacyDatetimeCode=false
     username: root
-    password: 123456
+    password: 123456789
   thymeleaf:
     cache: false
 
