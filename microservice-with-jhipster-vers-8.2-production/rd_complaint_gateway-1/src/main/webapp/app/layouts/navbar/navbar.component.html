@@ -13,7 +13,7 @@
   <div>
 
     <nav>
-      <ul class="navbar-nav">
+      <ul id="navbar-nav" class="navbar-nav">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <a class="dropdown-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
             (click)="collapseNavbar()">
@@ -25,7 +25,7 @@
         </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         @if (account() !== null) {
-        <li class="nav-item">
+        <li class="nav-item" *jhiHasAnyAuthority="'ROLE_COMPLAINT_USER'">
           <a class="dropdown-item" routerLink="/complaint-list" routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
             <fa-icon [icon]="faScroll" [fixedWidth]="true"></fa-icon>
@@ -34,7 +34,8 @@
         </li>
 
         <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
+          [routerLinkActiveOptions]="{ exact: true }"
+          *jhiHasAnyAuthority="'ROLE_COMPLAINT_ADMIN','ROLE_COMPLAINT_LIST' ">
           <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">
             <span>
               <fa-icon icon="th-list"></fa-icon>

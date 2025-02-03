@@ -75,9 +75,37 @@
             <fa-icon class="p-1"></fa-icon>
           </div>
         </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Số lượng báo lỗi</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Số lượng lắp đặt</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
         <th class="table-header" style="width: 3.5%;">
           <div class="d-flex">
             <span>Ngày sản xuất</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Thông tin driver</span>
+
+            <fa-icon class="p-1"></fa-icon>
+          </div>
+        </th>
+        <th class="table-header" style="width: 2%;">
+          <div class="d-flex">
+            <span>Thông tin LED</span>
 
             <fa-icon class="p-1"></fa-icon>
           </div>
@@ -265,7 +293,11 @@
         <td>{{ complaintList.reflector }}</td>
         <td>{{ complaintList.total_errors }}</td>
         <td>{{ complaintList.quantity }}</td>
+        <td>{{ complaintList.error_quantity }}</td>
+        <td>{{ complaintList.used_quantity }}</td>
         <td>{{ complaintList.production_time | date :'dd/MM/YYYY hh:mm' }}</td>
+        <td>{{ complaintList.driver_infor }}</td>
+        <td>{{ complaintList.led_infor }}</td>
         <td>{{ complaintList.department }}</td>
         <td>{{ complaintList.checker }}</td>
         <td>{{ complaintList.rectification_time | date :'dd/MM/YYYY hh:mm' }}</td>

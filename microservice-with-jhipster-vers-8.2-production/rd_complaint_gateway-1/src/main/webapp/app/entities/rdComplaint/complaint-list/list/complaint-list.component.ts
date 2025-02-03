@@ -109,6 +109,7 @@ export class ComplaintListComponent implements OnInit {
       complaint: this.complaint
     });
     this.updateTableData(this.complaintListsOrigin);
+    console.log('list item', this.complaintLists)
   }
 
   trackById(index: number, item: any): any {
