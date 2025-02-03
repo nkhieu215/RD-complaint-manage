@@ -46,9 +46,9 @@ spring:
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod
-    url: jdbc:mariadb://192.168.18.128:3308/rdComplaintGateway?useLegacyDatetimeCode=false
+    url: jdbc:mariadb://192.168.18.129:3308/rdComplaintGateway?useLegacyDatetimeCode=false
   r2dbc:
-    url: r2dbc:mariadb://192.168.18.128:3308/rdComplaintGateway?useLegacyDatetimeCode=false
+    url: r2dbc:mysql://192.168.18.129:3307/rdComplaintGateway?useLegacyDatetimeCode=false
     username: root
     password: 123456789
   thymeleaf:

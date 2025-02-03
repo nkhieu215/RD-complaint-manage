@@ -90,6 +90,14 @@ public class ComplaintList implements Serializable {
     private String mac_address;
     @Column(name = "report_code")
     private String report_code;
+    @Column(name = "driver_info")
+    private String driver_info;
+    @Column(name = "error_quantity")
+    private String error_quantity;
+    @Column(name = "used_quantity")
+    private String used_quantity;
+    @Column(name = "led_info")
+    private String led_info;
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -112,6 +120,38 @@ public class ComplaintList implements Serializable {
     public ComplaintList product_code(String product_code) {
         this.setProduct_code(product_code);
         return this;
+    }
+
+    public String getDriver_info() {
+        return driver_info;
+    }
+
+    public void setDriver_info(String driver_info) {
+        this.driver_info = driver_info;
+    }
+
+    public String getError_quantity() {
+        return error_quantity;
+    }
+
+    public void setError_quantity(String error_quantity) {
+        this.error_quantity = error_quantity;
+    }
+
+    public String getUsed_quantity() {
+        return used_quantity;
+    }
+
+    public void setUsed_quantity(String used_quantity) {
+        this.used_quantity = used_quantity;
+    }
+
+    public String getLed_info() {
+        return led_info;
+    }
+
+    public void setLed_info(String led_info) {
+        this.led_info = led_info;
     }
 
     public void setProduct_code(String product_code) {

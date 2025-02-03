@@ -1,5 +1,7 @@
 package com.mycompany.myapp.service.dto;
 
+import jakarta.persistence.Column;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
@@ -58,6 +60,42 @@ public class ComplaintListDTO implements Serializable {
 
     private String mac_address;
     private String report_code;
+    private String driver_info;
+    private String error_quantity;
+    private String used_quantity;
+    private String led_info;
+
+    public String getDriver_info() {
+        return driver_info;
+    }
+
+    public void setDriver_info(String driver_info) {
+        this.driver_info = driver_info;
+    }
+
+    public String getError_quantity() {
+        return error_quantity;
+    }
+
+    public void setError_quantity(String error_quantity) {
+        this.error_quantity = error_quantity;
+    }
+
+    public String getUsed_quantity() {
+        return used_quantity;
+    }
+
+    public void setUsed_quantity(String used_quantity) {
+        this.used_quantity = used_quantity;
+    }
+
+    public String getLed_info() {
+        return led_info;
+    }
+
+    public void setLed_info(String led_info) {
+        this.led_info = led_info;
+    }
 
     public String getReport_code() {
         return report_code;
