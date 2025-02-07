@@ -57,13 +57,13 @@
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th class="table-header" style="width: 6%;">
+          <!-- <th class="table-header" style="width: 6%;">
             <div class="d-flex">
-              <span>Ngày sản xuất</span>
+              <span>Mã LOT</span>
 
               <fa-icon class="p-1"></fa-icon>
             </div>
-          </th>
+          </th> -->
           <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Người khiếu nại</span>
@@ -113,7 +113,7 @@
               <fa-icon class="p-1"></fa-icon>
             </div>
           </th>
-          <th class="table-header" style="width: 6%;">
+          <!-- <th class="table-header" style="width: 6%;">
             <div class="d-flex">
               <span>Thông tin driver</span>
 
@@ -126,7 +126,7 @@
 
               <fa-icon class="p-1"></fa-icon>
             </div>
-          </th>
+          </th> -->
           <th class="table-header">
             <div class="d-flex">
               <span>Nội dung khiếu nại</span>
@@ -192,10 +192,10 @@
               [ngClass]="{'input-error': !complaintList.branch}" list="branch" />
 
           </td>
-          <td><input class="input-search" type="date" [(ngModel)]="complaintList.production_time_convert"
+          <!-- <td><input class="input-search" type="text" [(ngModel)]="complaintList.production_time_convert"
               [ngModelOptions]="{ standalone: true }"
               [ngClass]="{'input-error': !complaintList.production_time_convert}" />
-          </td>
+          </td> -->
           <td>
             <input class="input-search" type="text" [(ngModel)]="complaintList.reflector"
               [ngModelOptions]="{ standalone: true }" list="reflector"
@@ -238,12 +238,12 @@
               [ngModelOptions]="{ standalone: true }" (keydown)="isNumberKey($event)" min="0"
               [ngClass]="{'input-error': !complaintList.used_quantity}" />
           </td>
-          <td><input class="input-search" type="text" [(ngModel)]=" complaintList.driver_infor"
+          <!-- <td><input class="input-search" type="text" [(ngModel)]=" complaintList.driver_infor"
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.driver_infor}" />
           </td>
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.led_infor"
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.led_infor}" />
-          </td>
+          </td> -->
           <td><input class="input-search" type="text" [(ngModel)]=" complaintList.complaint_detail"
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.complaint_detail}" />
           </td>
@@ -251,12 +251,7 @@
             <!-- <input class="input-search" type="text" [(ngModel)]=" complaintList.status"
               [ngModelOptions]="{ standalone: true }" [ngClass]="{'input-error': !complaintList.status}" /> -->
             <select class="input-search" [(ngModel)]=" complaintList.status" [ngModelOptions]="{ standalone: true }">
-              <option value="Đã đóng">Đã đóng</option>
-              <option value="Đã khắc phục">Đã khắc phục</option>
-              <option value="Đang khắc phục">Đang khắc phục</option>
-              <option value="Theo dõi sau khắc phục">Theo dõi sau khắc phục</option>
               <option value="Chờ phân tích">Chờ phân tích</option>
-              <option value="Đang phân tích">Đang phân tích</option>
             </select>
           </td>
         </tr>

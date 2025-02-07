@@ -9,6 +9,7 @@ import { IDepartment } from '../department.model';
   standalone: true,
   selector: 'jhi-department-detail',
   templateUrl: './department-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class DepartmentDetailComponent {

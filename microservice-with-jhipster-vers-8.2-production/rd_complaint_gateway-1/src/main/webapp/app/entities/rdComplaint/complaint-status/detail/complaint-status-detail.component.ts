@@ -9,6 +9,7 @@ import { IComplaintStatus } from '../complaint-status.model';
   standalone: true,
   selector: 'jhi-complaint-status-detail',
   templateUrl: './complaint-status-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class ComplaintStatusDetailComponent {

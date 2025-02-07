@@ -15,6 +15,7 @@ import { ComplaintFormService, ComplaintFormGroup } from './complaint-form.servi
   standalone: true,
   selector: 'jhi-complaint-update',
   templateUrl: './complaint-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class ComplaintUpdateComponent implements OnInit {

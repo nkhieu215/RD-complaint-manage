@@ -15,6 +15,7 @@ import { DepartmentFormService, DepartmentFormGroup } from './department-form.se
   standalone: true,
   selector: 'jhi-department-update',
   templateUrl: './department-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class DepartmentUpdateComponent implements OnInit {

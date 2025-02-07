@@ -9,6 +9,7 @@ import { IUnitOfUse } from '../unit-of-use.model';
   standalone: true,
   selector: 'jhi-unit-of-use-detail',
   templateUrl: './unit-of-use-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class UnitOfUseDetailComponent {

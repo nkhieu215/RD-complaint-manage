@@ -15,6 +15,7 @@ import { UnitOfUseFormService, UnitOfUseFormGroup } from './unit-of-use-form.ser
   standalone: true,
   selector: 'jhi-unit-of-use-update',
   templateUrl: './unit-of-use-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class UnitOfUseUpdateComponent implements OnInit {

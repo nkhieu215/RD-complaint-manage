@@ -289,6 +289,8 @@ export class ComplaintListUpdateComponent implements OnInit {
       'Mã biên bản',
       'Đơn vị sử dụng',
       'Số lượng nhận',
+      'Số lượng báo lỗi',
+      'Số lượng lắp đặt',
       'Nội dung khiếu nại',
     ]
     ];
@@ -301,6 +303,8 @@ export class ComplaintListUpdateComponent implements OnInit {
       "Hình thức khiếu nại",
       "Mã biên bản",
       "Đơn vị sử dụng",
+      "0",
+      "0",
       "0",
       "Nội dung khiếu nại",
     ]
@@ -361,6 +365,8 @@ export class ComplaintListUpdateComponent implements OnInit {
             complaint_detail: element['Nội dung khiếu nại'],
             unit_of_use: element['Đơn vị sử dụng'],
             complaint: element['Hình thức khiếu nại'],
+            error_quantity: element['Số lượng báo lỗi'],
+            used_quantity: element['Số lượng lắp đặt'],
             create_by: this.account?.login,
             total_errors: 0,
           };
@@ -378,6 +384,8 @@ export class ComplaintListUpdateComponent implements OnInit {
       branch: '',
       reflector: '',
       quantity: '',
+      error_quantity: '',
+      used_quantity: '',
       production_time: '',
       status: 'Chờ phân tích',
       complaint_detail: '',

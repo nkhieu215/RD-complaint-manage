@@ -16,6 +16,7 @@ import { ComplaintStatusFormService, ComplaintStatusFormGroup } from './complain
   selector: 'jhi-complaint-status-update',
   templateUrl: './complaint-status-update.component.html',
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  styleUrls: ['../../shared.component.css'],
 })
 export class ComplaintStatusUpdateComponent implements OnInit {
   isSaving = false;

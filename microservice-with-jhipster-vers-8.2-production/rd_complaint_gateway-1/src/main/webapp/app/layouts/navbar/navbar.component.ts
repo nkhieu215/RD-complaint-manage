@@ -97,7 +97,3 @@ export default class NavbarComponent implements OnInit {
     sessionStorage.setItem('showLogo', 'show');
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> accc7957c18a71c7b74075db6733b89f89f589c0

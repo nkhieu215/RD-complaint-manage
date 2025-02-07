@@ -85,7 +85,6 @@ export class ComplaintListDetailComponent implements OnInit {
       this.errorList = res.errorLists;
       setTimeout(() => {
         //convert date
-        this.complaintDetail.production_time = this.complaintDetail.production_time === null ? null : this.complaintDetail.production_time.slice(0, 10);
         this.complaintDetail.rectification_time = this.complaintDetail.rectification_time === null ? null : this.complaintDetail.rectification_time.slice(0, 10);
         //mapping name by id
         var reflector = res.reflectorList.find((x: any) => x.id === res.complaintListDTOById.reflector_id);
@@ -129,7 +128,7 @@ export class ComplaintListDetailComponent implements OnInit {
             element.check_by = null;
           }
         })
-        console.log(this.complaintDetail);
+        console.log('a', this.complaintDetail);
       }, 500);
       console.log(res);
     })
@@ -333,6 +332,8 @@ export class ComplaintListDetailComponent implements OnInit {
       error_name: null,
       quantity: 0,
       error_source: null,
+      led_infor: null,
+      driver_infor: null,
       reason_id: null,
       reason: null,
       check_by_id: null,

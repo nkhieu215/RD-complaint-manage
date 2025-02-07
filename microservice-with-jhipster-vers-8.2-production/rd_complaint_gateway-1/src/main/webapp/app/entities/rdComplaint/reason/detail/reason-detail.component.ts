@@ -9,6 +9,7 @@ import { IReason } from '../reason.model';
   standalone: true,
   selector: 'jhi-reason-detail',
   templateUrl: './reason-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class ReasonDetailComponent {

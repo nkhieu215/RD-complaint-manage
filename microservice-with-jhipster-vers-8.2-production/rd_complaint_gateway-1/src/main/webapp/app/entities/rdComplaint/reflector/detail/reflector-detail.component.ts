@@ -9,6 +9,7 @@ import { IReflector } from '../reflector.model';
   standalone: true,
   selector: 'jhi-reflector-detail',
   templateUrl: './reflector-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class ReflectorDetailComponent {

@@ -9,6 +9,7 @@ import { ICheckerList } from '../checker-list.model';
   standalone: true,
   selector: 'jhi-checker-list-detail',
   templateUrl: './checker-list-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class CheckerListDetailComponent {

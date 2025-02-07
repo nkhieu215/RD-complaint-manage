@@ -15,6 +15,7 @@ import { ReflectorFormService, ReflectorFormGroup } from './reflector-form.servi
   standalone: true,
   selector: 'jhi-reflector-update',
   templateUrl: './reflector-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class ReflectorUpdateComponent implements OnInit {

@@ -16,6 +16,7 @@ import { ImplementationResultFormService, ImplementationResultFormGroup } from '
   selector: 'jhi-implementation-result-update',
   templateUrl: './implementation-result-update.component.html',
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
+  styleUrls: ['../../shared.component.css'],
 })
 export class ImplementationResultUpdateComponent implements OnInit {
   isSaving = false;

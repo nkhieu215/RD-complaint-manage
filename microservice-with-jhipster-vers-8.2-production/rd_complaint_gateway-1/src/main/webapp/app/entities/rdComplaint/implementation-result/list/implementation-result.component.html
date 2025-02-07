@@ -17,10 +17,6 @@
     </div>
   </h2>
 
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
-
   @if (implementationResults?.length === 0) {
   <div class="alert alert-warning" id="no-result">
     <span>Không tìm thấy kết quả thực hiện</span>
@@ -89,8 +85,8 @@
                 <!-- <span class="d-none d-md-inline">View</span> -->
               </a>
 
-              <a [routerLink]="['/implementation-result', implementationResult.id, 'edit']"
-                class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <a [routerLink]="['/implementation-result', implementationResult.id, 'edit']" class=" btn-primary"
+                data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <!-- <span class="d-none d-md-inline">Edit</span> -->
               </a>

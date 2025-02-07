@@ -15,6 +15,7 @@ import { ReasonFormService, ReasonFormGroup } from './reason-form.service';
   standalone: true,
   selector: 'jhi-reason-update',
   templateUrl: './reason-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class ReasonUpdateComponent implements OnInit {

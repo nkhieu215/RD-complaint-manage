@@ -15,6 +15,7 @@ import { CheckerListFormService, CheckerListFormGroup } from './checker-list-for
   standalone: true,
   selector: 'jhi-checker-list-update',
   templateUrl: './checker-list-update.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class CheckerListUpdateComponent implements OnInit {

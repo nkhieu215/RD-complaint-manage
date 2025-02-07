@@ -20,6 +20,7 @@ import { ReasonDeleteDialogComponent } from '../delete/reason-delete-dialog.comp
   standalone: true,
   selector: 'jhi-reason',
   templateUrl: './reason.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [
     RouterModule,
     FormsModule,

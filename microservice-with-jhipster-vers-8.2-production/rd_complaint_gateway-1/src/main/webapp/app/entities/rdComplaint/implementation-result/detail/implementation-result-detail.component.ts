@@ -9,6 +9,7 @@ import { IImplementationResult } from '../implementation-result.model';
   standalone: true,
   selector: 'jhi-implementation-result-detail',
   templateUrl: './implementation-result-detail.component.html',
+  styleUrls: ['../../shared.component.css'],
   imports: [SharedModule, RouterModule, DurationPipe, FormatMediumDatetimePipe, FormatMediumDatePipe],
 })
 export class ImplementationResultDetailComponent {
