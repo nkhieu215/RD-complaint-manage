@@ -20,7 +20,7 @@ public interface ComplaintListResponse {
 
     Integer getQuantity();
 
-    Date getProduction_time();
+    // Date getProduction_time();
 
     String getDepartment();
 
@@ -52,11 +52,9 @@ public interface ComplaintListResponse {
 
     String getMac_address();
 
-    String getDriver_info();
 
     String getError_quantity();
 
     String getUsed_quantity();
 
-    String getLed_info();
 }

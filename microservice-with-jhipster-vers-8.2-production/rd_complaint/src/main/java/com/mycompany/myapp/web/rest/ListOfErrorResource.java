@@ -200,6 +200,8 @@ public class ListOfErrorResource {
             error.setLot_number(request.getLot_number());
             error.setSerial(request.getSerial());
             error.setMac_address(request.getMac_address());
+            error.setLed_infor(request.getLed_infor());
+            error.setDriver_infor(request.getDriver_infor());
             if(request.getReason_id() == null){
                 Reason reason = new Reason();
                 reason.setCreate_by(request.getCheck_by());

@@ -65,7 +65,27 @@ public class ListOfError implements Serializable {
 
     @Column(name = "mac_address")
     private String mac_address;
+    @Column(name = "led_infor")
+    private String led_infor;
+    @Column(name = "driver_infor")
+    private String driver_infor;
     // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public String getLed_infor() {
+        return led_infor;
+    }
+
+    public void setLed_infor(String led_infor) {
+        this.led_infor = led_infor;
+    }
+
+    public String getDriver_infor() {
+        return driver_infor;
+    }
+
+    public void setDriver_infor(String driver_infor) {
+        this.driver_infor = driver_infor;
+    }
 
     public String getLot_number() {
         return lot_number;

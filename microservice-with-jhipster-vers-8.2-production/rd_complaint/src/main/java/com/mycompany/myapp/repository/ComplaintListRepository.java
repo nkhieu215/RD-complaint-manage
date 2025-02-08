@@ -22,7 +22,6 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " ref.name as reflector,\n" +
         " compl.total_errors as total_errors,\n" +
         " compl.quantity as quantity,\n" +
-        " compl.production_time as production_time,\n" +
         " dep.name as department,\n" +
         " ckr.name as checker,\n" +
         " compl.rectification_time as rectification_time,\n" +
@@ -37,10 +36,8 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " compl.created_at as created_at,\n" +
         " compl.updated_at as updated_at,\n" +
         " compl.serial as serial,\n" +
-        " compl.driver_info as driver_info,\n" +
         " compl.error_quantity as error_quantity,\n" +
         " compl.used_quantity as used_quantity,\n" +
-        " compl.led_info as led_info,\n" +
         " compl.mac_address as mac_address,\n" +
         " compl.report_code as report_code\n" +
         " FROM `complaint_list` as compl\n" +
@@ -59,7 +56,6 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " ref.name as reflector,\n" +
         " compl.total_errors as total_errors,\n" +
         " compl.quantity as quantity,\n" +
-        " compl.production_time as production_time,\n" +
         " dep.name as department,\n" +
         " ckr.name as checker,\n" +
         " compl.rectification_time as rectification_time,\n" +
@@ -74,10 +70,8 @@ public interface ComplaintListRepository extends JpaRepository<ComplaintList, Lo
         " compl.created_at as created_at,\n" +
         " compl.updated_at as updated_at,\n" +
         " compl.serial as serial,\n" +
-        " compl.driver_info as driver_info,\n" +
         " compl.error_quantity as error_quantity,\n" +
         " compl.used_quantity as used_quantity,\n" +
-        " compl.led_info as led_info,\n" +
         " compl.mac_address as mac_address,\n" +
         " compl.report_code as report_code\n" +
         " FROM `complaint_list` as compl\n" +

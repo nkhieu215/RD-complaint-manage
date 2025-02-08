@@ -41,8 +41,7 @@ public class ComplaintList implements Serializable {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "production_time")
-    private ZonedDateTime production_time;
+
 
     @Column(name = "dapartment_id")
     private Long dapartment_id;
@@ -90,14 +89,12 @@ public class ComplaintList implements Serializable {
     private String mac_address;
     @Column(name = "report_code")
     private String report_code;
-    @Column(name = "driver_info")
-    private String driver_info;
+
     @Column(name = "error_quantity")
-    private String error_quantity;
+    private Integer error_quantity;
     @Column(name = "used_quantity")
-    private String used_quantity;
-    @Column(name = "led_info")
-    private String led_info;
+    private Integer used_quantity;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -122,37 +119,23 @@ public class ComplaintList implements Serializable {
         return this;
     }
 
-    public String getDriver_info() {
-        return driver_info;
-    }
 
-    public void setDriver_info(String driver_info) {
-        this.driver_info = driver_info;
-    }
-
-    public String getError_quantity() {
+    public Integer getError_quantity() {
         return error_quantity;
     }
 
-    public void setError_quantity(String error_quantity) {
+    public void setError_quantity(Integer error_quantity) {
         this.error_quantity = error_quantity;
     }
 
-    public String getUsed_quantity() {
+    public Integer getUsed_quantity() {
         return used_quantity;
     }
 
-    public void setUsed_quantity(String used_quantity) {
+    public void setUsed_quantity(Integer used_quantity) {
         this.used_quantity = used_quantity;
     }
 
-    public String getLed_info() {
-        return led_info;
-    }
-
-    public void setLed_info(String led_info) {
-        this.led_info = led_info;
-    }
 
     public void setProduct_code(String product_code) {
         this.product_code = product_code;
@@ -236,18 +219,14 @@ public class ComplaintList implements Serializable {
         this.quantity = quantity;
     }
 
-    public ZonedDateTime getProduction_time() {
-        return this.production_time;
-    }
 
-    public ComplaintList production_time(ZonedDateTime production_time) {
-        this.setProduction_time(production_time);
-        return this;
-    }
 
-    public void setProduction_time(ZonedDateTime production_time) {
-        this.production_time = production_time;
-    }
+//    public ComplaintList production_time(ZonedDateTime production_time) {
+//        this.setProduction_time(production_time);
+//        return this;
+//    }
+
+
 
     public Long getDapartment_id() {
         return this.dapartment_id;
@@ -484,7 +463,7 @@ public class ComplaintList implements Serializable {
                 ", reflector_id=" + getReflector_id() +
                 ", total_errors=" + getTotal_errors() +
                 ", quantity=" + getQuantity() +
-                ", production_time='" + getProduction_time() + "'" +
+
                 ", dapartment_id=" + getDapartment_id() +
                 ", check_by_id=" + getCheck_by_id() +
                 ", rectification_time='" + getRectification_time() + "'" +

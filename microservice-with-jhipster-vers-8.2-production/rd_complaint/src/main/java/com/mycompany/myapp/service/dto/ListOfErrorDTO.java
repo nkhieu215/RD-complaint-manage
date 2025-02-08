@@ -45,6 +45,24 @@ public class ListOfErrorDTO implements Serializable {
     private String mac_address;
     private String reason;
     private String check_by;
+    private String driver_infor;
+    private String led_infor;
+
+    public String getDriver_infor() {
+        return driver_infor;
+    }
+
+    public void setDriver_infor(String driver_infor) {
+        this.driver_infor = driver_infor;
+    }
+
+    public String getLed_infor() {
+        return led_infor;
+    }
+
+    public void setLed_infor(String led_infor) {
+        this.led_infor = led_infor;
+    }
 
     public String getReason() {
         return reason;

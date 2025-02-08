@@ -28,7 +28,6 @@ public class ComplaintListDTO implements Serializable {
 
     private Integer quantity;
 
-    private ZonedDateTime production_time;
 
     private Long dapartment_id;
 
@@ -60,41 +59,24 @@ public class ComplaintListDTO implements Serializable {
 
     private String mac_address;
     private String report_code;
-    private String driver_info;
-    private String error_quantity;
-    private String used_quantity;
-    private String led_info;
+    private Integer error_quantity;
+    private Integer used_quantity;
 
-    public String getDriver_info() {
-        return driver_info;
-    }
 
-    public void setDriver_info(String driver_info) {
-        this.driver_info = driver_info;
-    }
-
-    public String getError_quantity() {
+    public Integer getError_quantity() {
         return error_quantity;
     }
 
-    public void setError_quantity(String error_quantity) {
+    public void setError_quantity(Integer error_quantity) {
         this.error_quantity = error_quantity;
     }
 
-    public String getUsed_quantity() {
+    public Integer getUsed_quantity() {
         return used_quantity;
     }
 
-    public void setUsed_quantity(String used_quantity) {
+    public void setUsed_quantity(Integer used_quantity) {
         this.used_quantity = used_quantity;
-    }
-
-    public String getLed_info() {
-        return led_info;
-    }
-
-    public void setLed_info(String led_info) {
-        this.led_info = led_info;
     }
 
     public String getReport_code() {
@@ -169,13 +151,9 @@ public class ComplaintListDTO implements Serializable {
         this.quantity = quantity;
     }
 
-    public ZonedDateTime getProduction_time() {
-        return production_time;
-    }
 
-    public void setProduction_time(ZonedDateTime production_time) {
-        this.production_time = production_time;
-    }
+
+
 
     public Long getDapartment_id() {
         return dapartment_id;
@@ -329,7 +307,7 @@ public class ComplaintListDTO implements Serializable {
             ", reflector_id=" + reflector_id +
             ", total_errors=" + total_errors +
             ", quantity=" + quantity +
-            ", production_time=" + production_time +
+
             ", dapartment_id=" + dapartment_id +
             ", check_by_id=" + check_by_id +
             ", rectification_time=" + rectification_time +
