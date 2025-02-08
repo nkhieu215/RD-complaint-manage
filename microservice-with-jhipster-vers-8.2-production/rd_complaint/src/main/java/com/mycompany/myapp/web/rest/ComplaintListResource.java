@@ -38,7 +38,7 @@ import tech.jhipster.web.util.ResponseUtil;
 @RestController
 @RequestMapping("/api/complaint-lists")
 public class ComplaintListResource {
-    private final String FOLDER_PATH ="D:/RangDongProject/RD-complaint/RD-complaint-manage/microservice-with-jhipster-vers-8.2-production/rd_complaint_gateway/src/main/webapp/content/images/ErrorImage/";
+    private final String FOLDER_PATH ="D:/RD-complaint-manage/microservice-with-jhipster-vers-8.2-production/rd_complaint_gateway-1/src/main/webapp/content/images/ErrorImage";
     @Autowired
     ResourceLoader resourceLoader;
     private final Logger log = LoggerFactory.getLogger(ComplaintListResource.class);
