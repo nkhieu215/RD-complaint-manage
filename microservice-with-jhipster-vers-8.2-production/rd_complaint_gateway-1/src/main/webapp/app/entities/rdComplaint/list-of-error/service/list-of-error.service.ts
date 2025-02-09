@@ -63,7 +63,7 @@ export class ListOfErrorService {
     return this.http.post<any>(`${this.resourceUrl}/insert-update`, body);
   }
   deleteError(id: number) {
-    return this.http.delete(`${this.resourceUrl}/delete-error/${id}`);
+    return this.http.delete(`${this.resourceUrl}/${id}`);
   }
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);

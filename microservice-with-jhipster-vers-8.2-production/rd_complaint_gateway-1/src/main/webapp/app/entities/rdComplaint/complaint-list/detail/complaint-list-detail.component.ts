@@ -379,7 +379,7 @@ export class ComplaintListDetailComponent implements OnInit {
     this.savingProcess = false;
     Swal.fire({
       title: 'Cảnh báo',
-      text: message + 'không nằm trong danh mục quản lý',
+      text: message + ' không nằm trong danh mục quản lý',
       icon: 'warning',
       showCancelButton: false,
       showConfirmButton: true,
@@ -502,19 +502,19 @@ export class ComplaintListDetailComponent implements OnInit {
           toast: true,
           position: "top-end",
           showConfirmButton: false,
-          timer: 3000,
+          // timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
           }
         });
-        // Toast.fire({
-        //   icon: "success",
-        //   title: "Đã xoá thông tin thành công"
-        // });
+        Toast.fire({
+          icon: "success",
+          title: "Đã xoá thông tin thành công"
+        });
 
-        this.complaintListService.updateComplaintInfo(this.complaintDetail).subscribe();
+        // this.complaintListService.updateComplaintInfo(this.complaintDetail).subscribe();
         console.log(this.complaintDetail);
       }
     );

@@ -18,6 +18,7 @@ export default class HomeComponent implements OnInit {
 
   private accountService = inject(AccountService);
   private loginService = inject(LoginService);
+  private router = inject(RouterModule);
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => this.account.set(account));
